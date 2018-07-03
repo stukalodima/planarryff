@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<fts-config xmlns="http://schemas.haulmont.com/cuba/fts.xsd">
+    <entities>
+        <entity class="com.planarry.erp.entity.Company">
+            <include re=".*"/>
+        </entity>
+        <entity class="com.planarry.erp.entity.TransportType">
+            <include re=".*"/>
+        </entity>
+        <entity class="com.planarry.erp.entity.Transport">
+            <include re=".*"/>
+        </entity>
+        <entity class="com.planarry.erp.entity.Trailer">
+            <include re=".*"/>
+        </entity>
+        <entity class="com.planarry.erp.entity.Currency">
+            <include re=".*"/>
+        </entity>
+        <entity class="com.planarry.erp.entity.CurrencyRate">
+            <include re=".*"/>
+        </entity>
+        <entity class="com.planarry.erp.entity.EmployeeRole">
+            <include re=".*"/>
+        </entity>
+        <entity class="com.planarry.erp.entity.Employee">
+            <include re=".*"/>
+        </entity>
+        <entity class="com.planarry.erp.entity.TransportTrailers">
+            <include re=".*"/>
+        </entity>
+        <entity class="com.planarry.erp.entity.TransportDrivers">
+            <include re=".*"/>
+        </entity>
+        <entity class="com.planarry.erp.entity.TransportForwarders">
+            <include re=".*"/>
+        </entity>
+        <entity class="com.planarry.erp.entity.TransportCrewMembers">
+            <include re=".*"/>
+        </entity>
+        <entity class="com.planarry.erp.entity.Cargo">
+            <include re=".*"/>
+        </entity>
+        <entity class="com.planarry.erp.entity.Journey">
+            <include re=".*"/>
+        </entity>
+        <entity class="com.planarry.erp.entity.JourneyComposition">
+            <include re=".*"/>
+        </entity>
+        <entity class="com.planarry.erp.entity.JourneyCargo">
+            <include re=".*"/>
+        </entity>
+        <entity class="com.planarry.erp.entity.TransportState">
+            <include re=".*"/>
+        </entity>
+        <entity class="com.planarry.erp.entity.TransportClassADR">
+            <include re=".*"/>
+        </entity>
+        <entity class="com.planarry.erp.entity.ActivitiesType">
+            <include re=".*"/>
+        </entity>
+        <entity class="com.planarry.erp.entity.ExtUser">
+            <include re=".*"/>
+        </entity>
+        <entity class="com.planarry.erp.entity.MonitoringSettings">
+            <include re=".*"/>
+        </entity>
+        <entity class="com.planarry.erp.entity.JourneyState">
+            <include re=".*"/>
+        </entity>
+        <entity class="com.planarry.erp.entity.Constant">
+            <include re=".*"/>
+        </entity>
+        <entity class="com.planarry.erp.entity.AccessToCargo">
+            <include re=".*"/>
+        </entity>
+        <entity class="com.planarry.erp.entity.AccessToTrailer">
+            <include re=".*"/>
+        </entity>
+        <entity class="com.planarry.erp.entity.TransportsAccess">
+            <include re=".*"/>
+        </entity>
+        <entity class="com.planarry.erp.entity.Department">
+            <include re=".*"/>
+        </entity>
+        <entity class="com.planarry.erp.entity.DepartmentEmployee">
+            <include re=".*"/>
+        </entity>
+        <entity class="com.planarry.erp.entity.Point">
+            <include re=".*"/>
+        </entity>
+        <entity class="com.planarry.erp.entity.CargoDeliveryPoint">
+            <include re=".*"/>
+        </entity>
+        <entity class="com.planarry.erp.entity.Delivery">
+            <include re=".*"/>
+        </entity>
+        <entity class="com.planarry.erp.entity.DeliveryComposition">
+            <include re=".*"/>
+        </entity>
+        <entity class="com.planarry.erp.entity.MutualSettlements">
+            <include re=".*"/>
+        </entity>
+        <entity class="com.planarry.erp.entity.ClientCredit">
+            <include re=".*"/>
+        </entity>
+        <entity class="com.planarry.erp.entity.ServicesPayment">
+            <include re=".*"/>
+        </entity>
+        <entity class="com.planarry.erp.entity.PolygonMap">
+            <include re=".*"/>
+        </entity>
+        <entity class="com.planarry.erp.entity.EntryPoint">
+            <include re=".*"/>
+        </entity>
+        <entity class="com.planarry.erp.entity.PolygonPoint">
+            <include re=".*"/>
+        </entity>
+        <entity class="com.planarry.erp.entity.Category">
+            <include re=".*"/>
+        </entity>
+        <entity class="com.planarry.erp.entity.CategoryArea">
+            <include re=".*"/>
+        </entity>
+        <entity class="com.planarry.erp.entity.TransportArea">
+            <include re=".*"/>
+        </entity>
+        <entity class="com.planarry.erp.entity.PolygonSegment">
+            <include re=".*"/>
+        </entity>
+    </entities>
+</fts-config>

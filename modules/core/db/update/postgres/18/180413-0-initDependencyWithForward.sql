@@ -1,0 +1,36 @@
+---------------------------------------------------------------
+
+INSERT INTO ERP_TRANSPORT_FORWARD_TABLE (TRANSPORT_ID, FORWARD_ID)
+SELECT ID, FORWARDER_ID from ERP_TRANSPORT^
+INSERT INTO ERP_TRAILER_FORWARD_TABLE (TRAILER_ID, FORWARD_ID)
+SELECT ID, FORWARDER_ID from ERP_TRAILER^
+
+alter table ERP_TRANSPORT drop constraint FK_ERP_TRANSPORT_FORWARDER^
+alter table ERP_TRAILER drop constraint FK_ERP_TRAILER_FORWARDER^
+
+CREATE OR REPLACE FUNCTION rewrite_transports()
+RETURNS void AS
+$func$
+DECLARE
+curs CURSOR FOR SELECT * FROM ERP_FORWARDER;
+transfer uuid;
+forwards uuid;
+BEGIN
+FOR row IN curs LOOP
+
+transfer := uuid_generate_v4();
+
+INSERT INTO ERP_EMPLOYEE (ID, NAME, GUID, FIRST_NAME, MIDDLE_NAME, LAST_NAME, PHONE, EMAIL, ROLE_ID, COMPANY_ID, USER_ID, IS_FREE, VERSION)
+VALUES (transfer, row.NAME, row.GUID, row.FIRST_NAME, row.MIDDLE_NAME, row.LAST_NAME, row.PHONE, row.EMAIL, '6aee0558-1f61-49d8-bc1d-caec026b9d7f', row.COMPANY_ID, row.USER_ID, false, 1);
+
+forwards := (SELECT row.id);
+
+UPDATE ERP_TRANSPORT_FORWARD_TABLE SET EMPLOYEE_ID = transfer
+where FORWARD_ID = forwards;
+Update ERP_TRAILER_FORWARD_TABLE SET EMPLOYEE_ID = transfer
+where FORWARD_ID = forwards;
+
+END LOOP;
+END;
+$func$  LANGUAGE plpgsql^
+SELECT rewrite_transports()^

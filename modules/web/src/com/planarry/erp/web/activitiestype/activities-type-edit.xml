@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://editorCaption"
+        class="com.planarry.erp.web.activitiestype.ActivitiesTypeEdit"
+        datasource="activitiesTypeDs"
+        focusComponent="fieldGroup"
+        messagesPack="com.planarry.erp.web.activitiestype">
+    <dsContext>
+        <datasource id="activitiesTypeDs"
+                    class="com.planarry.erp.entity.ActivitiesType"
+                    view="_local"/>
+    </dsContext>
+    <dialogMode closeable="true"
+                resizable="true"
+                forceDialog="true"
+                modal="true"
+                maximized="true"/>
+    <layout expand="scrollBox"
+            margin="true"
+            spacing="true">
+        <scrollBox id="scrollBox"
+                   responsive="true"
+                   spacing="true">
+            <fieldGroup id="fieldGroup"
+                        width="100%"
+                        datasource="activitiesTypeDs">
+                <column flex="1">
+                    <field property="name"/>
+                </column>
+            </fieldGroup>
+        </scrollBox>
+        <frame id="windowActions"
+               align="BOTTOM_RIGHT"
+               screen="extendedEditWindowActions"
+               width="AUTO"/>
+    </layout>
+</window>

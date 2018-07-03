@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://editorCaption"
+        class="com.planarry.erp.web.mutualsettlements.MutualSettlementsEdit"
+        datasource="mutualSettlementsDs"
+        focusComponent="fieldGroup"
+        messagesPack="com.planarry.erp.web.mutualsettlements">
+    <dsContext>
+        <datasource id="mutualSettlementsDs"
+                    class="com.planarry.erp.entity.MutualSettlements"
+                    view="_local"/>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="windowActions"
+            spacing="true">
+        <fieldGroup id="fieldGroup"
+                    datasource="mutualSettlementsDs">
+            <column width="250px">
+                <field property="payDate"/>
+                <field property="value"/>
+            </column>
+        </fieldGroup>
+        <frame id="windowActions"
+               screen="editWindowActions"/>
+    </layout>
+</window>

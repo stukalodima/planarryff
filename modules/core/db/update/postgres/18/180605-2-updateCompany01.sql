@@ -1,0 +1,2 @@
+alter table ERP_COMPANY add constraint FK_ERP_COMPANY_RETURN_AREA foreign key (RETURN_AREA_ID) references ERP_POLYGON_MAP(ID);
+create index IDX_ERP_COMPANY_RETURN_AREA on ERP_COMPANY (RETURN_AREA_ID);

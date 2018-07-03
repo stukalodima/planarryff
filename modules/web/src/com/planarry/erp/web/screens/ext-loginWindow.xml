@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        class="com.planarry.erp.web.screens.ExtAppLoginWindow"
+        extends="/com/haulmont/cuba/web/app/loginwindow/loginwindow.xml"
+        messagesPack="com.planarry.erp.web.screens"
+        xmlns:ext="http://schemas.haulmont.com/cuba/window-ext.xsd">
+    <dialogMode height="600"
+                width="800"/>
+    <layout>
+        <vbox id="loginWrapper">
+            <vbox id="loginMainBox">
+                <hbox id="loginTitleBox"
+                      visible="false"/>
+                <hbox id="loginTitleBoxExt"
+                      ext:index="1">
+                    <vbox id="ext">
+                        <image id="logoImageExt"
+                               align="MIDDLE_CENTER"
+                               height="100px"
+                               stylename="c-login-icon"
+                               width="269px">
+                            <theme path="com.planarry.erp/logopl100.png"/>
+                        </image>
+                        <label id="welcomeLabelExt"
+                               align="MIDDLE_CENTER"
+                               stylename="c-login-caption"
+                               value="mainMsg://loginWindow.welcomeLabel"
+                               width="100%"/>
+                    </vbox>
+                </hbox>
+            </vbox>
+        </vbox>
+    </layout>
+</window>

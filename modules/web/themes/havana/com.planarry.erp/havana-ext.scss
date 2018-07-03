@@ -1,0 +1,28 @@
+/* Define your theme modifications inside next mixin */
+@mixin com_planarry_erp-havana-ext {
+  .v-app-loading {
+    font: 400 14px/1.35 "Open Sans", sans-serif;
+    color: #464646;
+
+    cursor: default
+  }
+
+  .v-app-loading {
+    width: 100%;
+    height: 100%;
+  }
+
+  .v-app-loading:before {
+    content: "";
+    position: fixed;
+    z-index: 100;
+    top: 45%;
+    left: 50%;
+    width: 150px;
+    height: 150px;
+    padding: 8px;
+    margin-top: -75px;
+    margin-left: -75px;
+    background: url(../branding/loader.gif) no-repeat 50%;
+  }
+}

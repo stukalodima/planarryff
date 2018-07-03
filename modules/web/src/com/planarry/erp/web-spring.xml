@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd"
+       xmlns:context="http://www.springframework.org/schema/context">
+    <!-- Annotation-based beans -->
+    <context:component-scan base-package="com.planarry.erp"/>
+    <bean class="com.haulmont.cuba.web.sys.remoting.WebRemoteProxyBeanCreator">
+        <property name="remoteServices">
+            <map>
+                <entry key="erp_GeocodingService"
+                       value="com.planarry.erp.service.GeocodingService"/>
+                <entry key="erp_CurrencyService"
+                       value="com.planarry.erp.service.CurrencyService"/>
+                <entry key="erp_JourneyService"
+                       value="com.planarry.erp.service.JourneyService"/>
+                <!--    <entry key="erp_RouterService"
+                       value="com.planarry.erp.service.RouterService"/>-->
+                <entry key="erp_MonitoringService"
+                       value="com.planarry.erp.service.MonitoringService"/>
+                <entry key="erp_JourneyStateCheckerService"
+                       value="com.planarry.erp.service.JourneyStateCheckerService"/>
+                <entry key="erp_EmployeeService"
+                       value="com.planarry.erp.service.EmployeeService"/>
+                <entry key="erp_NumerationService"
+                       value="com.planarry.erp.service.NumerationService"/>
+                <entry key="erp_CompanyService"
+                       value="com.planarry.erp.service.CompanyService"/>
+                <entry key="erp_MathService"
+                       value="com.planarry.erp.service.MathService"/>
+                <entry key="erp_ConstantService"
+                       value="com.planarry.erp.service.ConstantService"/>
+                <entry key="erp_UserService"
+                       value="com.planarry.erp.service.UserService"/>
+                <entry key="erp_JourneyCompletionService"
+                       value="com.planarry.erp.service.JourneyCompletionService"/>
+                <entry key="erp_CargoService"
+                       value="com.planarry.erp.service.CargoService"/>
+                <entry key="erp_CategoryService"
+                       value="com.planarry.erp.service.CategoryService"/>
+                <entry key="erp_DefaultRouterService"
+                       value="com.planarry.erp.service.RouterService"/>
+                <entry key="erp_OsmRouterService"
+                       value="com.planarry.erp.service.RouterService"/>
+                <entry key="erp_GpsService"
+                       value="com.planarry.erp.service.GpsService"/>
+            </map>
+        </property>
+    </bean>
+</beans>

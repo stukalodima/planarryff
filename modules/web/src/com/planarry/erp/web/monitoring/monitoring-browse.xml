@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://caption"
+        class="com.planarry.erp.web.monitoring.MonitoringBrowse"
+        messagesPack="com.planarry.erp.web.monitoring"
+        xmlns:chart="http://schemas.haulmont.com/charts/charts.xsd">
+    <dsContext>
+        <collectionDatasource id="journeysDS"
+                              class="com.planarry.erp.entity.Journey"
+                              view="journey-monitoring-view">
+            <query>
+                <![CDATA[select e from erp$Journey e WHERE e.manualJourney = false order by e.startDate, e.endDate]]>
+                <filter>
+                    <or>
+                        <c>e.status = :custom$statusRunning</c>
+                        <and>
+                            <c>e.status = :custom$statusApproved</c>
+                            <c>e.startDate >= :custom$startDay</c>
+                            <c>e.startDate &lt; :custom$endDay</c>
+                        </and>
+                    </or>
+                </filter>
+            </query>
+        </collectionDatasource>
+        <collectionDatasource id="transportsStateDS"
+                              class="com.planarry.erp.entity.TransportState"
+                              view="transportState-monitoring-view">
+            <query>
+                <![CDATA[select e from erp$TransportState e WHERE e.stateDate =
+                (SELECT MAX(t.stateDate) FROM erp$TransportState t WHERE t.transport.id = e.transport.id
+                 AND t.stateDate <= :param$now) order by e.stateDate]]>
+            </query>
+        </collectionDatasource>
+        <collectionDatasource id="cargoesDS"
+                              class="com.planarry.erp.entity.Cargo"
+                              view="cargo-with-points-view">
+            <query>
+                <![CDATA[select e from erp$Cargo e where e.status <> 4]]>
+            </query>
+        </collectionDatasource>
+    </dsContext>
+    <layout expand="split"
+            margin="true"
+            spacing="true">
+        <button id="settingsBtn"
+                caption="msg://settings"
+                icon="font-icon:WRENCH"
+                invoke="onOpenSettings"/>
+        <split id="split"
+               orientation="horizontal"
+               width="100%">
+            <tabSheet id="tabSheet"
+                      height="100%"
+                      responsive="true">
+                <tab id="journeyTab"
+                     caption="msg://journey"
+                     margin="true,false,false,false"
+                     spacing="true">
+                    <table id="journeyTable"
+                           height="100%"
+                           multiselect="true"
+                           width="100%">
+                        <actions>
+                            <action id="show"
+                                    invoke="onShowAllJourney"/>
+                            <action id="hide"
+                                    invoke="onHideJourney"/>
+                        </actions>
+                        <columns>
+                            <column id="flag"/>
+                            <column id="transport"/>
+                            <column id="startDate"/>
+                            <column id="endDate"/>
+                            <column id="transportationDistance"/>
+                            <column id="transportationTime">
+                                <formatter class="com.planarry.erp.web.utils.TimeDurationFormatter"/>
+                            </column>
+                        </columns>
+                        <rows datasource="journeysDS"/>
+                        <buttonsPanel>
+                            <button id="showJourney"
+                                    action="journeyTable.show"
+                                    caption="msg://showAll"/>
+                            <button id="hideJourney"
+                                    action="journeyTable.hide"
+                                    caption="msg://hide"/>
+                            <dateField id="dateField" dateFormat="dd.MM.yyyy"/>
+                            <checkBox id="showManualJourneyChkbox"
+                                      align="MIDDLE_LEFT"
+                                      visible="false"
+                                      caption="msg://showManualJourney"/>
+                            <checkBox id="currentJourneyLocationChkbox"
+                                      align="MIDDLE_RIGHT"
+                                      caption="msg://showCurrentLocation"/>
+                        </buttonsPanel>
+                    </table>
+                </tab>
+                <tab id="transportStateTab"
+                     caption="msg://transportState"
+                     margin="true,false,false,false"
+                     spacing="true">
+                    <table id="transportStateTable"
+                           height="100%"
+                           multiselect="true"
+                           width="100%">
+                        <actions>
+                            <action id="show"
+                                    invoke="onShowAllTransportState"/>
+                            <action id="hide"
+                                    invoke="onHideTransportState"/>
+                        </actions>
+                        <columns>
+                            <column id="flag"/>
+                            <column id="transport"/>
+                            <column id="stateDate"/>
+                            <column id="locationAddress"/>
+                        </columns>
+                        <rows datasource="transportsStateDS"/>
+                        <buttonsPanel>
+                            <button id="showState"
+                                    action="transportStateTable.show"
+                                    caption="msg://showAll"/>
+                            <button id="hideState"
+                                    action="transportStateTable.hide"
+                                    caption="msg://hide"/>
+                            <checkBox id="currentTransportLocationChkbox"
+                                      align="MIDDLE_RIGHT"
+                                      caption="msg://showCurrentLocation"/>
+                        </buttonsPanel>
+                    </table>
+                </tab>
+                <tab id="cargoTab"
+                     caption="msg://cargo"
+                     margin="true,false,false,false"
+                     spacing="true">
+                    <table id="cargoTable"
+                           height="100%"
+                           multiselect="true"
+                           width="100%">
+                        <actions>
+                            <action id="show"
+                                    invoke="onShowAllCargo"/>
+                            <action id="hide"
+                                    invoke="onHideCargo"/>
+                        </actions>
+                        <columns>
+                            <column id="flag"/>
+                            <column id="clientCaption"/>
+                            <column id="sentDate"/>
+                            <column id="cargoType"/>
+                            <column id="weight"/>
+                            <column id="volume"/>
+                        </columns>
+                        <rows datasource="cargoesDS"/>
+                        <buttonsPanel>
+                            <button id="showCargo"
+                                    action="cargoTable.show"
+                                    caption="msg://showAll"/>
+                            <button id="hideCargo"
+                                    action="cargoTable.hide"
+                                    caption="msg://hide"/>
+                        </buttonsPanel>
+                    </table>
+                </tab>
+            </tabSheet>
+            <chart:mapViewer id="map"
+                             height="100%"
+                             width="100%"/>
+        </split>
+    </layout>
+</window>

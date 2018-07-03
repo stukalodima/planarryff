@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://editorCaption"
+        class="com.planarry.erp.web.clientcredit.ClientCreditEdit"
+        datasource="clientCreditDs"
+        focusComponent="fieldGroup"
+        messagesPack="com.planarry.erp.web.clientcredit">
+    <dsContext>
+        <datasource id="clientCreditDs"
+                    class="com.planarry.erp.entity.ClientCredit"
+                    view="_local"/>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="windowActions"
+            spacing="true">
+        <fieldGroup id="fieldGroup"
+                    datasource="clientCreditDs">
+            <column width="250px">
+                <field property="payDate"/>
+                <field property="value"/>
+            </column>
+        </fieldGroup>
+        <frame id="windowActions"
+               screen="editWindowActions"/>
+    </layout>
+</window>

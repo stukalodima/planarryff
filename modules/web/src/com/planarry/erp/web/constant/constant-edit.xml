@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://editorCaption"
+        class="com.planarry.erp.web.constant.ConstantEdit"
+        datasource="constantDs"
+        focusComponent="fieldGroup"
+        messagesPack="com.planarry.erp.web.constant">
+    <dsContext>
+        <datasource id="constantDs"
+                    class="com.planarry.erp.entity.Constant"
+                    view="_local"/>
+    </dsContext>
+    <dialogMode closeable="true"
+                forceDialog="true"
+                maximized="true"
+                resizable="true"/>
+    <layout expand="windowActions" spacing="true">
+        <fieldGroup id="fieldGroup"
+                    responsive="true"
+                    datasource="constantDs">
+            <column flex="1">
+                <field property="name"/>
+                <field property="key"/>
+                <field property="valueType"/>
+            </column>
+        </fieldGroup>
+
+        <hbox>
+            <label id="label" align="MIDDLE_LEFT" width="109px" value="msg://value"/>
+            <lookupField id="logicalField" width="200px" requiredMessage="msg://fillValueField"  visible="false"/>
+            <textField id="intTextField" width="200px" requiredMessage="msg://fillValueField" visible="false" datatype="int"/>
+            <textField id="doubleTextField" width="200px"  requiredMessage="msg://fillValueField" visible="false" datatype="double"/>
+            <textField id="stringTextField" width="200px"  requiredMessage="msg://fillValueField" visible="false" datatype="string"/>
+        </hbox>
+        <frame id="windowActions"
+               align="BOTTOM_RIGHT"
+               screen="extendedEditWindowActions"
+               width="AUTO"/>
+    </layout>
+</window>

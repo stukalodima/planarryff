@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://editorCaption"
+        class="com.planarry.erp.web.transport.TransportsAccessEdit"
+        focusComponent="fieldGroup"
+        messagesPack="com.planarry.erp.web.transport">
+    <dsContext>
+        <datasource id="transportDs"
+                    class="com.planarry.erp.entity.Transport"
+                    view="transport-access-edit-view">
+        </datasource>
+        <collectionDatasource id="transportsAccessDs"
+                              class="com.planarry.erp.entity.TransportsAccess"
+                              refreshMode="NEVER"/>
+        <collectionDatasource id="companiesDs"
+                              class="com.planarry.erp.entity.Company"
+                              view="_local">
+            <query>
+                <![CDATA[select e from erp$Company e]]>
+                <filter>
+                    <c>e.id not in :param$company</c>
+                </filter>
+            </query>
+        </collectionDatasource>
+    </dsContext>
+    <companions>
+        <web class="com.planarry.erp.web.utils.accesstoentities.AccessCompanion"/>
+    </companions>
+
+    <dialogMode closeable="true"
+                resizable="true"
+                forceDialog="true"
+                modal="true"
+                maximized="true"/>
+    <layout expand="scrollBox"
+            margin="true"
+            spacing="true">
+        <scrollBox id="scrollBox"
+                   responsive="true"
+                   spacing="true">
+            <fieldGroup id="fieldGroup"
+                        datasource="transportDs"
+                        width="100%">
+                <column flex="1"
+                        width="100%">
+                    <field property="name"
+                           editable="false"/>
+                    <field property="transportType"
+                           editable="false"/>
+                    <field property="identNumber"
+                           editable="false"/>
+                </column>
+                <column flex="1"
+                        width="100%">
+                    <field optionsDatasource="companiesDs"
+                           property="company"
+                           editable="false"/>
+                    <field property="employee"
+                           editable="false"/>
+                    <field property="vinCode"
+                           editable="false"/>
+                </column>
+            </fieldGroup>
+
+            <grid id="companyGrid"
+                  height="100%"
+                  spacing="true"
+                  width="100%">
+                <columns>
+                    <column flex="15.0"/>
+                    <column flex="1.0"/>
+                    <column flex="15.0"/>
+                </columns>
+                <rows>
+                    <row>
+                        <table id="companiesTable"
+                               caption="msg://companiesList"
+                               height="300px"
+                               responsive="true"
+                               width="100%">
+                            <actions>
+                                <action id="removeCompany"
+                                        invoke="onExcludeCompanyToTransport"
+                                        trackSelection="true"/>
+                            </actions>
+                            <columns>
+                                <column id="company.name"/>
+                                <column id="company.fullName"/>
+                                <column id="company.address"/>
+                                <column id="company.phoneNumber"/>
+                                <column id="company.email"/>
+                            </columns>
+                            <rows datasource="transportsAccessDs"/>
+                        </table>
+                        <vbox id="companiesButtons"
+                              align="MIDDLE_CENTER"
+                              responsive="true"
+                              spacing="true">
+                            <button id="addCompany"
+                                    action="companiesSearchTable.addCompany"
+                                    align="MIDDLE_CENTER"
+                                    height="40px"
+                                    icon="font-icon:LONG_ARROW_LEFT"
+                                    stylename="icon-only"
+                                    width="100%"/>
+                            <button id="removeCompany"
+                                    action="companiesTable.removeCompany"
+                                    align="MIDDLE_CENTER"
+                                    height="40px"
+                                    icon="font-icon:LONG_ARROW_RIGHT"
+                                    stylename="icon-only"
+                                    width="100%"/>
+                        </vbox>
+                        <table id="companiesSearchTable"
+                               caption="msg://listOfCompaniesToAdd"
+                               height="300px"
+                               responsive="true"
+                               width="100%">
+                            <actions>
+                                <action id="addCompany"
+                                        invoke="onIncludeCompanyToTransport"
+                                        trackSelection="true"/>
+                            </actions>
+                            <columns>
+                                <column id="name"/>
+                                <column id="fullName"/>
+                                <column id="address"/>
+                                <column id="type"/>
+                                <column id="phoneNumber"/>
+                                <column id="email"/>
+                                <column id="firstName"/>
+                                <column id="middleName"/>
+                                <column id="lastName"/>
+                            </columns>
+                            <rows datasource="companiesDs"/>
+                        </table>
+                    </row>
+                </rows>
+            </grid>
+        </scrollBox>
+
+        <buttonsPanel>
+            <button id="save" invoke="onSave" icon="font-icon:SAVE" caption="msg://save"/>
+            <button id="close" invoke="onClose" icon="font-icon:CLOSE" caption="msg://close"/>
+        </buttonsPanel>
+    </layout>
+</window>

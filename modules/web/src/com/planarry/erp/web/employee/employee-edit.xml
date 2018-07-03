@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://editorCaption"
+        class="com.planarry.erp.web.employee.EmployeeEdit"
+        datasource="employeeDs"
+        focusComponent="fieldGroup"
+        messagesPack="com.planarry.erp.web.employee">
+    <dsContext>
+        <datasource id="employeeDs"
+                    class="com.planarry.erp.entity.Employee"
+                    view="employee-view"/>
+        <collectionDatasource id="companiesDs"
+                              class="com.planarry.erp.entity.Company"
+                              view="_minimal">
+            <query>
+                <![CDATA[select e from erp$Company e]]>
+            </query>
+        </collectionDatasource>
+        <collectionDatasource id="usersDs"
+                              class="com.haulmont.cuba.security.entity.User"
+                              view="_minimal">
+            <query>
+                <![CDATA[select e from sec$User e]]>
+            </query>
+        </collectionDatasource>
+    </dsContext>
+    <dialogMode closeable="true"
+                forceDialog="true"
+                maximized="true"
+                modal="true"
+                resizable="true"/>
+    <layout expand="scrollBox"
+            margin="true"
+            spacing="true">
+        <scrollBox id="scrollBox"
+                   responsive="true"
+                   spacing="true">
+            <fieldGroup id="fieldGroup"
+                        datasource="employeeDs"
+                        width="100%">
+                <column flex="1"
+                        width="100%">
+                    <field optionsDatasource="usersDs"
+                           property="user"/>
+                    <field property="name"/>
+                    <field optionsDatasource="companiesDs"
+                           property="company"/>
+                    <field property="role"/>
+                    <field description="msg://phoneDescription"
+                           mask="(###)-(##)-###-##-##" property="phone"/>
+                </column>
+                <column flex="1"
+                        width="100%">
+                    <field property="firstName"/>
+                    <field property="middleName"/>
+                    <field property="lastName"/>
+                    <field property="email">
+                        <validator class="com.haulmont.cuba.gui.components.validators.EmailValidator"
+                                   message="msg://email.alert"/>
+                    </field>
+                </column>
+            </fieldGroup>
+        </scrollBox>
+        <frame id="windowActions"
+               align="BOTTOM_RIGHT"
+               screen="extendedEditWindowActions"
+               width="AUTO"/>
+    </layout>
+</window>

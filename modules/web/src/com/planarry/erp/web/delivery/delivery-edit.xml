@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://editorCaption"
+        class="com.planarry.erp.web.delivery.DeliveryEdit"
+        datasource="deliveryDs"
+        focusComponent="fieldGroup"
+        messagesPack="com.planarry.erp.web.delivery">
+    <dsContext>
+        <datasource id="deliveryDs"
+                    class="com.planarry.erp.entity.Delivery"
+                    view="delivery-view">
+        </datasource>
+    </dsContext>
+    <dialogMode closeable="true"
+                resizable="true"
+                forceDialog="true"
+                modal="true"
+                maximized="true"/>
+    <layout
+            spacing="true">
+        <fieldGroup id="fieldGroup"
+                    editable="false"
+                    datasource="deliveryDs"
+                    responsive="true"
+                    width="100%">
+            <column width="100%" flex="1">
+                <field property="startDate"/>
+                <field property="startAddress"/>
+                <field property="status"/>
+                <field property="distance"/>
+            </column>
+            <column width="100%" flex="1">
+                <field property="endDate"/>
+                <field property="endAddress"/>
+                <field property="transportationTime"/>
+                <field property="transportationPrice"/>
+            </column>
+        </fieldGroup>
+        <buttonsPanel align="MIDDLE_RIGHT">
+            <button id="closeBtn" caption="msg://close" invoke="close"/>
+        </buttonsPanel>
+    </layout>
+</window>

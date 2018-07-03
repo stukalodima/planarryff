@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://infoWindowCaption"
+        class="com.planarry.erp.web.defaultwindow.SubscribeInfoWindow"
+        focusComponent="label"
+        messagesPack="com.planarry.erp.web.defaultwindow">
+    <dialogMode closeable="true"
+                height="170"
+                width="350"
+                forceDialog="true"
+                modal="true"
+                resizable="false"/>
+    <layout expand="label"
+            margin="true"
+            spacing="true">
+        <label id="label" width="100%" value="msg://message.subscribe"/>
+        <link id="link" caption="planarry.com" url="http://planarry.com/" target="_blank" align="MIDDLE_RIGHT"/>
+        <button id="closeBtn" invoke="onClose" caption="msg://close" align="MIDDLE_LEFT"/>
+    </layout>
+</window>

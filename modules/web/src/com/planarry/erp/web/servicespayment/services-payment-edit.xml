@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://editorCaption"
+        class="com.planarry.erp.web.servicespayment.ServicesPaymentEdit"
+        datasource="servicesPaymentDs"
+        focusComponent="fieldGroup"
+        messagesPack="com.planarry.erp.web.servicespayment">
+    <dsContext>
+        <datasource id="servicesPaymentDs"
+                    class="com.planarry.erp.entity.ServicesPayment"
+                    view="servicesPayment-view"/>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="windowActions"
+            spacing="true">
+        <fieldGroup id="fieldGroup"
+                    datasource="servicesPaymentDs">
+            <column width="250px">
+                <field property="datePayment"/>
+                <field property="numberPayment"/>
+                <field property="typePayment"/>
+                <field property="comment"/>
+                <field property="value"/>
+                <field property="counterparty"
+                       visible="false"/>
+                <field property="company"/>
+            </column>
+        </fieldGroup>
+        <frame id="windowActions"
+               screen="editWindowActions"/>
+    </layout>
+</window>

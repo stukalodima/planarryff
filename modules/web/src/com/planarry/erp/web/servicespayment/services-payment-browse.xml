@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://browseCaption"
+        class="com.planarry.erp.web.servicespayment.ServicesPaymentBrowse"
+        focusComponent="servicesPaymentsTable"
+        lookupComponent="servicesPaymentsTable"
+        messagesPack="com.planarry.erp.web.servicespayment">
+    <dsContext>
+        <groupDatasource id="servicesPaymentsDs"
+                         class="com.planarry.erp.entity.ServicesPayment"
+                         view="servicesPayment-view">
+            <query>
+                <![CDATA[select e from erp$ServicesPayment e]]>
+            </query>
+        </groupDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="servicesPaymentsTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="servicesPaymentsTable"
+                collapsed="true"
+                datasource="servicesPaymentsDs">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="servicesPaymentsTable"
+                    width="100%">
+            <actions>
+                <action id="create"/>
+                <action id="edit"/>
+                <action id="remove"/>
+            </actions>
+            <columns>
+                <column id="datePayment"/>
+                <column id="numberPayment"/>
+                <column id="typePayment"/>
+                <column id="comment"/>
+                <column id="value"/>
+                <column id="counterparty"/>
+                <column id="company"/>
+            </columns>
+            <rows datasource="servicesPaymentsDs"/>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn"
+                        action="servicesPaymentsTable.create"/>
+                <button id="editBtn"
+                        action="servicesPaymentsTable.edit"/>
+                <button id="removeBtn"
+                        action="servicesPaymentsTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+    </layout>
+</window>

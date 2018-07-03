@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://caption"
+        class="com.planarry.erp.web.map.MapPicker"
+        messagesPack="com.planarry.erp.web.map"
+        xmlns:chart="http://schemas.haulmont.com/charts/charts.xsd">
+    <dsContext>
+        <datasource id="journeyDataDs" class="com.planarry.erp.entity.JourneyData"/>
+    </dsContext>
+    <dialogMode closeable="true"
+                forceDialog="true"
+                resizable="true"
+                height="600"
+                width="800"/>
+    <layout expand="split">
+        <split id="split" width="100%" orientation="horizontal" minSplitPosition="99%">
+            <chart:mapViewer id="map" height="100%" width="100%"/>
+            <scrollBox spacing="true" id="scrollBox" height="100%" visible="false">
+                <groupBox orientation="horizontal" height="100%" collapsable="true" caption="msg://total">
+                    <vbox>
+                        <textField id="loadingTimeField" datasource="journeyDataDs" property="loadingTime"
+                                   editable="false" caption="msg://loadingTime"/>
+                        <textField id="unloadingTimeField" datasource="journeyDataDs" property="unloadingTime"
+                                   editable="false" caption="msg://unloadingTime"/>
+                        <textField id="roadTimeField" datasource="journeyDataDs" property="roadTime" editable="false"
+                                   caption="msg://roadTime"/>
+                        <textField id="sumTimeField" datasource="journeyDataDs" property="totalTime" editable="false"
+                                   caption="msg://sumTime"/>
+                        <textField id="additionalTimeField" datasource="journeyDataDs" property="additionalTimePrice"
+                                   editable="false" caption="msg://additionalTime"/>
+                        <textField id="roadDistField" datasource="journeyDataDs" property="roadDist" editable="false"
+                                   caption="msg://roadDist"/>
+                        <textField id="returnDist" datasource="journeyDataDs" property="returnDistance" editable="false"
+                                   caption="msg://returnDistance"/>
+                        <currencyField id="entrancePriceField" datasource="journeyDataDs" property="entrancePrice"
+                                       editable="false" caption="msg://entrancePrice"/>
+                        <currencyField id="supplyPriceField" datasource="journeyDataDs" property="totalSupplyPrice"
+                                       editable="false" caption="msg://supplyPrice"/>
+                    </vbox>
+                    <vbox>
+                        <currencyField id="loadingTimePriceField" datasource="journeyDataDs" property="loadingPrice"
+                                       editable="false" caption="msg://loadingTimePrice"/>
+                        <currencyField id="unloadingTimePriceField" datasource="journeyDataDs" property="unloadingPrice"
+                                       editable="false" caption="msg://unloadingTimePrice"/>
+                        <currencyField id="roadTimePriceField" datasource="journeyDataDs" property="roadTimePrice"
+                                       editable="false" caption="msg://roadTimePrice"/>
+                        <currencyField id="sumTimePriceField" datasource="journeyDataDs" property="totalTimePrice"
+                                       editable="false" caption="msg://sumTimePrice"/>
+                        <currencyField id="additionalTimePriceField" datasource="journeyDataDs"
+                                       property="additionalTimePrice" editable="false"
+                                       caption="msg://additionalTimePrice"/>
+                        <currencyField id="roadDistPriceField" datasource="journeyDataDs" property="roadDistPrice"
+                                       editable="false" caption="msg://roadDistPrice"/>
+                        <currencyField id="returnDistPriceField" datasource="journeyDataDs" property="returnPrice"
+                                       editable="false" caption="msg://returnDistancePrice"/>
+                        <currencyField id="exitPriceField" datasource="journeyDataDs" property="exitPrice"
+                                       editable="false" caption="msg://exitPrice"/>
+                        <currencyField id="totalPriceField" datasource="journeyDataDs" property="totalPrice"
+                                       editable="false" caption="msg://sum"/>
+                    </vbox>
+                </groupBox>
+            </scrollBox>
+        </split>
+        <button align="BOTTOM_RIGHT"
+                caption="Ok"
+                icon="icons/ok.png"
+                invoke="closeWindow"/>
+    </layout>
+</window>

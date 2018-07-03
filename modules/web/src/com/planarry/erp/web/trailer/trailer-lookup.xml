@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://browseCaption"
+        class="com.planarry.erp.web.trailer.TrailerLookup"
+        focusComponent="trailersTable"
+        lookupComponent="trailersTable"
+        messagesPack="com.planarry.erp.web.trailer">
+    <dsContext>
+        <groupDatasource id="trailersDs"
+                         class="com.planarry.erp.entity.Trailer"
+                         view="trailer-browse-view">
+            <query>
+                <![CDATA[select e from erp$Trailer e]]>
+                <filter>
+                    <and>
+                        <c>e.type = :param$type</c>
+                        <c>e.isFree = :param$isFree</c>
+                        <or>
+                            <c>e.accessibleToAll = :param$accessibleToAll</c>
+                            <c>e.company.id = :param$company</c>
+                            <c join="LEFT OUTER JOIN e.accesses at ">at.company.id = :param$company</c>
+                        </or>
+                    </and>
+                </filter>
+            </query>
+        </groupDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="trailersTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="trailersTable"
+                datasource="trailersDs">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="trailersTable"
+                    width="100%">
+            <actions>
+                <action id="create"
+                        openType="NEW_TAB"/>
+                <action id="edit"
+                        openType="NEW_TAB"/>
+                <action id="remove"/>
+                <action id="refresh"/>
+                <action id="excel"/>
+            </actions>
+            <columns>
+                <column id="name"/>
+                <column id="type"/>
+                <column id="downloadType"/>
+                <column id="currency"/>
+                <column id="costKilometer"/>
+                <column id="costHour"/>
+                <column id="costSupply"/>
+                <column id="minWeight"/>
+                <column id="maxWeight"/>
+                <column id="minVolume"/>
+                <column id="maxVolume"/>
+                <column id="limitWeight"/>
+                <column id="emptyTrailerWeight"/>
+                <column id="height"/>
+                <column id="length"/>
+                <column id="width"/>
+                <column id="servicePointWithRamp"/>
+                <column id="servicePointWithoutRamp"/>
+                <column id="temperatureConditions"/>
+                <column id="temperatureRetentionTime"/>
+                <column id="lowTemperature"/>
+                <column id="highTemperature"/>
+            </columns>
+            <rows datasource="trailersDs"/>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn"
+                        action="trailersTable.create"/>
+                <button id="editBtn"
+                        action="trailersTable.edit"/>
+                <button id="removeBtn"
+                        action="trailersTable.remove"/>
+                <button id="refreshButton"
+                        action="trailersTable.refresh"/>
+                <button id="excelButton"
+                        action="trailersTable.excel"/>
+            </buttonsPanel>
+        </groupTable>
+    </layout>
+</window>

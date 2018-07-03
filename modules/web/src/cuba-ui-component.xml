@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<components xmlns="http://schemas.haulmont.com/cuba/components.xsd">
+    <component>
+        <name>ratingField</name>
+        <componentLoader>com.planarry.erp.gui.xml.layout.loaders.RatingFieldLoader</componentLoader>
+        <class>com.planarry.erp.web.gui.components.WebRatingField</class>
+    </component>
+</components>

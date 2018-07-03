@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://caption"
+        class="com.planarry.erp.web.cargo.clientchooser.ClientChooser"
+        messagesPack="com.planarry.erp.web.cargo.clientchooser">
+    <dsContext>
+        <collectionDatasource id="clientsDs"
+                              class="com.planarry.erp.entity.Company"
+                              refreshMode="NEVER"/>
+    </dsContext>
+    <dialogMode height="auto"
+                width="400"
+                closeable="false"
+                forceDialog="true"
+                modal="true"/>
+    <layout spacing="true" expand="optionsList">
+        <optionsList id="optionsList"
+                     width="100%"
+                     optionsDatasource="clientsDs"
+                     caption="msg://companyMatches"/>
+        <buttonsPanel id="bp" align="MIDDLE_RIGHT">
+            <button id="cancelBtn"
+                    caption="msg://cancel"
+                    icon="font-icon:BAN"
+                    invoke="cancel"/>
+        </buttonsPanel>
+    </layout>
+</window>

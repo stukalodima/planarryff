@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://caption"
+        class="com.planarry.erp.web.profitability.ProfitabilityReport"
+        messagesPack="com.planarry.erp.web.profitability">
+    <dsContext>
+        <collectionDatasource id="managersDs"
+                              class="com.planarry.erp.entity.Forwarder"
+                              view="forwarder-view"/>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout>
+        <hbox>
+            <dateField id="from" dateFormat="dd.MM.yyyy" required="true"/>
+            <dateField id="to" dateFormat="dd.MM.yyyy" required="true"/>
+        </hbox>
+        <hbox>
+            <popupButton id="popupButton"
+                         showActionIcons="false"
+                         caption="msg://manager"
+                         align="MIDDLE_LEFT"
+                         autoClose="false"
+                         closePopupOnOutsideClick="true"
+                         popupOpenDirection="BOTTOM_LEFT">
+                <popup>
+                    <optionsGroup optionsDatasource="managersDs"
+                                  multiselect="true"/>
+                </popup>
+            </popupButton>
+            <button id="clearBtn" invoke="onClear"/>
+        </hbox>
+        <button id="reportBtn" invoke="onReport"/>
+    </layout>
+</window>

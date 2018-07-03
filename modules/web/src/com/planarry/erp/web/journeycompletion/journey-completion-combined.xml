@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://caption"
+        class="com.planarry.erp.web.journeycompletion.JourneyCompletionCombined"
+        messagesPack="com.planarry.erp.web.journeycompletion">
+    <dsContext>
+        <datasource id="journeyDS"
+                    view="_minimal"
+                    class="com.planarry.erp.entity.Journey">
+            <collectionDatasource id="journeyCargoes" property="journeyCargoes"/>
+        </datasource>
+    </dsContext>
+    <dialogMode closeable="true"
+                resizable="true"
+                forceDialog="true"
+                modal="true"
+                maximized="true"/>
+    <layout spacing="true">
+        <hbox spacing="true">
+            <label id="ratingLbl" value="msg://rating"/>
+            <hbox id="container" align="TOP_LEFT"/>
+        </hbox>
+        <textField id="finalPrice"
+                   datatype="double"
+                   caption="msg://finalPrice"
+                   width="200"
+                   visible="false"/>
+        <richTextArea id="logisticianComment"
+                      responsive="true"
+                      width="100%"
+                      caption="msg://logisticianComment"
+                      visible="false"/>
+        <richTextArea id="rtaComment"
+                      responsive="true"
+                      width="100%"
+                      caption="msg://journeyComment"/>
+        <hbox width="100%">
+            <buttonsPanel>
+                <button id="completeBtn" caption="msg://complete" invoke="completeJourney"
+                        stylename="large bold friendly"/>
+                <button id="cancelBtn" caption="msg://cancel" invoke="cancelJourney" stylename="large bold danger"/>
+            </buttonsPanel>
+            <button id="closeBtn" caption="msg://close" invoke="close" align="MIDDLE_RIGHT"/>
+        </hbox>
+    </layout>
+</window>

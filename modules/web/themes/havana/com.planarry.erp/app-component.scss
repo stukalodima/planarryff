@@ -1,0 +1,5 @@
+@import "havana-ext";
+
+@mixin com_planarry_erp {
+  @include com_planarry_erp-havana-ext;
+}

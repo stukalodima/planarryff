@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://editorCaption"
+        class="com.planarry.erp.web.company.CompanyEdit"
+        datasource="companyDs"
+        focusComponent="basicFieldGroup"
+        messagesPack="com.planarry.erp.web.company">
+    <dsContext>
+        <datasource id="companyDs"
+                    class="com.planarry.erp.entity.Company"
+                    view="company-view"/>
+    </dsContext>
+    <dialogMode closeable="true"
+                forceDialog="true"
+                maximized="true"
+                modal="true"
+                resizable="true"/>
+    <layout expand="scrollBox"
+            margin="true"
+            spacing="true">
+        <scrollBox id="scrollBox"
+                   responsive="true"
+                   spacing="true">
+            <groupBox id="groupBox_1">
+                <fieldGroup id="basicFieldGroup"
+                            datasource="companyDs"
+                            responsive="true"
+                            width="100%">
+                    <column flex="1"
+                            width="100%">
+                        <field property="name"/>
+                        <field property="address"/>
+                    </column>
+                    <column flex="1"
+                            width="100%">
+                        <field description="msg://phoneDescription"
+                               mask="(###)-(##)-###-##-##"
+                               property="phoneNumber"/>
+                        <field property="email">
+                            <validator class="com.haulmont.cuba.gui.components.validators.EmailValidator"
+                                       message="msg://email.alert"/>
+                        </field>
+                    </column>
+                </fieldGroup>
+            </groupBox>
+            <tabSheet id="tabSheet"
+                      height="100%"
+                      responsive="true">
+                <tab id="technicalSettingsTab"
+                     caption="msg://technicalSettings"
+                     margin="true,false,false,false"
+                     spacing="true">
+                    <groupBox id="groupBox_2">
+                        <fieldGroup id="fieldGroup"
+                                    datasource="companyDs"
+                                    width="100%">
+                            <column fieldCaptionWidth="115"
+                                    flex="1"
+                                    width="100%">
+                                <field property="type"/>
+                                <field property="firstName"/>
+                                <field property="middleName"/>
+                            </column>
+                            <column fieldCaptionWidth="124"
+                                    flex="1"
+                                    width="100%">
+                                <field property="activitiesType"/>
+                                <field property="lastName"/>
+                                <field property="fullName"/>
+                            </column>
+                        </fieldGroup>
+                    </groupBox>
+                    <groupBox id="groupBox_radius">
+                        <fieldGroup id="radiusFieldGroup"
+                                    datasource="companyDs"
+                                    responsive="true"
+                                    width="100%">
+                            <column flex="1"
+                                    width="100%">
+                                <field property="transportSearchNarrowRadius"/>
+                            </column>
+                            <column flex="1"
+                                    width="100%">
+                                <field property="transportSearchWideRadius"/>
+                            </column>
+                        </fieldGroup>
+                    </groupBox>
+                    <groupBox id="groupBox_area">
+                        <fieldGroup id="areaFieldGroup"
+                                    datasource="companyDs"
+                                    responsive="true"
+                                    width="100%">
+                            <column flex="1"
+                                    width="100%">
+                                <field property="returnArea"/>
+                            </column>
+                            <column flex="1"
+                                    width="100%">
+                                <field property="router"/>
+                            </column>
+                        </fieldGroup>
+                    </groupBox>
+                </tab>
+                <tab id="financialConditionTab"
+                     caption="msg://financialCondition"
+                     margin="true,false,false,false"
+                     spacing="true">
+                    <groupBox id="linksBox"
+                              responsive="true"
+                              width="100%">
+                        <buttonsPanel id="buttonsPanel">
+                            <linkButton id="mutualSettlement"
+                                        caption="msg://mutualSettlement"
+                                        invoke="runRapportMutualSettlement"
+                                        icon="PRINT"/>
+                            <linkButton id="clientCredit"
+                                        caption="msg://clientCredit"
+                                        invoke="runRapportClientCredit"
+                                        icon="PRINT"/>
+                        </buttonsPanel>
+                    </groupBox>
+                </tab>
+            </tabSheet>
+
+        </scrollBox>
+        <frame id="windowActions"
+               align="BOTTOM_RIGHT"
+               responsive="true"
+               screen="extendedEditWindowActions"
+               width="AUTO"/>
+    </layout>
+</window>

@@ -1,0 +1,2 @@
+alter table ERP_JOURNEY add constraint FK_ERP_JOURNEY_FREIGHTER foreign key (FREIGHTER_ID) references ERP_COMPANY(ID);
+create index IDX_ERP_JOURNEY_FREIGHTER on ERP_JOURNEY (FREIGHTER_ID);

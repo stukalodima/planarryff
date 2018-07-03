@@ -1,0 +1,476 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://caption"
+        class="com.planarry.erp.web.defaultwindow.DefaultWindow"
+        messagesPack="com.planarry.erp.web.defaultwindow">
+    <dialogMode/>
+    <layout>
+        <accordion id="accordionTM"
+                   align="TOP_CENTER"
+                   responsive="true"
+                   width="930px">
+            <tab id="tabTransports"
+                 visible="false"
+                 caption="msg://Transport"
+                 spacing="true">
+                <cssLayout id="TransportCssLayout"
+                           stylename="card"
+                           width="100%">
+                    <hbox align="MIDDLE_CENTER"
+                          margin="true"
+                          stylename="well"
+                          width="100%">
+                        <vbox stylename="well">
+                            <vbox align="MIDDLE_CENTER"
+                                  margin="true"
+                                  spacing="true"
+                                  responsive="true"
+                                  stylename="card"
+                                  width="300px">
+                                <button id="transportListBtn"
+                                        align="MIDDLE_CENTER"
+                                        height="100px"
+                                        icon="icon/truck.png"
+                                        invoke="onTransportListBtnClick"
+                                        responsive="true"
+                                        stylename="quiet"
+                                        width="100%"/>
+                                <label id="label1"
+                                       align="MIDDLE_CENTER"
+                                       stylename="h2"
+                                       value="msg://TransportList"/>
+                            </vbox>
+                            <vbox align="MIDDLE_CENTER"
+                                  margin="true"
+                                  responsive="true"
+                                  spacing="true"
+                                  stylename="card"
+                                  width="300px">
+                                <button id="TransportPlaceBtn"
+                                        align="MIDDLE_CENTER"
+                                        height="100px"
+                                        icon="icon/transportPlace.png"
+                                        invoke="onTransportPlaceBtnClick"
+                                        responsive="true"
+                                        stylename="quiet"
+                                        width="100%"/>
+                                <label id="linkButton"
+                                       align="MIDDLE_CENTER"
+                                       stylename="h2"
+                                       value="msg://TransportPlace"/>
+                            </vbox>
+                        </vbox>
+                        <vbox stylename="well">
+                            <vbox align="TOP_CENTER"
+                                  margin="true"
+                                  responsive="true"
+                                  spacing="true"
+                                  stylename="card"
+                                  width="300px">
+                                <button id="TrailerListBtn"
+                                        align="MIDDLE_CENTER"
+                                        height="100px"
+                                        icon="icon/trailer.png"
+                                        invoke="onTrailerListBtnClick"
+                                        responsive="true"
+                                        stylename="quiet"
+                                        width="100%"/>
+                                <label id="label"
+                                       align="MIDDLE_CENTER"
+                                       stylename="h2"
+                                       value="msg://TrailerList"/>
+                            </vbox>
+                            <vbox align="TOP_CENTER"
+                                  margin="true"
+                                  responsive="true"
+                                  spacing="true"
+                                  stylename="card"
+                                  width="300px">
+                                <button id="categoryListBtn"
+                                        align="MIDDLE_CENTER"
+                                        height="100px"
+                                        icon="icon/truck_category.png"
+                                        invoke="onCategoryListBtnClick"
+                                        responsive="true"
+                                        stylename="quiet"
+                                        width="100%"/>
+                                <label id="categotyLabel"
+                                       align="MIDDLE_CENTER"
+                                       stylename="h2"
+                                       value="msg://CategoryList"/>
+                            </vbox>
+                        </vbox>
+                        <vbox stylename="well">
+                            <vbox align="TOP_CENTER"
+                                  margin="true"
+                                  responsive="true"
+                                  spacing="true"
+                                  stylename="card"
+                                  width="300px">
+                                <button id="TransportManagersBtn"
+                                        align="MIDDLE_CENTER"
+                                        height="100px"
+                                        icon="icon/transport_managers.png"
+                                        invoke="onTransportManagersBtnClick"
+                                        responsive="true"
+                                        stylename="quiet"
+                                        width="100%"/>
+                                <label id="TransportManagerLbl"
+                                       align="MIDDLE_CENTER"
+                                       stylename="h2"
+                                       value="msg://TransportManager"/>
+                            </vbox>
+                        </vbox>
+                    </hbox>
+                </cssLayout>
+            </tab>
+
+            <tab id="tabCargoes"
+                 visible="false"
+                 caption="msg://Cargo"
+                 spacing="true">
+                <cssLayout id="CargoCssLayout"
+                           stylename="card"
+                           width="100%">
+                    <hbox align="MIDDLE_CENTER"
+                          margin="true"
+                          stylename="well"
+                          width="100%">
+                        <vbox align="MIDDLE_CENTER"
+                              margin="true"
+                              responsive="true"
+                              spacing="true"
+                              stylename="card"
+                              width="300px">
+                            <button id="CargoCreationBtn"
+                                    align="MIDDLE_CENTER"
+                                    height="100px"
+                                    icon="icon/cargo_create.png"
+                                    invoke="onCargoCreationBtnClick"
+                                    responsive="true"
+                                    stylename="quiet"
+                                    width="100%"/>
+                            <label id="CargoCreationlbl"
+                                   align="MIDDLE_CENTER"
+                                   stylename="h2"
+                                   value="msg://CargoCreation"/>
+                        </vbox>
+                        <vbox align="MIDDLE_CENTER"
+                              margin="true"
+                              responsive="true"
+                              spacing="true"
+                              stylename="card"
+                              width="300px">
+                            <button id="CargoListBtn"
+                                    align="MIDDLE_CENTER"
+                                    height="100px"
+                                    icon="icon/cargo_list.png"
+                                    invoke="onCargoListBtnClick"
+                                    responsive="true"
+                                    stylename="quiet"
+                                    width="100%"/>
+                            <label id="CargoListlbl"
+                                   align="MIDDLE_CENTER"
+                                   stylename="h2"
+                                   value="msg://CargoList"/>
+                        </vbox>
+                        <vbox align="MIDDLE_CENTER"
+                              margin="true"
+                              responsive="true"
+                              spacing="true"
+                              stylename="card"
+                              width="300px">
+                            <button id="CargoManagersBtn"
+                                    align="MIDDLE_CENTER"
+                                    height="100px"
+                                    icon="icon/cargo_managers.png"
+                                    invoke="onCargoManagersBtnClick"
+                                    responsive="true"
+                                    stylename="quiet"
+                                    width="100%"/>
+                            <label id="CargoManagerlbl"
+                                   align="MIDDLE_CENTER"
+                                   stylename="h2"
+                                   value="msg://CargoesManager"/>
+                        </vbox>
+                    </hbox>
+                </cssLayout>
+            </tab>
+
+            <tab id="tabJourney"
+                 visible="false"
+                 caption="msg://Journey"
+                 spacing="true">
+                <cssLayout id="JourneyCssLayout"
+                           stylename="card"
+                           width="100%">
+                    <hbox align="MIDDLE_CENTER"
+                          margin="true"
+                          stylename="well"
+                          width="100%">
+                        <vbox align="MIDDLE_CENTER"
+                              margin="true"
+                              responsive="true"
+                              spacing="true"
+                              stylename="card"
+                              width="300px">
+                            <button id="JourneyCreationBtn"
+                                    align="MIDDLE_CENTER"
+                                    height="100px"
+                                    icon="icon/journey_create.png"
+                                    invoke="onJourneyCreationBtnClick"
+                                    responsive="true"
+                                    stylename="quiet"
+                                    width="100%"/>
+                            <label id="JourneyCreationlbl"
+                                   align="MIDDLE_CENTER"
+                                   stylename="h2"
+                                   value="msg://JourneyCreation"/>
+                        </vbox>
+                        <vbox align="MIDDLE_CENTER"
+                              margin="true"
+                              responsive="true"
+                              spacing="true"
+                              stylename="card"
+                              width="300px">
+                            <button id="JourneyListBtn"
+                                    align="MIDDLE_CENTER"
+                                    height="100px"
+                                    icon="icon/journey_list.png"
+                                    invoke="onJourneyListBtnClick"
+                                    responsive="true"
+                                    stylename="quiet"
+                                    width="100%"/>
+                            <label id="JourneyListlbl"
+                                   align="MIDDLE_CENTER"
+                                   stylename="h2"
+                                   value="msg://JourneyList"/>
+                        </vbox>
+                        <vbox align="MIDDLE_CENTER"
+                              margin="true"
+                              responsive="true"
+                              spacing="true"
+                              stylename="card"
+                              width="300px">
+                            <button id="MonitoringBtn"
+                                    align="MIDDLE_CENTER"
+                                    height="100px"
+                                    icon="icon/monitoring.png"
+                                    invoke="onMonitoringBtnClick"
+                                    responsive="true"
+                                    stylename="quiet"
+                                    width="100%"/>
+                            <label id="Monitoringlbl"
+                                   align="MIDDLE_CENTER"
+                                   stylename="h2"
+                                   value="msg://Monitoring"/>
+                        </vbox>
+                    </hbox>
+                </cssLayout>
+            </tab>
+
+            <tab id="tabCurrency"
+                 visible="false"
+                 caption="msg://Currency"
+                 spacing="true">
+                <cssLayout id="CurrencyCssLayout"
+                           stylename="card"
+                           width="100%">
+                    <hbox align="MIDDLE_CENTER"
+                          margin="true"
+                          stylename="well"
+                          width="100%">
+                        <vbox align="MIDDLE_CENTER"
+                              margin="true"
+                              responsive="true"
+                              spacing="true"
+                              stylename="card"
+                              width="300px">
+                            <button id="CurrencyListBtn"
+                                    align="MIDDLE_CENTER"
+                                    height="100px"
+                                    icon="icon/currency.png"
+                                    invoke="onCurrencyListBtnClick"
+                                    responsive="true"
+                                    stylename="quiet"
+                                    width="100%"/>
+                            <label id="CurrencyListlbl"
+                                   align="MIDDLE_CENTER"
+                                   stylename="h2"
+                                   value="msg://CurrencyList"/>
+                        </vbox>
+                        <vbox align="MIDDLE_CENTER"
+                              margin="true"
+                              responsive="true"
+                              spacing="true"
+                              stylename="card"
+                              width="300px">
+                            <button id="CurrencyRateBtn"
+                                    align="MIDDLE_CENTER"
+                                    height="100px"
+                                    icon="icon/rate.png"
+                                    invoke="onCurrencyRateBtnClick"
+                                    responsive="true"
+                                    stylename="quiet"
+                                    width="100%"/>
+                            <label id="CurrencyRatelbl"
+                                   align="MIDDLE_CENTER"
+                                   stylename="h2"
+                                   value="msg://CurrencyRate"/>
+                        </vbox>
+                        <vbox align="MIDDLE_CENTER"
+                              margin="true"
+                              responsive="true"
+                              spacing="true"
+                              stylename="card"
+                              width="300px">
+                            <button id="ActualCurrencyRateBtn"
+                                    align="MIDDLE_CENTER"
+                                    height="100px"
+                                    icon="icon/actual_rate.png"
+                                    invoke="onActualCurrencyRateBtnClick"
+                                    responsive="true"
+                                    stylename="quiet"
+                                    width="100%"/>
+                            <label id="ActualCurrencyRatelbl"
+                                   align="MIDDLE_CENTER"
+                                   stylename="h2"
+                                   value="msg://ActualCurrencyRate"/>
+                        </vbox>
+                    </hbox>
+                </cssLayout>
+            </tab>
+
+            <tab id="tabAdditionally"
+                 visible="false"
+                 caption="msg://Additionally"
+                 spacing="true">
+                <cssLayout id="AdditionallyCssLayout"
+                           stylename="card"
+                           width="100%">
+                    <hbox align="MIDDLE_CENTER"
+                          margin="true"
+                          stylename="well"
+                          width="100%">
+                        <vbox stylename="well">
+                            <vbox align="MIDDLE_CENTER"
+                                  margin="true"
+                                  spacing="true"
+                                  responsive="true"
+                                  stylename="card"
+                                  width="300px">
+                                <button id="companiesListBtn"
+                                        align="MIDDLE_CENTER"
+                                        height="100px"
+                                        icon="icon/companies.png"
+                                        invoke="onCompaniesListBtnClick"
+                                        responsive="true"
+                                        stylename="quiet"
+                                        width="100%"/>
+                                <label id="companiesLbl"
+                                       align="MIDDLE_CENTER"
+                                       stylename="h2"
+                                       value="msg://CompaniesList"/>
+                            </vbox>
+                            <vbox align="MIDDLE_CENTER"
+                                  margin="true"
+                                  responsive="true"
+                                  spacing="true"
+                                  stylename="card"
+                                  width="300px">
+                                <button id="DepartmentBtn"
+                                        align="MIDDLE_CENTER"
+                                        height="100px"
+                                        icon="icon/departments.png"
+                                        invoke="onDepartmentBtnClick"
+                                        responsive="true"
+                                        stylename="quiet"
+                                        width="100%"/>
+                                <label id="DepartmentLbl"
+                                       align="MIDDLE_CENTER"
+                                       stylename="h2"
+                                       value="msg://DepartmentsList"/>
+                            </vbox>
+                        </vbox>
+                        <vbox stylename="well">
+                            <vbox align="TOP_CENTER"
+                                  margin="true"
+                                  responsive="true"
+                                  spacing="true"
+                                  stylename="card"
+                                  width="300px">
+                                <button id="EmployeeRoleListBtn"
+                                        align="MIDDLE_CENTER"
+                                        height="100px"
+                                        icon="icon/employees_role.png"
+                                        invoke="onEmployeeRoleListBtnClick"
+                                        responsive="true"
+                                        stylename="quiet"
+                                        width="100%"/>
+                                <label id="EmployeeRolelabel"
+                                       align="MIDDLE_CENTER"
+                                       stylename="h2"
+                                       value="msg://EmployeeRolesList"/>
+                            </vbox>
+                        </vbox>
+                        <vbox stylename="well">
+                            <vbox align="TOP_CENTER"
+                                  margin="true"
+                                  responsive="true"
+                                  spacing="true"
+                                  stylename="card"
+                                  width="300px">
+                                <button id="EmployeesBtn"
+                                        align="MIDDLE_CENTER"
+                                        height="100px"
+                                        icon="icon/employees.png"
+                                        invoke="onEmployeesBtnClick"
+                                        responsive="true"
+                                        stylename="quiet"
+                                        width="100%"/>
+                                <label id="EmployeesBtnLbl"
+                                       align="MIDDLE_CENTER"
+                                       stylename="h2"
+                                       value="msg://EmployeesList"/>
+                            </vbox>
+                        </vbox>
+                    </hbox>
+                </cssLayout>
+            </tab>
+
+            <tab id="tabMaps"
+                 visible="false"
+                 caption="msg://maps"
+                 spacing="true">
+                <cssLayout id="mapsCssLayout"
+                           stylename="card"
+                           width="100%">
+                    <hbox align="MIDDLE_CENTER"
+                          margin="true"
+                          stylename="well"
+                          width="100%">
+                        <vbox align="TOP_LEFT"
+                              margin="true"
+                              responsive="true"
+                              spacing="true"
+                              stylename="card"
+                              width="300px">
+                            <button id="regionListBtn"
+                                    align="MIDDLE_CENTER"
+                                    height="100px"
+                                    icon="icon/regions.png"
+                                    invoke="onRegionListBtnClick"
+                                    responsive="true"
+                                    stylename="quiet"
+                                    width="100%"/>
+                            <label id="regionlabel"
+                                   align="MIDDLE_CENTER"
+                                   stylename="h2"
+                                   value="msg://regionList"/>
+                        </vbox>
+                    </hbox>
+                </cssLayout>
+            </tab>
+        </accordion>
+    </layout>
+</window>

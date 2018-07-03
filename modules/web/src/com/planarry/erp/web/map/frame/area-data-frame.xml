@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        class="com.planarry.erp.web.map.frame.AreaDataFrame"
+        messagesPack="com.planarry.erp.web.map">
+    <dsContext>
+        <datasource id="areaDataDs"
+                    class="com.planarry.erp.entity.AreaData"/>
+    </dsContext>
+    <layout>
+        <hbox spacing="true" width="100%">
+            <vbox>
+                <textField id="loadingTimeField" datasource="areaDataDs" property="loadingTime" editable="false" caption="msg://loadingTime"/>
+                <textField id="unloadingTimeField" datasource="areaDataDs" property="unloadingTime"  editable="false" caption="msg://unloadingTime"/>
+                <textField id="roadTimeField" datasource="areaDataDs" property="roadTime" editable="false" caption="msg://roadTime"/>
+                <textField id="sumTimeField" datasource="areaDataDs" property="totalTime" editable="false" caption="msg://sumTime"/>
+                <textField id="roadDistField" datasource="areaDataDs" property="roadDist" editable="false" caption="msg://roadDist"/>
+                <currencyField id="entrancePriceField" datasource="areaDataDs" property="entrancePrice" editable="false" caption="msg://entrancePrice"/>
+            </vbox>
+            <vbox>
+                <currencyField id="loadingTimePriceField" editable="false" datasource="areaDataDs" property="loadingPrice" caption="msg://loadingTimePrice"/>
+                <currencyField id="unloadingTimePriceField" datasource="areaDataDs" property="unloadingPrice" editable="false" caption="msg://unloadingTimePrice"/>
+                <currencyField id="roadTimePriceField" datasource="areaDataDs" property="roadTimePrice" editable="false" caption="msg://roadTimePrice"/>
+                <currencyField id="sumTimePriceField" datasource="areaDataDs" property="totalTimePrice"  editable="false" caption="msg://sumTimePrice"/>
+                <currencyField id="roadDistPriceField" datasource="areaDataDs" property="roadDistPrice" editable="false" caption="msg://roadDistPrice"/>
+                <currencyField id="exitPriceField" datasource="areaDataDs" property="exitPrice" editable="false" caption="msg://exitPrice"/>
+                <currencyField id="totalPriceField" datasource="areaDataDs" property="totalPrice" editable="false" caption="msg://sum"/>
+            </vbox>
+        </hbox>
+    </layout>
+</window>

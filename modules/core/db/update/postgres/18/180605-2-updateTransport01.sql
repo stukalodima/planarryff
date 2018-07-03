@@ -1,0 +1,2 @@
+alter table ERP_TRANSPORT add constraint FK_ERP_TRANSPORT_CATEGORY foreign key (CATEGORY_ID) references ERP_CATEGORY(ID);
+create index IDX_ERP_TRANSPORT_CATEGORY on ERP_TRANSPORT (CATEGORY_ID);

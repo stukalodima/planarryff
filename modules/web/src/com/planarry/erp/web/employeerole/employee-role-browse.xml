@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://browseCaption"
+        class="com.planarry.erp.web.employeerole.EmployeeRoleBrowse"
+        focusComponent="employeeRolesTable"
+        lookupComponent="employeeRolesTable"
+        messagesPack="com.planarry.erp.web.employeerole">
+    <dsContext>
+        <groupDatasource id="employeeRolesDs"
+                         class="com.planarry.erp.entity.EmployeeRole"
+                         view="_local">
+            <query>
+                <![CDATA[select e from erp$EmployeeRole e]]>
+                <filter>
+                    <c>e.id = :param$role</c>
+                </filter>
+            </query>
+        </groupDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="employeeRolesTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="employeeRolesTable"
+                collapsed="true"
+                datasource="employeeRolesDs">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="employeeRolesTable"
+                    width="100%">
+            <actions>
+                <action id="create"
+                        openType="NEW_TAB"/>
+                <action id="edit"
+                        openType="NEW_TAB"/>
+                <action id="remove"/>
+                <action id="refresh"/>
+            </actions>
+            <columns>
+                <column id="name"/>
+                <column id="type"/>
+            </columns>
+            <rows datasource="employeeRolesDs"/>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn"
+                        action="employeeRolesTable.create"/>
+                <button id="editBtn"
+                        action="employeeRolesTable.edit"/>
+                <button id="removeBtn"
+                        action="employeeRolesTable.remove"/>
+                <button id="refreshBtn"
+                        action="employeeRolesTable.refresh"/>
+            </buttonsPanel>
+        </groupTable>
+    </layout>
+</window>

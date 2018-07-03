@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        class="com.planarry.erp.web.extuser.ExtUserEdit"
+        extends="/com/haulmont/cuba/gui/app/security/user/edit/user-edit.xml"
+        messagesPack="com.planarry.erp.web.extuser"
+        xmlns:ext="http://schemas.haulmont.com/cuba/window-ext.xsd">
+    <dsContext>
+        <datasource id="userDs"
+                    view="extUser-view"/>
+        <collectionDatasource id="companiesDs"
+                              class="com.planarry.erp.entity.Company"
+                              view="_minimal">
+            <query>
+                <![CDATA[select e from erp$Company e]]>
+            </query>
+        </collectionDatasource>
+    </dsContext>
+    <layout>
+        <button id="createManagerBtn"
+                align="TOP_LEFT"
+                caption="msg://createManager"
+                ext:index="1"
+                invoke="onCreateManager"/>
+        <groupBox id="propertiesBox">
+            <grid id="propertiesGrid">
+                <rows>
+                    <row id="propertiesRow">
+                        <fieldGroup id="fieldGroupLeft">
+                            <column>
+                                <field optionsDatasource="companiesDs"
+                                       property="company"/>
+                            </column>
+                        </fieldGroup>
+                        <fieldGroup id="fieldGroupRight">
+                            <column>
+                                <field property="isAdmin"/>
+                            </column>
+                        </fieldGroup>
+                    </row>
+                </rows>
+            </grid>
+        </groupBox>
+    </layout>
+</window>

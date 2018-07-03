@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://editorCaption"
+        class="com.planarry.erp.web.journey.JourneyEdit"
+        datasource="journeyDs"
+        focusComponent="fieldGroup"
+        messagesPack="com.planarry.erp.web.journey">
+    <dsContext>
+        <datasource id="journeyDs"
+                    class="com.planarry.erp.entity.Journey"
+                    view="journey-edit-view">
+            <collectionDatasource id="journeyCargoesDs"
+                                  property="journeyCargoes"/>
+        </datasource>
+        <collectionDatasource id="cargoDeliveryPointsDs"
+                              class="com.planarry.erp.entity.CargoDeliveryPoint"
+                              refreshMode="NEVER"/>
+    </dsContext>
+    <dialogMode closeable="true"
+                forceDialog="true"
+                maximized="true"
+                modal="true"
+                resizable="true"/>
+    <layout expand="scrollBox"
+            spacing="true">
+        <scrollBox id="scrollBox" spacing="true">
+        <groupBox id="infoBox"
+                  width="100%"
+                  height="100%">
+            <fieldGroup id="fieldGroup"
+                        editable="false"
+                        width="100%"
+                        datasource="journeyDs">
+                <column flex="1"
+                        width="100%">
+                    <field property="transport"/>
+                    <field property="startDate"/>
+                    <field property="transport.totalMaxCargoWeight"/>
+                </column>
+                <column flex="1"
+                        width="100%">
+                    <field property="transportationPrice" generator="generateCurrencyField"/>
+                    <field property="startAddress"/>
+                    <field property="residualWeight"/>
+                </column>
+                <column flex="1"
+                        width="100%">
+                    <field property="transportationDistance"/>
+                    <field property="endDate"/>
+                    <field property="transport.totalMaxCargoVolume"/>
+                </column>
+                <column flex="1"
+                        width="100%">
+                    <field property="transportationTime">
+                        <formatter class="com.planarry.erp.web.utils.TimeDurationFormatter"/>
+                    </field>
+                    <field property="endAddress"/>
+                    <field property="residualVolume"/>
+                </column>
+            </fieldGroup>
+        </groupBox>
+        <groupBox id="infoBox_2"
+                  width="100%"
+                  height="100%"
+                  spacing="true"
+                  visible="false">
+            <fieldGroup id="fieldGroup_2"
+                        editable="false"
+                        width="250"
+                        datasource="journeyDs">
+                <field property="finalPrice"
+                       generator="generateCurrencyField"/>
+            </fieldGroup>
+            <richTextArea property="comment"
+                          datasource="journeyDs"
+                          responsive="true"
+                          width="100%"
+                          caption="msg://logisticianComment"
+                          editable="false"/>
+        </groupBox>
+        <table id="compositionTable"
+               caption="msg://deliveryComposition"
+               responsive="true"
+               height="100%"
+               width="100%">
+            <columns>
+                <column id="point.address"/>
+                <column id="point.serviceTime"/>
+                <column id="weight"/>
+                <column id="volume"/>
+                <column id="numberOfPallets"/>
+            </columns>
+            <rows datasource="cargoDeliveryPointsDs"/>
+        </table>
+        </scrollBox>
+        <frame id="windowActions"
+               align="BOTTOM_RIGHT"
+               screen="extendedEditWindowActions"
+               width="AUTO"/>
+    </layout>
+</window>

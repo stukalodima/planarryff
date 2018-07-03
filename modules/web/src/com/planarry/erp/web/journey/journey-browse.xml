@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://browseCaption"
+        class="com.planarry.erp.web.journey.JourneyBrowse"
+        focusComponent="journeysTable"
+        lookupComponent="journeysTable"
+        messagesPack="com.planarry.erp.web.journey">
+    <dsContext>
+        <groupDatasource id="journeysDs"
+                         class="com.planarry.erp.entity.Journey"
+                         view="journey-browse-view">
+            <query>
+                <![CDATA[select e from erp$Journey e WHERE e.manualJourney = false]]>
+            </query>
+        </groupDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="journeysTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="journeysTable"
+                collapsed="true"
+                datasource="journeysDs">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="journeysTable"
+                    presentations="true"
+                    width="100%">
+            <actions>
+                <action id="create"
+                        openType="NEW_TAB"/>
+                <action id="edit"
+                        openType="NEW_TAB"/>
+                <action id="remove"/>
+                <action id="refresh"/>
+                <action id="add"/>
+                <action id="excel"/>
+                <action id="approved"
+                        invoke="onApprovedAction"
+                        trackSelection="true"/>
+                <action id="priorApproval"
+                        invoke="onPriorApprovalAction"
+                        trackSelection="true"/>
+            </actions>
+            <columns>
+                <column id="journeyNumber"/>
+                <column id="status"/>
+                <column id="transport"/>
+                <column id="startDate"/>
+                <column id="startAddress"/>
+                <column id="endDate"/>
+                <column id="endAddress"/>
+                <column id="residualWeight"/>
+                <column id="residualVolume"/>
+                <column id="transportationDistance"/>
+                <column id="transportationTime">
+                    <formatter class="com.planarry.erp.web.utils.TimeDurationFormatter"/>
+                </column>
+                <column id="attractingPrice"/>
+                <column id="transportationPrice"/>
+                <column id="freighter"/>
+            </columns>
+            <rows datasource="journeysDs"/>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn"
+                        action="journeysTable.create"/>
+                <button id="editBtn"
+                        action="journeysTable.edit"/>
+                <button id="removeBtn"
+                        action="journeysTable.remove"/>
+                <button id="refreshBtn"
+                        action="journeysTable.refresh"/>
+                <button id="addBtn"
+                        action="journeysTable.add"/>
+                <button id="excelBtn"
+                        action="journeysTable.excel"/>
+                <button id="priorApprovalBtn"
+                        action="journeysTable.priorApproval"
+                        caption="msg://priorApprove"/>
+                <button id="approvedBtn"
+                        action="journeysTable.approved"
+                        caption="msg://approve"/>
+
+            </buttonsPanel>
+        </groupTable>
+    </layout>
+</window>

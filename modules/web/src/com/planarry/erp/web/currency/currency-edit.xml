@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://editorCaption"
+        class="com.planarry.erp.web.currency.CurrencyEdit"
+        datasource="currencyrDs"
+        focusComponent="basicFieldGroup"
+        messagesPack="com.planarry.erp.web.currency">
+    <dsContext>
+        <datasource id="currencyrDs"
+                    class="com.planarry.erp.entity.Currency"
+                    view="_local"/>
+    </dsContext>
+    <dialogMode closeable="true"
+                resizable="true"
+                forceDialog="true"
+                modal="true"
+                maximized="true"/>
+    <layout expand="scrollBox"
+            margin="true"
+            spacing="true">
+        <scrollBox id="scrollBox"
+                   responsive="true"
+                   spacing="true">
+            <fieldGroup id="basicFieldGroup"
+                        datasource="currencyrDs"
+                        responsive="true"
+                        width="100%">
+                <column flex="1"
+                        width="100%">
+                    <field property="name"/>
+                    <field mask="###"
+                           property="code"/>
+                    <field property="baseCurrency"/>
+                </column>
+                <column flex="1"
+                        width="100%">
+                    <field mask="UUU"
+                           property="shirtName"/>
+                    <field property="coefficient"/>
+                </column>
+            </fieldGroup>
+        </scrollBox>
+        <frame id="windowActions"
+               align="BOTTOM_RIGHT"
+               responsive="true"
+               screen="extendedEditWindowActions"
+               width="AUTO"/>
+    </layout>
+</window>

@@ -1,0 +1,9 @@
+alter table ERP_TRANSPORT add column TOTAL_EMPTY_TRANSPORT_WEIGHT double precision ;
+alter table ERP_TRANSPORT add column TOTAL_TRANSPORT_LENGTH double precision ;
+alter table ERP_TRANSPORT add column TOTAL_TRANSPORT_HEIGHT double precision ;
+alter table ERP_TRANSPORT add column TOTAL_TRANSPORT_WIDTH double precision ;
+alter table ERP_TRANSPORT add column TOTAL_MAX_CARGO_VOLUME double precision ;
+alter table ERP_TRANSPORT add column TOTAL_MAX_CARGO_WEIGHT double precision ;
+alter table ERP_TRANSPORT add column TOTAL_COST_KILOMETER double precision ;
+alter table ERP_TRANSPORT add column TOTAL_COST_SUPPLY double precision ;
+alter table ERP_TRANSPORT add column TOTAL_COST_HOUR double precision ;

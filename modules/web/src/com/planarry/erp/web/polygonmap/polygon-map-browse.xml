@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://browseCaption"
+        class="com.planarry.erp.web.polygonmap.PolygonMapBrowse"
+        focusComponent="polygonMapsTable"
+        lookupComponent="polygonMapsTable"
+        messagesPack="com.planarry.erp.web.polygonmap">
+    <dsContext>
+        <groupDatasource id="polygonMapsDs"
+                         class="com.planarry.erp.entity.PolygonMap"
+                         view="_local">
+            <query>
+                <![CDATA[select e from erp$PolygonMap e]]>
+            </query>
+        </groupDatasource>
+    </dsContext>
+    <layout expand="polygonMapsTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="polygonMapsTable"
+                datasource="polygonMapsDs">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="polygonMapsTable"
+                    width="100%">
+            <actions>
+                <action id="create"
+                        openType="DIALOG"/>
+                <action id="edit"
+                        openType="DIALOG"/>
+                <action id="remove"/>
+                <action id="refresh"/>
+            </actions>
+            <columns>
+                <column id="name"/>
+            </columns>
+            <rows datasource="polygonMapsDs"/>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn"
+                        action="polygonMapsTable.create"/>
+                <button id="editBtn"
+                        action="polygonMapsTable.edit"/>
+                <button id="removeBtn"
+                        action="polygonMapsTable.remove"/>
+                <button id="refreshBtn"
+                        action="polygonMapsTable.refresh"/>
+            </buttonsPanel>
+        </groupTable>
+
+    </layout>
+</window>

@@ -1,0 +1,11 @@
+@import "havana-defaults";
+@import "com.planarry.erp/havana-ext-defaults";
+@import "app-components";
+@import "com.planarry.erp/havana-ext";
+
+.havana {
+  // include auto-generated app components SCSS
+  @include app_components;
+  
+  @include com_planarry_erp-havana-ext;
+}

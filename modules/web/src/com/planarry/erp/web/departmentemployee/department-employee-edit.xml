@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://editorCaption"
+        class="com.planarry.erp.web.departmentemployee.DepartmentEmployeeEdit"
+        datasource="departmentEmployeeDs"
+        focusComponent="fieldGroup"
+        messagesPack="com.planarry.erp.web.departmentemployee">
+    <dsContext>
+        <datasource id="departmentEmployeeDs"
+                    class="com.planarry.erp.entity.DepartmentEmployee"
+                    view="departmentEmployee-view-browse"/>
+        <collectionDatasource id="departmentsDs"
+                              class="com.planarry.erp.entity.Department"
+                              view="_minimal">
+            <query>
+                <![CDATA[select e from erp$Department e]]>
+            </query>
+        </collectionDatasource>
+    </dsContext>
+    <dialogMode height="160"
+                width="450"/>
+    <layout expand="windowActions"
+            spacing="true">
+        <fieldGroup width="100%" id="fieldGroup"
+                    datasource="departmentEmployeeDs">
+            <column width="100%">
+                <field optionsDatasource="departmentsDs"
+                       property="department"/>
+                <field property="employee"/>
+            </column>
+        </fieldGroup>
+        <frame width="100%"
+               id="windowActions"
+               screen="extendedEditWindowActions"/>
+    </layout>
+</window>

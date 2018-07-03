@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        class="com.planarry.erp.web.extuser.ExtUserBrowser"
+        extends="/com/haulmont/cuba/gui/app/security/user/browse/user-browse.xml"
+        messagesPack="com.planarry.erp.web.extuser"
+        xmlns:ext="http://schemas.haulmont.com/cuba/window-ext.xsd">
+    <dsContext>
+        <groupDatasource id="usersDs"
+                         class="com.planarry.erp.entity.ExtUser"
+                         view="extUser-view">
+            <query>
+                <![CDATA[select u from erp$ExtUser u                
+            ]]>
+                <filter>
+                    <and>
+                        <c>u.company.id = :param$company</c>
+                    </and>
+                </filter>
+            </query>
+        </groupDatasource>
+    </dsContext>
+    <layout>
+        <groupTable id="usersTable">
+            <columns>
+                <column id="company"
+                        ext:index="3"/>
+            </columns>
+        </groupTable>
+    </layout>
+</window>

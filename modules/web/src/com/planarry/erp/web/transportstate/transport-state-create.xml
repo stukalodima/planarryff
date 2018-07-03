@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://editorCaption"
+        class="com.planarry.erp.web.transportstate.TransportStateCreate"
+        messagesPack="com.planarry.erp.web.transportstate">
+    <dsContext>
+        <collectionDatasource id="journeyCompositionDs"
+                              class="com.planarry.erp.entity.JourneyComposition"
+                              refreshMode="NEVER"/>
+    </dsContext>
+    <dialogMode closeable="true"
+                resizable="true"
+                width="800"/>
+    <layout expand="actionPanel"
+            spacing="true">
+        <groupBox id="groupBox_base"
+                  orientation="horizontal"
+                  responsive="true"
+                  spacing="true">
+            <grid id="base_data_grid"
+                  spacing="true"
+                  width="100%">
+                <columns>
+                    <column flex="0.0"/>
+                    <column flex="2.0"/>
+                    <column flex="0.0"/>
+                    <column flex="2.0"/>
+                </columns>
+                <rows>
+                    <row>
+                        <label align="MIDDLE_LEFT"
+                               value="msg://type"/>
+                        <optionsGroup id="typeField"
+                                      optionsEnum="com.planarry.erp.entity.ETransportStateDocTypeItems"
+                                      orientation="horizontal"
+                                      required="true"
+                                      requiredMessage="msg://validate.emptyType"
+                                      width="100%"/>
+                        <label align="MIDDLE_LEFT"
+                               value="msg://transport"/>
+                        <pickerField id="transportField"
+                                     metaClass="erp$Transport"
+                                     required="true"
+                                     requiredMessage="msg://validate.emptyTransport"
+                                     width="100%"/>
+                    </row>
+                </rows>
+            </grid>
+        </groupBox>
+        <groupBox id="groupBox_location"
+                  orientation="horizontal"
+                  responsive="true"
+                  spacing="true"
+                  visible="false">
+            <grid id="location_data_grid"
+                  spacing="true"
+                  width="100%">
+                <columns>
+                    <column flex="0.0"/>
+                    <column flex="2.0"/>
+                    <column flex="0.0"/>
+                    <column flex="2.0"/>
+                </columns>
+                <rows>
+                    <row>
+                        <label id="locationDateLabel"
+                               align="MIDDLE_LEFT"
+                               value="msg://date"/>
+                        <dateField id="locationDateField"
+                                   editable="false"
+                                   required="true"
+                                   requiredMessage="msg://validate.locationDate"
+                                   width="100%"/>
+                        <label id="locationAddressLabel"
+                               align="MIDDLE_LEFT"
+                               value="msg://locationAddress"/>
+                        <cssLayout id="locationCssLayout"
+                                   stylename="v-component-group"
+                                   width="100%">
+                            <hbox expand="locationAddressSuggestionField"
+                                  width="100%">
+                                <suggestionField id="locationAddressSuggestionField"
+                                                 align="MIDDLE_RIGHT"
+                                                 required="true"
+                                                 requiredMessage="msg://validate.locationAddress"
+                                                 responsive="true"/>
+                                <button id="locationPickerBtn"
+                                        align="MIDDLE_RIGHT"
+                                        icon="font-icon:MAP_MARKER"
+                                        invoke="pickLocation"
+                                        stylename="friendly"/>
+                            </hbox>
+                        </cssLayout>
+                    </row>
+                </rows>
+            </grid>
+        </groupBox>
+        <hbox id="journey_hbox"
+              spacing="true"
+              visible="false"
+              width="100%">
+            <groupBox id="groupBox_journey_start"
+                      responsive="true"
+                      spacing="true">
+                <grid id="journey_data_grid_start"
+                      spacing="true"
+                      width="100%">
+                    <columns>
+                        <column flex="0.0"/>
+                        <column flex="2.0"/>
+                    </columns>
+                    <rows>
+                        <row>
+                            <label value="msg://startDate"/>
+                            <cssLayout stylename="v-component-group"
+                                       width="100%">
+                                <dateField id="startDateField"
+                                           requiredMessage="msg://validate.startDate"
+                                           width="100%"/>
+                            </cssLayout>
+                        </row>
+                        <row>
+                            <label value="msg://startAddress"/>
+                            <cssLayout stylename="v-component-group"
+                                       width="100%">
+                                <hbox expand="startAddressSuggestionField"
+                                      width="100%">
+                                    <suggestionField id="startAddressSuggestionField"
+                                                     align="MIDDLE_RIGHT"
+                                                     requiredMessage="msg://validate.startAddress"
+                                                     responsive="true"/>
+                                    <button id="startAddressPickerBtn"
+                                            align="MIDDLE_RIGHT"
+                                            icon="font-icon:MAP_MARKER"
+                                            invoke="pickStartAddress"
+                                            stylename="friendly"/>
+                                </hbox>
+                            </cssLayout>
+                        </row>
+                    </rows>
+                </grid>
+            </groupBox>
+            <groupBox id="groupBox_journey_end"
+                      responsive="true"
+                      spacing="true">
+                <grid id="journey_data_grid_end"
+                      spacing="true"
+                      width="100%">
+                    <columns>
+                        <column flex="0.0"/>
+                        <column flex="2.0"/>
+                    </columns>
+                    <rows>
+                        <row>
+                            <label value="msg://endDate"/>
+                            <cssLayout stylename="v-component-group"
+                                       width="100%">
+                                <dateField id="endDateField"
+                                           requiredMessage="msg://validate.endDate"
+                                           width="100%"/>
+                            </cssLayout>
+                        </row>
+                        <row>
+                            <label value="msg://endAddress"/>
+                            <cssLayout stylename="v-component-group"
+                                       width="100%">
+                                <hbox expand="endAddressSuggestionField"
+                                      width="100%">
+                                    <suggestionField id="endAddressSuggestionField"
+                                                     align="MIDDLE_RIGHT"
+                                                     requiredMessage="msg://validate.endAddress"
+                                                     responsive="true"/>
+                                    <button id="endAddressPickerBtn"
+                                            align="MIDDLE_RIGHT"
+                                            icon="font-icon:MAP_MARKER"
+                                            invoke="pickEndAddress"
+                                            stylename="friendly"/>
+                                </hbox>
+                            </cssLayout>
+                        </row>
+                    </rows>
+                </grid>
+            </groupBox>
+        </hbox>
+        <table id="compositionTable"
+               align="MIDDLE_LEFT"
+               caption="msg://intermediatePoints"
+               visible="false"
+               width="100%">
+            <actions>
+                <action id="remove"/>
+            </actions>
+            <columns>
+                <column id="locationDate"/>
+                <column id="locationAddress"/>
+            </columns>
+            <rows datasource="journeyCompositionDs"/>
+            <buttonsPanel width="100%">
+                <grid id="composition_data_grid"
+                      spacing="true"
+                      width="100%">
+                    <columns>
+                        <column flex="0.0"/>
+                        <column flex="0.0"/>
+                        <column flex="0.0"/>
+                        <column flex="0.0"/>
+                        <column flex="0.0"/>
+                        <column flex="2.0"/>
+                    </columns>
+                    <rows>
+                        <row>
+                            <button id="removeBtn"
+                                    action="compositionTable.remove"
+                                    icon="font-icon:MINUS_SQUARE"/>
+                            <button id="addBtn"
+                                    enable="false"
+                                    icon="font-icon:PLUS_SQUARE"
+                                    invoke="addJourneyComposition"/>
+                            <label align="MIDDLE_CENTER"
+                                   value="msg://date"/>
+                            <cssLayout stylename="v-component-group">
+                                <dateField id="compositionDateField"/>
+                            </cssLayout>
+                            <label align="MIDDLE_CENTER"
+                                   value="msg://locationAddress"/>
+                            <cssLayout stylename="v-component-group"
+                                       width="100%">
+                                <hbox expand="compositionAddressSuggestionField"
+                                      width="100%">
+                                    <suggestionField id="compositionAddressSuggestionField"
+                                                     align="MIDDLE_RIGHT"
+                                                     responsive="true"/>
+                                    <button id="compositionAddressPickerBtn"
+                                            align="MIDDLE_RIGHT"
+                                            icon="font-icon:MAP_MARKER"
+                                            invoke="pickCompositionAddress"
+                                            stylename="friendly"/>
+                                </hbox>
+                            </cssLayout>
+                        </row>
+                    </rows>
+                </grid>
+            </buttonsPanel>
+        </table>
+        <buttonsPanel id="actionPanel"
+                      align="TOP_RIGHT"
+                      responsive="true">
+            <button id="createAndCloseBtn"
+                    caption="msg://SaveAndClose"
+                    invoke="saveAndClose"/>
+            <button id="createBtn"
+                    caption="msg://Save"
+                    invoke="save"/>
+            <button id="cancelBtn"
+                    caption="msg://cancel"
+                    invoke="cancel"/>
+        </buttonsPanel>
+    </layout>
+</window>

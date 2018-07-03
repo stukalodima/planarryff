@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://browseCaption"
+        class="com.planarry.erp.web.mutualsettlements.MutualSettlementsBrowse"
+        focusComponent="mutualSettlementsesTable"
+        lookupComponent="mutualSettlementsesTable"
+        messagesPack="com.planarry.erp.web.mutualsettlements">
+    <dsContext>
+        <groupDatasource id="mutualSettlementsesDs"
+                         class="com.planarry.erp.entity.MutualSettlements"
+                         view="_local">
+            <query>
+                <![CDATA[select e from erp$MutualSettlements e]]>
+            </query>
+        </groupDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="mutualSettlementsesTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="mutualSettlementsesTable"
+                collapsed="true"
+                datasource="mutualSettlementsesDs">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="mutualSettlementsesTable"
+                    width="100%">
+            <actions>
+                <action id="create"/>
+                <action id="edit"/>
+                <action id="remove"/>
+            </actions>
+            <columns>
+                <column id="payDate"/>
+                <column id="value"/>
+            </columns>
+            <rows datasource="mutualSettlementsesDs"/>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn"
+                        action="mutualSettlementsesTable.create"/>
+                <button id="editBtn"
+                        action="mutualSettlementsesTable.edit"/>
+                <button id="removeBtn"
+                        action="mutualSettlementsesTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+    </layout>
+</window>

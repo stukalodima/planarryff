@@ -1,0 +1,8 @@
+rootProject.name = 'ERP'
+include(':erp-global', ':erp-core', ':erp-gui', ':erp-web', ':erp-web-themes', ':erp-web-toolkit')
+project(':erp-global').projectDir = new File(settingsDir, 'modules/global')
+project(':erp-core').projectDir = new File(settingsDir, 'modules/core')
+project(':erp-gui').projectDir = new File(settingsDir, 'modules/gui')
+project(':erp-web').projectDir = new File(settingsDir, 'modules/web')
+project(':erp-web-themes').projectDir = new File(settingsDir, 'modules/web/themes')
+project(':erp-web-toolkit').projectDir = new File(settingsDir, 'modules/web-toolkit')

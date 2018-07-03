@@ -1,0 +1,2 @@
+alter table ERP_CARGO add constraint FK_ERP_CARGO_END_POINT_INDEX foreign key (END_POINT_INDEX_ID) references ERP_POINT_INDEX(ID);
+create index IDX_ERP_CARGO_END_POINT_INDEX on ERP_CARGO (END_POINT_INDEX_ID);

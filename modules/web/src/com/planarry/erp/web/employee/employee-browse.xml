@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://browseCaption"
+        class="com.planarry.erp.web.employee.EmployeeBrowse"
+        focusComponent="employeesTable"
+        lookupComponent="employeesTable"
+        messagesPack="com.planarry.erp.web.employee">
+    <dsContext>
+        <groupDatasource id="employeesDs"
+                         class="com.planarry.erp.entity.Employee"
+                         view="employee-view">
+            <query>
+                <![CDATA[select e from erp$Employee e]]>
+                <filter>
+                    <and>
+                        <c>e.company.id = :param$company</c>
+                        <c>e.role.type = :param$type</c>
+                        <c>e.isFree = :param$isFree</c>
+                        <c>e.role.id = :param$role</c>
+                    </and>
+                </filter>
+            </query>
+        </groupDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="employeesTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="employeesTable"
+                collapsed="true"
+                datasource="employeesDs">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="employeesTable"
+                    width="100%">
+            <actions>
+                <action id="create"
+                        openType="NEW_TAB"/>
+                <action id="edit"
+                        openType="NEW_TAB"/>
+                <action id="remove"/>
+                <action id="excel"/>
+                <action id="refresh"/>
+            </actions>
+            <columns>
+                <column id="name"/>
+                <column id="firstName"/>
+                <column id="middleName"/>
+                <column id="lastName"/>
+                <column id="phone"/>
+                <column id="email"/>
+                <column id="role"/>
+                <column id="company"/>
+                <column id="user"/>
+            </columns>
+            <rows datasource="employeesDs"/>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn"
+                        action="employeesTable.create"/>
+                <button id="editBtn"
+                        action="employeesTable.edit"/>
+                <button id="removeBtn"
+                        action="employeesTable.remove"/>
+                <button id="excelBtn"
+                        action="employeesTable.excel"/>
+                <button id="refreshBtn"
+                        action="employeesTable.refresh"/>
+            </buttonsPanel>
+        </groupTable>
+    </layout>
+</window>

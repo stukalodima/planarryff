@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://lookupCaption"
+        class="com.planarry.erp.web.transport.TransportLookup"
+        focusComponent="transportsTable"
+        lookupComponent="transportsTable"
+        messagesPack="com.planarry.erp.web.transport">
+    <dsContext>
+        <groupDatasource id="transportsDs"
+                         class="com.planarry.erp.entity.Transport"
+                         view="transport-view">
+            <query>
+                <![CDATA[select e from erp$Transport e]]>
+                <filter>
+                    <and>
+                        <c>e.company.id = :param$company</c>
+                        <c>e.isFree = :param$isFree</c>
+                        <or>
+                            <c>e.employee.user.id = :param$currentUser</c>
+                            <c>e.availableForAll = :param$availableToAll</c>
+                            <c join="LEFT OUTER JOIN e.transportsAccesses ac">ac.company.id = :param$company</c>
+                        </or>
+                    </and>
+                </filter>
+            </query>
+        </groupDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="transportsTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="transportsTable"
+                datasource="transportsDs">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="transportsTable"
+                    width="100%">
+            <actions>
+                <action id="create"
+                        openType="NEW_TAB"/>
+                <action id="edit"
+                        openType="NEW_TAB"/>
+                <action id="remove"/>
+                <action id="refresh"/>
+                <action id="excel"/>
+            </actions>
+            <columns>
+
+                <column id="name"/>
+                <column id="transportType"/>
+                <column id="downloadType"/>
+                <column id="costKilometer"/>
+                <column id="costHour"/>
+                <column id="costSupply"/>
+                <column id="minWeight"/>
+                <column id="maxWeight"/>
+                <column id="minVolume"/>
+                <column id="maxVolume"/>
+                <column id="limitWeight"/>
+                <column id="currency"/>
+                <column id="emptyTruckWeight"/>
+                <column id="vinCode"/>
+                <column id="classADR"/>
+                <column id="bodyHeight"/>
+                <column id="bodyLength"/>
+                <column id="bodyWidth"/>
+                <column id="servicePointWithRamp"/>
+                <column id="servicePointWithoutRamp"/>
+                <column id="transportHeight"/>
+                <column id="transportLength"/>
+                <column id="dangerousCargoPermission"/>
+                <column id="temperatureConditions"/>
+                <column id="temperatureRetentionTime"/>
+                <column id="lowTemperature"/>
+                <column id="highTemperature"/>
+            </columns>
+            <rows datasource="transportsDs"/>
+
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn"
+                        action="transportsTable.create"/>
+                <button id="editBtn"
+                        action="transportsTable.edit"/>
+                <button id="removeBtn"
+                        action="transportsTable.remove"/>
+                <button id="refreshButton"
+                        action="transportsTable.refresh"/>
+                <button id="excelButton"
+                        action="transportsTable.excel"/>
+            </buttonsPanel>
+        </groupTable>
+    </layout>
+</window>

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://caption"
+        class="com.planarry.erp.web.cargo.access.CargoAccessible"
+        messagesPack="com.planarry.erp.web.cargo.access">
+    <companions>
+        <web class="com.planarry.erp.web.utils.accesstoentities.AccessCompanion"/>
+    </companions>
+    <dsContext>
+        <datasource id="cargoDs"
+                    class="com.planarry.erp.entity.Cargo"
+                    view="cargo-view">
+        </datasource>
+        <collectionDatasource id="accessesDs"
+                              class="com.planarry.erp.entity.AccessToCargo"
+                              refreshMode="NEVER">
+        </collectionDatasource>
+        <collectionDatasource id="companiesDS"
+                              class="com.planarry.erp.entity.Company"
+                              view="company-view">
+            <query>
+                <![CDATA[select e from erp$Company e]]>
+                <filter>
+                    <and>
+                        <c>e.id not in :param$companies</c>
+                    </and>
+                </filter>
+            </query>
+        </collectionDatasource>
+    </dsContext>
+    <dialogMode closeable="true"
+                forceDialog="true"
+                maximized="true"
+                modal="true"
+                resizable="true"/>
+    <layout spacing="true">
+        <scrollBox id="scrollBox"
+                   spacing="true">
+            <fieldGroup id="fieldGroup"
+                        datasource="cargoDs"
+                        editable="false"
+                        width="100%">
+                <column flex="1"
+                        width="100%">
+                    <field property="clientCaption"/>
+                    <field property="sentDate"/>
+                </column>
+                <column flex="1"
+                        width="100%">
+                    <field property="phone"/>
+                    <field property="sendPoint.address"/>
+                </column>
+            </fieldGroup>
+            <grid id="grid"
+                  height="100%"
+                  spacing="true"
+                  width="100%">
+                <columns>
+                    <column flex="15.0"/>
+                    <column flex="1.0"/>
+                    <column flex="15.0"/>
+                </columns>
+                <rows>
+                    <row>
+                        <table id="accessesTable"
+                               caption="msg://accessesList"
+                               height="400px"
+                               responsive="true"
+                               width="100%">
+                            <actions>
+                                <action id="remove"
+                                        invoke="onExcludeCompany"
+                                        trackSelection="true"/>
+                            </actions>
+                            <columns>
+                                <column id="company.name"/>
+                                <column id="company.fullName"/>
+                                <column id="company.activitiesType"/>
+                                <column id="company.type"/>
+                                <column id="company.phoneNumber"/>
+                            </columns>
+                            <rows datasource="accessesDs"/>
+                        </table>
+                        <vbox id="vButtons"
+                              align="MIDDLE_CENTER"
+                              responsive="true"
+                              spacing="true">
+                            <button id="addCompanyBtn"
+                                    action="companiesTable.addCompany"
+                                    align="MIDDLE_CENTER"
+                                    height="40px"
+                                    icon="font-icon:LONG_ARROW_LEFT"
+                                    stylename="icon-only"
+                                    width="100%"/>
+                            <button id="removeCompanyBtn"
+                                    action="accessesTable.remove"
+                                    align="MIDDLE_CENTER"
+                                    height="40px"
+                                    icon="font-icon:LONG_ARROW_RIGHT"
+                                    stylename="icon-only"
+                                    width="100%"/>
+                        </vbox>
+                        <table id="companiesTable"
+                               align="TOP_RIGHT"
+                               caption="msg://companiesList"
+                               height="400px"
+                               responsive="true"
+                               width="100%">
+                            <actions>
+                                <action id="addCompany"
+                                        invoke="onIncludeCompany"
+                                        trackSelection="true"/>
+                            </actions>
+                            <columns>
+                                <column id="name"/>
+                                <column id="fullName"/>
+                                <column id="activitiesType"/>
+                                <column id="type"/>
+                                <column id="phoneNumber"/>
+                            </columns>
+                            <rows datasource="companiesDS"/>
+                        </table>
+                    </row>
+                </rows>
+            </grid>
+        </scrollBox>
+        <buttonsPanel align="MIDDLE_RIGHT">
+            <button id="saveBtn"
+                    caption="msg://save"
+                    invoke="onSave"/>
+            <button id="cancelBtn"
+                    caption="msg://cancel"
+                    invoke="onCancel"/>
+        </buttonsPanel>
+    </layout>
+</window>

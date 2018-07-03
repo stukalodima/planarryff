@@ -1,0 +1,3 @@
+fromDate - Date
+toDate - Date
+managers - List

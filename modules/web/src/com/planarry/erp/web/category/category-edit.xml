@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://editorCaption"
+        class="com.planarry.erp.web.category.CategoryEdit"
+        datasource="categoryDs"
+        focusComponent="fieldGroup"
+        messagesPack="com.planarry.erp.web.category">
+    <dsContext>
+        <datasource id="categoryDs"
+                    class="com.planarry.erp.entity.Category"
+                    view="category-view">
+            <collectionDatasource id="categoryAreasDs"
+                                  property="areas"/>
+        </datasource>
+    </dsContext>
+    <dialogMode closeable="true"
+                forceDialog="true"
+                height="100%"
+                maximized="true"
+                resizable="true"
+                width="100%"/>
+    <layout expand="groupBox"
+            spacing="true">
+        <groupBox>
+            <fieldGroup id="fieldGroup"
+                        datasource="categoryDs"
+                        width="100%">
+                <column flex="1"
+                        width="100%">
+                    <field property="name"/>
+                    <field property="weight"/>
+                    <field property="volume"/>
+                    <field property="numberOfPallets"/>
+                </column>
+                <column flex="1"
+                        width="100%">
+                    <field property="costKilometer"/>
+                    <field property="costHour"/>
+                    <field property="costSupply"/>
+                    <field property="minHourNumber"/>
+                    <field property="company"/>
+                </column>
+            </fieldGroup>
+        </groupBox>
+        <groupBox id="groupBox" expand="areasTable" spacing="true">
+            <table id="areasTable"
+                   caption="msg://areas"
+                   width="100%">
+                <actions>
+                    <action id="remove"/>
+                </actions>
+                <columns>
+                    <column id="polygon"/>
+                    <column id="costHour"/>
+                    <column id="costKilometer"/>
+                    <column id="costSupply"/>
+                    <column id="costEntrancePenalty"/>
+                    <column id="costExitPenalty"/>
+                </columns>
+                <rows datasource="categoryAreasDs"/>
+                <buttonsPanel id="buttonsPanel">
+                    <button id="removeBtn"
+                            action="areasTable.remove"/>
+                    <button id="addAreaBtn"
+                            caption="msg://add"
+                            enable="false"
+                            invoke="onAddArea"/>
+                    <button id="saveAreaBtn"
+                            caption="msg://save"
+                            enable="false"
+                            invoke="onSaveArea"
+                            visible="false"/>
+                    <hbox spacing="true">
+                        <label value="msg://area" align="MIDDLE_CENTER"/>
+                        <pickerField id="pickerField" width="180"
+                                     requiredMessage="msg://requiredPickerFieldMessage"
+                                     metaClass="erp$PolygonMap"/>
+                    </hbox>
+                    <label value="msg://cost" align="MIDDLE_CENTER"/>
+                    <hbox spacing="true">
+                        <label value="msg://costHour" align="MIDDLE_CENTER"/>
+                        <textField id="hourTextField" width="70"
+                                   datatype="double"/>
+                    </hbox>
+                    <hbox spacing="true">
+                        <label value="msg://costKm" align="MIDDLE_CENTER"/>
+                        <textField id="kilometerTextField" width="70"
+                                   datatype="double"/>
+                    </hbox>
+                    <hbox spacing="true">
+                        <label value="msg://costSupply" align="MIDDLE_CENTER"/>
+                        <textField id="supplyTextField" width="70"
+                                   datatype="double"/>
+                    </hbox>
+                    <hbox spacing="true">
+                        <label value="msg://costEntrance" align="MIDDLE_CENTER"/>
+                        <textField id="areaEntranceTextField" width="70"
+                                   datatype="double"/>
+                    </hbox>
+                    <hbox spacing="true">
+                        <label value="msg://costExit" align="MIDDLE_CENTER"/>
+                        <textField id="areaExitTextField" width="70"
+                                   datatype="double"/>
+                    </hbox>
+                </buttonsPanel>
+            </table>
+        </groupBox>
+        <frame id="windowActions"
+               align="BOTTOM_RIGHT"
+               screen="extendedEditWindowActions"
+               width="AUTO"/>
+    </layout>
+</window>

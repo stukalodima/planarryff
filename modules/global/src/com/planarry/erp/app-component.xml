@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<app-component xmlns="http://schemas.haulmont.com/cuba/app-component.xsd"
+               dependsOn="com.haulmont.reports, com.haulmont.charts, com.haulmont.cuba, com.haulmont.fts, com.haulmont.bpm">
+    <module blocks="*"
+            name="global">
+        <artifact appJar="true"
+                  name="erp-global"/>
+        <property name="cuba.persistenceConfig"
+                  value="+com/planarry/erp/persistence.xml"/>
+        <property name="cuba.metadataConfig"
+                  value="+com/planarry/erp/metadata.xml"/>
+        <property name="cuba.viewsConfig"
+                  value="+com/planarry/erp/views.xml"/>
+    </module>
+    <module blocks="core"
+            dependsOn="global"
+            name="core">
+        <artifact appJar="true"
+                  name="erp-core"/>
+        <property name="cuba.springContextConfig"
+                  value="+com/planarry/erp/spring.xml"/>
+        <property name="cuba.mainMessagePack"
+                  value="+com.planarry.erp.core"/>
+        <artifact classifier="db"
+                  configuration="dbscripts"
+                  ext="zip"
+                  name="erp-core"/>
+    </module>
+    <module blocks="web,desktop"
+            dependsOn="global"
+            name="gui">
+        <artifact appJar="true"
+                  name="erp-gui"/>
+    </module>
+    <module blocks="web"
+            dependsOn="gui"
+            name="web">
+        <artifact appJar="true"
+                  name="erp-web"/>
+        <artifact classifier="web"
+                  configuration="webcontent"
+                  ext="zip"
+                  name="erp-web"/>
+        <artifact configuration="themes"
+                  name="erp-web-themes"/>
+        <artifact classifier="web"
+                  configuration="webcontent"
+                  ext="zip"
+                  name="erp-web-toolkit"
+                  skipIfExists="web-toolkit"/>
+        <property name="cuba.springContextConfig"
+                  value="+com/planarry/erp/web-spring.xml"/>
+        <property name="cuba.dispatcherSpringContextConfig"
+                  value="+com/planarry/erp/web-dispatcher-spring.xml"/>
+        <property name="cuba.windowConfig"
+                  value="+com/planarry/erp/web-screens.xml"/>
+        <property name="cuba.menuConfig"
+                  value="+com/planarry/erp/web-menu.xml"/>
+        <property name="cuba.permissionConfig"
+                  value="+com/planarry/erp/web-permissions.xml"/>
+        <property name="cuba.mainMessagePack"
+                  value="+com.planarry.erp.web"/>
+        <property name="cuba.web.widgetSet"
+                  value="com.planarry.erp.web.toolkit.ui.AppWidgetSet"/>
+    </module>
+    <module name="web-themes">
+        <artifact name="erp-web-themes"/>
+    </module>
+    <module dependsOn="web"
+            name="web-toolkit">
+        <artifact name="erp-web-toolkit"/>
+    </module>
+</app-component>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://browseCaption"
+        class="com.planarry.erp.web.department.DepartmentBrowse"
+        focusComponent="departmentsTable"
+        lookupComponent="departmentsTable"
+        messagesPack="com.planarry.erp.web.department">
+    <dsContext>
+        <hierarchicalDatasource id="departmentsDs"
+                                class="com.planarry.erp.entity.Department"
+                                hierarchyProperty="pid"
+                                view="department-view-browse">
+            <query>
+                <![CDATA[select e from erp$Department e]]>
+            </query>
+        </hierarchicalDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="departmentsTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="departmentsTable"
+                collapsed="true"
+                datasource="departmentsDs">
+            <properties include=".*"/>
+        </filter>
+        <treeTable id="departmentsTable"
+                   width="100%">
+            <actions>
+                <action id="create"
+                        openType="NEW_TAB"/>
+                <action id="edit"
+                        openType="NEW_TAB"/>
+                <action id="remove"/>
+                <action id="excel"/>
+                <action id="refresh"/>
+            </actions>
+            <columns>
+                <column id="name"/>
+                <column id="chief"/>
+                <column id="company"/>
+            </columns>
+            <rows datasource="departmentsDs"/>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn"
+                        action="departmentsTable.create"/>
+                <button id="editBtn"
+                        action="departmentsTable.edit"/>
+                <button id="removeBtn"
+                        action="departmentsTable.remove"/>
+                <button id="excelBtn"
+                        action="departmentsTable.excel"/>
+                <button id="refreshBtn"
+                        action="departmentsTable.refresh"/>
+            </buttonsPanel>
+        </treeTable>
+    </layout>
+</window>

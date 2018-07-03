@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://editorCaption"
+        class="com.planarry.erp.web.journeystate.JourneyStateEdit"
+        datasource="journeyStateDs"
+        focusComponent="fieldGroup"
+        messagesPack="com.planarry.erp.web.journeystate">
+    <dsContext>
+        <datasource id="journeyStateDs"
+                    class="com.planarry.erp.entity.JourneyState"
+                    view="journeyState-view"/>
+    </dsContext>
+    <dialogMode closeable="true"
+                forceDialog="true"
+                maximized="true"
+                resizable="true"/>
+    <layout expand="windowActions"
+            spacing="true">
+        <fieldGroup id="fieldGroup"
+                    width="100%"
+                    datasource="journeyStateDs">
+            <column flex="1" width="100%">
+                <field property="stateDate"/>
+                <field property="status"/>
+            </column>
+            <column flex="1" width="100%">
+                <field property="user"/>
+                <field property="journey"/>
+            </column>
+        </fieldGroup>
+        <richTextArea id="rtaComment"
+                      datasource="journeyStateDs"
+                      property="comment"
+                      responsive="true"
+                      width="100%"/>
+        <frame id="windowActions"
+               screen="extendedEditWindowActions"
+               align="BOTTOM_RIGHT"
+               width="AUTO"/>
+    </layout>
+</window>

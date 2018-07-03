@@ -1,0 +1,4 @@
+alter table ERP_JOURNEY_STATE add constraint FK_ERP_JOURNEY_STATE_USER foreign key (USER_ID) references SEC_USER(ID);
+alter table ERP_JOURNEY_STATE add constraint FK_ERP_JOURNEY_STATE_JOURNEY foreign key (JOURNEY_ID) references ERP_JOURNEY(ID);
+create index IDX_ERP_JOURNEY_STATE_USER on ERP_JOURNEY_STATE (USER_ID);
+create index IDX_ERP_JOURNEY_STATE_JOURNEY on ERP_JOURNEY_STATE (JOURNEY_ID);

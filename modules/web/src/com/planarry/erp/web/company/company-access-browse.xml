@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://accessCaption"
+        class="com.planarry.erp.web.company.CompanyAccessBrowse"
+        focusComponent="companiesTable"
+        lookupComponent="companiesTable"
+        messagesPack="com.planarry.erp.web.company">
+    <dsContext>
+        <groupDatasource id="companiesDs"
+                         class="com.planarry.erp.entity.Company"
+                         view="company-view">
+            <query>
+                <![CDATA[select e from erp$Company e]]>
+                <filter>
+                    <and>
+                        <c>e.id in :param$companies</c>
+                    </and>
+                </filter>
+            </query>
+        </groupDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="companiesTable"
+            spacing="true">
+        <groupTable id="companiesTable"
+                    width="100%">
+            <columns>
+                <column id="name"/>
+                <column id="fullName"/>
+                <column id="address"/>
+                <column id="type"/>
+                <column id="activitiesType"/>
+            </columns>
+            <rows datasource="companiesDs"/>
+        </groupTable>
+        <button id="closeBtn" align="MIDDLE_RIGHT" invoke="onClose" caption="msg://close"/>
+    </layout>
+</window>

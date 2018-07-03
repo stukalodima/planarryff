@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://browseCaption"
+        class="com.planarry.erp.web.currencyrate.CurrencyRateBrowse"
+        focusComponent="currencyRateTable"
+        lookupComponent="currencyRateTable"
+        messagesPack="com.planarry.erp.web.currencyrate">
+    <dsContext>
+        <groupDatasource id="currencyRateDs"
+                         class="com.planarry.erp.entity.CurrencyRate"
+                         view="currency-rate-view">
+            <query>
+                <![CDATA[select e from erp$CurrencyRate e]]>
+            </query>
+        </groupDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="currencyRateTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="currencyRateTable"
+                collapsed="true"
+                datasource="currencyRateDs">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="currencyRateTable"
+                    width="100%">
+            <actions>
+                <action id="create"
+                        openType="NEW_TAB"/>
+                <action id="edit"
+                        openType="NEW_TAB"/>
+                <action id="remove"/>
+                <action id="refresh"/>
+                <action id="excel"/>
+            </actions>
+            <columns>
+                <column id="currency"/>
+                <column id="date"
+                        dateFormat="dd-MM-yyyy"/>
+                <column id="rate"/>
+                <column id="currency.coefficient"/>
+            </columns>
+            <rows datasource="currencyRateDs"/>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn"
+                        action="currencyRateTable.create"/>
+                <button id="editBtn"
+                        action="currencyRateTable.edit"/>
+                <button id="removeBtn"
+                        action="currencyRateTable.remove"/>
+                <button id="refreshBtn"
+                        action="currencyRateTable.refresh"
+                        align="MIDDLE_RIGHT"/>
+                <button id="excelBtn"
+                        action="currencyRateTable.excel"
+                        align="TOP_RIGHT"/>
+            </buttonsPanel>
+        </groupTable>
+    </layout>
+</window>

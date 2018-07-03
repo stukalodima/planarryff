@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://browseCaption"
+        class="com.planarry.erp.web.activitiestype.ActivitiesTypeBrowse"
+        focusComponent="activitiesTypesTable"
+        lookupComponent="activitiesTypesTable"
+        messagesPack="com.planarry.erp.web.activitiestype">
+    <dsContext>
+        <groupDatasource id="activitiesTypesDs"
+                         class="com.planarry.erp.entity.ActivitiesType"
+                         view="_local">
+            <query>
+                <![CDATA[select e from erp$ActivitiesType e]]>
+            </query>
+        </groupDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                resizable="true"
+                width="800"/>
+    <layout expand="activitiesTypesTable"
+            spacing="true">
+        <filter id="filter"
+                collapsed="true"
+                applyTo="activitiesTypesTable"
+                datasource="activitiesTypesDs">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="activitiesTypesTable"
+                    width="100%">
+            <actions>
+                <action id="create"/>
+                <action id="edit"/>
+                <action id="remove"/>
+            </actions>
+            <columns>
+                <column id="name"/>
+            </columns>
+            <rows datasource="activitiesTypesDs"/>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn"
+                        action="activitiesTypesTable.create"/>
+                <button id="editBtn"
+                        action="activitiesTypesTable.edit"/>
+                <button id="removeBtn"
+                        action="activitiesTypesTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+    </layout>
+</window>

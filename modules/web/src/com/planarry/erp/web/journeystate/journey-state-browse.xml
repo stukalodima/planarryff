@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://browseCaption"
+        class="com.planarry.erp.web.journeystate.JourneyStateBrowse"
+        focusComponent="journeyStatesTable"
+        lookupComponent="journeyStatesTable"
+        messagesPack="com.planarry.erp.web.journeystate">
+    <dsContext>
+        <groupDatasource id="journeyStatesDs"
+                         class="com.planarry.erp.entity.JourneyState"
+                         view="journeyState-view">
+            <query>
+                <![CDATA[select e from erp$JourneyState e]]>
+            </query>
+        </groupDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="journeyStatesTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="journeyStatesTable"
+                collapsed="true"
+                datasource="journeyStatesDs">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="journeyStatesTable"
+                    width="100%">
+            <actions>
+                <action id="create"/>
+                <action id="edit"/>
+                <action id="remove"/>
+                <action id="refresh"/>
+            </actions>
+            <columns>
+                <column id="journey.journeyNumber"/>
+                <column id="status"/>
+                <column id="stateDate"/>
+                <column id="journey.startAddress"/>
+                <column id="journey.endAddress"/>
+                <column id="journey.transport"/>
+                <column id="user"/>
+                <column id="comment"/>
+            </columns>
+            <rows datasource="journeyStatesDs"/>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="editBtn"
+                        action="journeyStatesTable.edit"/>
+                <button id="refreshBtn"
+                        action="journeyStatesTable.refresh"/>
+            </buttonsPanel>
+        </groupTable>
+    </layout>
+</window>

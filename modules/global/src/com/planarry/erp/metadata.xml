@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<metadata xmlns="http://schemas.haulmont.com/cuba/metadata.xsd">
+    <datatypes>
+        <datatype id="geocoordinate"
+                  class="com.planarry.erp.datatype.GeoCoordinate"
+                  decimalSeparator="."
+                  format="#0.000000"
+                  groupingSeparator=""
+                  javaType="java.lang.Double"/>
+    </datatypes>
+    <metadata-model namespace="erp"
+                    root-package="com.planarry.erp">
+        <class>com.planarry.erp.entity.JourneyTransport</class>
+        <class>com.planarry.erp.entity.AreaData</class>
+        <class>com.planarry.erp.entity.JourneyData</class>
+    </metadata-model>
+</metadata>

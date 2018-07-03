@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://browseCaption"
+        class="com.planarry.erp.web.company.CompanyBrowse"
+        focusComponent="companiesTable"
+        lookupComponent="companiesTable"
+        messagesPack="com.planarry.erp.web.company">
+    <dsContext>
+        <groupDatasource id="companiesDs"
+                         class="com.planarry.erp.entity.Company"
+                         view="company-view">
+            <query>
+                <![CDATA[select e from erp$Company e]]>
+                <filter>
+                    <and>
+                        <c>e.id = :param$company</c>
+                        <c>e.activitiesType.id in :param$activitiesTypeId</c>
+                    </and>
+                </filter>
+            </query>
+        </groupDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="companiesTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="companiesTable"
+                datasource="companiesDs"
+                collapsed="true">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="companiesTable"
+                    width="100%">
+            <actions>
+                <action id="create"
+                        openType="NEW_TAB"/>
+                <action id="edit"
+                        openType="NEW_TAB"/>
+                <action id="remove"/>
+                <action id="refresh"/>
+                <action id="excel"/>
+            </actions>
+            <columns>
+                <column id="name"/>
+                <column id="fullName"/>
+                <column id="address"/>
+                <column id="type"/>
+                <column id="activitiesType"/>
+            </columns>
+            <rows datasource="companiesDs"/>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn"
+                        action="companiesTable.create"/>
+                <button id="editBtn"
+                        action="companiesTable.edit"/>
+                <button id="removeBtn"
+                        action="companiesTable.remove"/>
+                <button id="refreshBtn"
+                        action="companiesTable.refresh"
+                        align="MIDDLE_RIGHT"/>
+                <button id="excelBtn"
+                        action="companiesTable.excel"
+                        align="TOP_RIGHT"/>
+            </buttonsPanel>
+        </groupTable>
+    </layout>
+</window>

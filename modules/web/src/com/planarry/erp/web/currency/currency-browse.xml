@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://browseCaption"
+        class="com.planarry.erp.web.currency.CurrencyBrowse"
+        focusComponent="currenciesTable"
+        lookupComponent="currenciesTable"
+        messagesPack="com.planarry.erp.web.currency">
+    <dsContext>
+        <groupDatasource id="currenciesDs"
+                         class="com.planarry.erp.entity.Currency"
+                         view="_local">
+            <query>
+                <![CDATA[select e from erp$Currency e]]>
+            </query>
+        </groupDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="currenciesTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="currenciesTable"
+                datasource="currenciesDs"
+                collapsed="true">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="currenciesTable"
+                    width="100%">
+            <actions>
+                <action id="create"
+                        openType="NEW_TAB"/>
+                <action id="edit"
+                        openType="NEW_TAB"/>
+                <action id="remove"/>
+                <action id="refresh"/>
+                <action id="excel"/>
+            </actions>
+            <columns>
+                <column id="name"/>
+                <column id="code"/>
+                <column id="shirtName"/>
+                <column id="baseCurrency"/>
+                <column id="coefficient"/>
+            </columns>
+            <rows datasource="currenciesDs"/>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn"
+                        action="currenciesTable.create"/>
+                <button id="editBtn"
+                        action="currenciesTable.edit"/>
+                <button id="removeBtn"
+                        action="currenciesTable.remove"/>
+                <button id="refreshBtn"
+                        action="currenciesTable.refresh"
+                        align="MIDDLE_RIGHT"/>
+                <button id="excelBtn"
+                        action="currenciesTable.excel"
+                        align="TOP_RIGHT"/>
+            </buttonsPanel>
+        </groupTable>
+    </layout>
+</window>

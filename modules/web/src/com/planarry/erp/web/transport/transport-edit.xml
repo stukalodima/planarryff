@@ -1,0 +1,864 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://editorCaption"
+        class="com.planarry.erp.web.transport.TransportEdit"
+        datasource="transportDs"
+        focusComponent="basicFieldGroup"
+        messagesPack="com.planarry.erp.web.transport">
+    <dsContext>
+        <datasource id="transportDs"
+                    class="com.planarry.erp.entity.Transport"
+                    view="transport-edit-view">
+            <collectionDatasource id="trailersDs"
+                                  property="transportTrailers"/>
+            <collectionDatasource id="transportsAccessDs"
+                                  property="transportsAccesses"/>
+            <collectionDatasource id="driversDs"
+                                  property="transportDrivers"/>
+            <collectionDatasource id="forwardersDs"
+                                  property="transportForwarders"/>
+            <collectionDatasource id="crewMembersDs"
+                                  property="transportCrewMembers"/>
+            <collectionDatasource id="classAdrDs"
+                                  property="classADR"/>
+            <collectionDatasource id="categoryAreasDs"
+                                  property="areas"/>
+        </datasource>
+        <collectionDatasource id="companyDS"
+                              class="com.planarry.erp.entity.Company"
+                              view="_minimal">
+            <query>
+                <![CDATA[select e from erp$Company e]]>
+            </query>
+        </collectionDatasource>
+        <hierarchicalDatasource id="transportTypesDs"
+                                class="com.planarry.erp.entity.TransportType"
+                                hierarchyProperty="category"
+                                view="transport-type-view">
+            <query>
+                <![CDATA[select e from erp$TransportType e order by e.name]]>
+            </query>
+        </hierarchicalDatasource>
+        <collectionDatasource id="currencyDS"
+                              class="com.planarry.erp.entity.Currency"
+                              view="_local">
+            <query>
+                <![CDATA[select e from erp$Currency e]]>
+            </query>
+        </collectionDatasource>
+        <collectionDatasource id="trailersSourceDs"
+                              class="com.planarry.erp.entity.Trailer"
+                              view="trailer-view">
+        </collectionDatasource>
+        <collectionDatasource id="driversSourceDs"
+                              class="com.planarry.erp.entity.Employee"
+                              view="employee-view">
+        </collectionDatasource>
+        <collectionDatasource id="forwardersSourceDs"
+                              class="com.planarry.erp.entity.Employee"
+                              view="employee-view">
+        </collectionDatasource>
+        <collectionDatasource id="crewMembersSourceDs"
+                              class="com.planarry.erp.entity.Employee"
+                              view="employee-view">
+        </collectionDatasource>
+    </dsContext>
+    <companions>
+        <web class="com.planarry.erp.web.transport.TransportCompanion"/>
+    </companions>
+    <dialogMode closeable="true"
+                forceDialog="true"
+                maximized="true"
+                modal="true"
+                resizable="true"/>
+    <layout expand="scrollBox"
+            margin="true"
+            spacing="true">
+        <scrollBox id="scrollBox"
+                   responsive="true"
+                   spacing="true">
+            <groupBox id="basic_gbox"
+                      orientation="horizontal"
+                      responsive="true"
+                      spacing="true">
+                <fieldGroup id="basicFieldGroup"
+                            datasource="transportDs"
+                            width="100%">
+                    <column flex="1"
+                            width="100%">
+                        <field property="name"/>
+                        <field property="truckType"/>
+                        <field property="category"/>
+                        <field property="identNumber"/>
+                        <field property="downloadType"/>
+                    </column>
+                </fieldGroup>
+                <vbox id="vbox_basic"
+                      expand="basicFieldGroup_1"
+                      height="100%"
+                      spacing="true">
+                    <fieldGroup id="basicFieldGroup_1"
+                                datasource="transportDs"
+                                width="100%">
+                        <column flex="1"
+                                width="100%">
+                            <field optionsDatasource="companyDS"
+                                   property="company"/>
+                            <field property="employee"/>
+                            <field property="vinCode"/>
+                        </column>
+                    </fieldGroup>
+                    <hbox id="hbox_transportType"
+                          expand="cssLayout"
+                          width="100%">
+                        <label align="MIDDLE_LEFT"
+                               value="msg://transportType"
+                               width="159px"/>
+                        <cssLayout id="cssLayout"
+                                   stylename="v-component-group">
+                            <hbox expand="transportTypeField"
+                                  width="100%">
+                                <pickerField id="transportTypeField"
+                                             datasource="transportDs"
+                                             property="transportType"
+                                             requiredMessage="msg://validate.transportTypeEmpty"/>
+                                <popupButton id="popupButton"
+                                             align="MIDDLE_LEFT"
+                                             closePopupOnOutsideClick="true"
+                                             popupOpenDirection="BOTTOM_LEFT"
+                                             showActionIcons="false"
+                                             stylename="icon-only">
+                                    <popup>
+                                        <tree id="tree"
+                                              width="100%">
+                                            <treechildren captionProperty="name"
+                                                          datasource="transportTypesDs"/>
+                                        </tree>
+                                    </popup>
+                                </popupButton>
+                                <button id="editTrTypeBtn"
+                                        icon="components/pickerfield/images/lookup-btn.png"
+                                        invoke="onEditTransportType"
+                                        stylename="icon-only"/>
+                                <button id="removeTrTypeBtn"
+                                        icon="font-icon:REMOVE"
+                                        invoke="onRemoveTransportType"
+                                        stylename="icon-only"/>
+                            </hbox>
+                        </cssLayout>
+                    </hbox>
+                </vbox>
+            </groupBox>
+            <tabSheet id="tabSheet"
+                      height="100%"
+                      responsive="true">
+                <tab id="technicalSettingsTab"
+                     caption="msg://technicalSettings"
+                     margin="true,false,false,false"
+                     spacing="true">
+                    <groupBox id="technicalParams_gbox"
+                              responsive="true"
+                              spacing="true">
+                        <fieldGroup id="technicalParamsFieldGroup"
+                                    datasource="transportDs"
+                                    width="100%">
+                            <column flex="1"
+                                    width="100%">
+                                <field property="emptyTruckWeight"/>
+                                <field property="transportHeight"/>
+                                <field property="sensorCode"/>
+                            </column>
+                            <column flex="1"
+                                    width="100%">
+                                <field property="maxSpeed"/>
+                                <field property="transportLength"/>
+                            </column>
+                        </fieldGroup>
+                    </groupBox>
+                    <groupBox id="technicalParams_gbox_2"
+                              responsive="true"
+                              spacing="true">
+                        <fieldGroup id="technicalParamsFieldGroup_2"
+                                    datasource="transportDs"
+                                    width="100%">
+                            <column flex="1"
+                                    width="100%">
+                                <field property="bodyLength"/>
+                                <field property="bodyHeight"/>
+                                <field property="minWeight"/>
+                                <field property="minVolume"/>
+                                <field property="servicePointWithoutRamp"/>
+                            </column>
+                            <column flex="1"
+                                    width="100%">
+                                <field property="bodyWidth"/>
+                                <field property="maxWeight"/>
+                                <field property="limitWeight"/>
+                                <field property="maxVolume"/>
+                                <field property="servicePointWithRamp"/>
+                            </column>
+                        </fieldGroup>
+                    </groupBox>
+                    <groupBox id="technicalParams_gbox_4"
+                              responsive="true"
+                              spacing="true">
+                        <fieldGroup id="technicalParamsFieldGroup_4"
+                                    datasource="transportDs"
+                                    width="100%">
+                            <column flex="1"
+                                    width="100%">
+                                <field property="temperatureConditions"/>
+                            </column>
+                        </fieldGroup>
+                        <hbox id="temp_hbox"
+                              spacing="true"
+                              width="100%">
+                            <fieldGroup id="technicalParamsFieldGroup_5"
+                                        datasource="transportDs"
+                                        width="100%">
+                                <column flex="1"
+                                        width="100%">
+                                    <field property="temperatureRetentionTime"/>
+                                </column>
+                            </fieldGroup>
+                            <grid id="temperatureContainer"
+                                  spacing="true"
+                                  width="100%">
+                                <columns>
+                                    <column flex="0.0"/>
+                                    <column flex="2.0"/>
+                                    <column flex="0.0"/>
+                                    <column flex="2.0"/>
+                                </columns>
+                                <rows>
+                                    <row>
+                                        <label align="MIDDLE_LEFT"
+                                               value="msg://temperatureRangeFrom"
+                                               width="212px"/>
+                                        <textField id="lowTempField"
+                                                   datasource="transportDs"
+                                                   property="lowTemperature"
+                                                   width="100%"/>
+                                        <label align="MIDDLE_CENTER"
+                                               value="msg://temperatureRangeTo"/>
+                                        <textField id="highTempField"
+                                                   datasource="transportDs"
+                                                   property="highTemperature"
+                                                   width="98%"/>
+                                    </row>
+                                </rows>
+                            </grid>
+                        </hbox>
+                    </groupBox>
+                </tab>
+                <tab id="ADRTab"
+                     caption="msg://classADR"
+                     margin="true,false,false,false"
+                     spacing="true">
+                    <groupBox id="ADR_gbox_3"
+                              responsive="true"
+                              spacing="true">
+                        <fieldGroup id="ADR_field_group"
+                                    datasource="transportDs"
+                                    width="100%">
+                            <column flex="1"
+                                    width="100%">
+                                <field property="dangerousCargoPermission"/>
+                            </column>
+                        </fieldGroup>
+                        <optionsGroup id="classADRField"
+                                      multiselect="true"
+                                      optionsEnum="com.planarry.erp.entity.ECargoADRTypeItems"
+                                      orientation="vertical"
+                                      width="100%"/>
+                    </groupBox>
+                </tab>
+                <tab id="trailersTab"
+                     caption="msg://trailers"
+                     expand="trailersGrid"
+                     margin="true,false,false,false"
+                     spacing="true">
+                    <buttonsPanel id="actionsButtonsPanel">
+                        <button id="addBtn"
+                                action="trailersTable.add"
+                                caption="msg://add"
+                                icon="font-icon:FILE_O"/>
+                        <button id="removeBtn"
+                                action="trailersTable.remove"
+                                caption="msg://remove"
+                                icon="font-icon:REMOVE"/>
+                    </buttonsPanel>
+                    <grid id="trailersGrid"
+                          height="100%"
+                          spacing="true"
+                          width="100%">
+                        <columns>
+                            <column flex="15.0"/>
+                            <column flex="1.0"/>
+                            <column flex="15.0"/>
+                        </columns>
+                        <rows>
+                            <row>
+                                <table id="trailersTable"
+                                       caption="msg://trailersList"
+                                       height="300px"
+                                       responsive="true"
+                                       width="100%">
+                                    <actions>
+                                        <action id="remove"
+                                                caption=" "/>
+                                        <action id="add"
+                                                invoke="onAddTrailer"/>
+                                    </actions>
+                                    <columns>
+                                        <column id="order"/>
+                                        <column id="trailer.name"
+                                                link="true"
+                                                linkInvoke="openEditForm"/>
+                                        <column id="trailer.type"/>
+                                        <column id="trailer.maxWeight"/>
+                                        <column id="trailer.maxVolume"/>
+                                    </columns>
+                                    <rows datasource="trailersDs"/>
+                                </table>
+                                <vbox id="trailersButtons"
+                                      align="MIDDLE_CENTER"
+                                      responsive="true"
+                                      spacing="true">
+                                    <button id="addTrailer"
+                                            action="trailersSourceTable.addTrailers"
+                                            align="MIDDLE_CENTER"
+                                            height="40px"
+                                            icon="font-icon:LONG_ARROW_LEFT"
+                                            stylename="icon-only"
+                                            width="100%"/>
+                                    <button id="removeTrailer"
+                                            action="trailersTable.remove"
+                                            align="MIDDLE_CENTER"
+                                            height="40px"
+                                            icon="font-icon:LONG_ARROW_RIGHT"
+                                            stylename="icon-only"
+                                            width="100%"/>
+                                </vbox>
+                                <table id="trailersSourceTable"
+                                       align="TOP_RIGHT"
+                                       caption="msg://freeTrailersList"
+                                       height="300px"
+                                       responsive="true"
+                                       width="100%">
+                                    <actions>
+                                        <action id="addTrailers"
+                                                invoke="onIncludeTrailerToTransport"
+                                                trackSelection="true"/>
+                                    </actions>
+                                    <columns>
+                                        <column id="name"/>
+                                        <column id="type"/>
+                                        <column id="identNumber"/>
+                                        <column id="minWeight"/>
+                                        <column id="maxWeight"/>
+                                        <column id="limitWeight"/>
+                                        <column id="minVolume"/>
+                                        <column id="maxVolume"/>
+                                        <column id="emptyTrailerWeight"/>
+                                        <column id="width"/>
+                                        <column id="length"/>
+                                        <column id="height"/>
+                                        <column id="currency"/>
+                                        <column id="employee"/>
+                                        <column id="servicePointWithoutRamp"/>
+                                        <column id="servicePointWithRamp"/>
+                                        <column id="temperatureConditions"/>
+                                        <column id="temperatureRetentionTime"/>
+                                        <column id="lowTemperature"/>
+                                        <column id="highTemperature"/>
+                                        <column id="costSupply"/>
+                                        <column id="costKilometer"/>
+                                        <column id="costHour"/>
+                                        <column id="company"/>
+                                    </columns>
+                                    <rows datasource="trailersSourceDs"/>
+                                </table>
+                            </row>
+                        </rows>
+                    </grid>
+                </tab>
+                <tab id="OtherCrewMembersTab"
+                     caption="msg://members"
+                     margin="true,false,false,false"
+                     spacing="true">
+                    <tabSheet id="members_tabsheet"
+                              height="100%"
+                              responsive="true">
+                        <tab id="driversTab"
+                             caption="msg://drivers"
+                             margin="true,false,false,false"
+                             spacing="true">
+                            <buttonsPanel>
+                                <button id="addDriverBtn"
+                                        action="driversTable.add"
+                                        caption="msg://add"
+                                        icon="font-icon:FILE_O"/>
+                                <button id="removeDriverBtn"
+                                        action="driversTable.remove"
+                                        caption="msg://remove"
+                                        icon="font-icon:REMOVE"/>
+                            </buttonsPanel>
+                            <grid id="driversGrid"
+                                  height="100%"
+                                  spacing="true"
+                                  width="100%">
+                                <columns>
+                                    <column flex="15.0"/>
+                                    <column flex="1.0"/>
+                                    <column flex="15.0"/>
+                                </columns>
+                                <rows>
+                                    <row>
+                                        <table id="driversTable"
+                                               caption="msg://driversList"
+                                               height="300px"
+                                               width="100%">
+                                            <actions>
+                                                <action id="remove"
+                                                        caption=" "/>
+                                                <action id="add"
+                                                        invoke="onAddDriver"/>
+                                            </actions>
+                                            <columns>
+                                                <column id="order"/>
+                                                <column id="employee.name"
+                                                        link="true"
+                                                        linkInvoke="openEditForm"/>
+                                                <column id="employee.lastName"/>
+                                                <column id="employee.firstName"/>
+                                                <column id="employee.middleName"/>
+                                            </columns>
+                                            <rows datasource="driversDs"/>
+                                        </table>
+                                        <vbox id="driversButtons"
+                                              align="MIDDLE_LEFT"
+                                              spacing="true">
+                                            <button id="addDriver"
+                                                    action="driversSourceTable.addDrivers"
+                                                    height="40px"
+                                                    icon="font-icon:LONG_ARROW_LEFT"
+                                                    width="100%"/>
+                                            <button id="removeDriver"
+                                                    action="driversTable.remove"
+                                                    height="40px"
+                                                    icon="font-icon:LONG_ARROW_RIGHT"
+                                                    width="100%"/>
+                                        </vbox>
+                                        <table id="driversSourceTable"
+                                               caption="msg://freeDriversList"
+                                               height="300px"
+                                               width="100%">
+                                            <actions>
+                                                <action id="addDrivers"
+                                                        invoke="onIncludeDriverToTransport"
+                                                        trackSelection="true"/>
+                                            </actions>
+                                            <columns>
+                                                <column id="name"/>
+                                                <column id="lastName"/>
+                                                <column id="firstName"/>
+                                                <column id="middleName"/>
+                                                <column id="email"/>
+                                                <column id="phone"/>
+                                                <column id="company"/>
+                                            </columns>
+                                            <rows datasource="driversSourceDs"/>
+                                        </table>
+                                    </row>
+                                </rows>
+                            </grid>
+                        </tab>
+                        <tab id="forwardersTab"
+                             caption="msg://forwarders"
+                             margin="true,false,false,false"
+                             spacing="true">
+                            <buttonsPanel>
+                                <button id="addForwarderBtn"
+                                        action="forwardersTable.add"
+                                        caption="msg://add"
+                                        icon="font-icon:FILE_O"/>
+                                <button id="removeForwarderBtn"
+                                        action="forwardersTable.remove"
+                                        caption="msg://remove"
+                                        icon="font-icon:REMOVE"/>
+                            </buttonsPanel>
+                            <grid id="trailersHBox"
+                                  height="100%"
+                                  spacing="true"
+                                  width="100%">
+                                <columns>
+                                    <column flex="15.0"/>
+                                    <column flex="1.0"/>
+                                    <column flex="15.0"/>
+                                </columns>
+                                <rows>
+                                    <row>
+                                        <table id="forwardersTable"
+                                               caption="msg://forwardersList"
+                                               height="300px"
+                                               width="100%">
+                                            <actions>
+                                                <action id="remove"
+                                                        caption=" "/>
+                                                <action id="add"
+                                                        invoke="onAddForwarder"/>
+                                            </actions>
+                                            <columns>
+                                                <column id="order"/>
+                                                <column id="employee.name"
+                                                        link="true"
+                                                        linkInvoke="openEditForm"/>
+                                                <column id="employee.lastName"/>
+                                                <column id="employee.firstName"/>
+                                                <column id="employee.middleName"/>
+                                            </columns>
+                                            <rows datasource="forwardersDs"/>
+                                        </table>
+                                        <vbox id="forwardersButtons"
+                                              align="MIDDLE_LEFT"
+                                              spacing="true">
+                                            <button id="addForwarder"
+                                                    action="forwardersSourceTable.addForwarders"
+                                                    height="40px"
+                                                    icon="font-icon:LONG_ARROW_LEFT"
+                                                    width="100%"/>
+                                            <button id="removeForwarder"
+                                                    action="forwardersTable.remove"
+                                                    height="40px"
+                                                    icon="font-icon:LONG_ARROW_RIGHT"
+                                                    width="100%"/>
+                                        </vbox>
+                                        <table id="forwardersSourceTable"
+                                               caption="msg://freeForwardersList"
+                                               height="300px"
+                                               width="100%">
+                                            <actions>
+                                                <action id="addForwarders"
+                                                        invoke="onIncludeForwarderToTransport"
+                                                        trackSelection="true"/>
+                                            </actions>
+                                            <columns>
+                                                <column id="name"/>
+                                                <column id="lastName"/>
+                                                <column id="firstName"/>
+                                                <column id="middleName"/>
+                                                <column id="email"/>
+                                                <column id="phone"/>
+                                                <column id="company"/>
+                                            </columns>
+                                            <rows datasource="forwardersSourceDs"/>
+                                        </table>
+                                    </row>
+                                </rows>
+                            </grid>
+                        </tab>
+                        <tab id="crewMembersTab"
+                             caption="msg://crewMembers"
+                             margin="true,false,false,false"
+                             spacing="true">
+                            <buttonsPanel>
+                                <button id="addCrewBtn"
+                                        action="crewMembersTable.add"
+                                        caption="msg://add"
+                                        icon="font-icon:FILE_O"/>
+                                <button id="removeCrewBtn"
+                                        action="crewMembersTable.remove"
+                                        caption="msg://remove"
+                                        icon="font-icon:REMOVE"/>
+                            </buttonsPanel>
+                            <grid id="crewMembersGrid"
+                                  height="100%"
+                                  spacing="true"
+                                  width="100%">
+                                <columns>
+                                    <column flex="15.0"/>
+                                    <column flex="1.0"/>
+                                    <column flex="15.0"/>
+                                </columns>
+                                <rows>
+                                    <row>
+                                        <table id="crewMembersTable"
+                                               caption="msg://crewMembersList"
+                                               height="300px"
+                                               width="100%">
+                                            <actions>
+                                                <action id="remove"
+                                                        caption=" "/>
+                                                <action id="add"
+                                                        invoke="onAddCrewMembers"/>
+                                            </actions>
+                                            <columns>
+                                                <column id="order"/>
+                                                <column id="employee.name"
+                                                        link="true"
+                                                        linkInvoke="openEditForm"/>
+                                                <column id="employee.role.type"/>
+                                                <column id="employee.lastName"/>
+                                                <column id="employee.firstName"/>
+                                                <column id="employee.middleName"/>
+                                            </columns>
+                                            <rows datasource="crewMembersDs"/>
+                                        </table>
+                                        <vbox id="crewMembersButtons"
+                                              align="MIDDLE_LEFT"
+                                              spacing="true">
+                                            <button id="addCrewMember"
+                                                    action="crewMembersSourceTable.addCrewMembers"
+                                                    height="40px"
+                                                    icon="font-icon:LONG_ARROW_LEFT"
+                                                    width="100%"/>
+                                            <button id="removeCrewMember"
+                                                    action="crewMembersTable.remove"
+                                                    height="40px"
+                                                    icon="font-icon:LONG_ARROW_RIGHT"
+                                                    width="100%"/>
+                                        </vbox>
+                                        <table id="crewMembersSourceTable"
+                                               caption="msg://freeCrewMembersList"
+                                               height="300px"
+                                               width="100%">
+                                            <actions>
+                                                <action id="addCrewMembers"
+                                                        invoke="onIncludeCrewMemberToTransport"
+                                                        trackSelection="true"/>
+                                            </actions>
+                                            <columns>
+                                                <column id="name"/>
+                                                <column id="role.type"/>
+                                                <column id="lastName"/>
+                                                <column id="firstName"/>
+                                                <column id="middleName"/>
+                                                <column id="email"/>
+                                                <column id="phone"/>
+                                                <column id="company"/>
+                                            </columns>
+                                            <rows datasource="crewMembersSourceDs"/>
+                                        </table>
+                                    </row>
+                                </rows>
+                            </grid>
+                        </tab>
+                    </tabSheet>
+                </tab>
+                <tab id="PriceTab"
+                     caption="msg://price"
+                     margin="true,false,false,false"
+                     spacing="true">
+                    <hbox spacing="true" width="100%" height="100%">
+                        <vbox>
+                            <grid id="currency_grid"
+                                  spacing="true"
+                                  width="100%">
+                                <columns>
+                                    <column flex="0.0"/>
+                                    <column flex="2.0"/>
+                                </columns>
+                                <rows>
+                                    <row>
+                                        <label align="MIDDLE_LEFT"
+                                               value="msg://currency"
+                                               width="115px"/>
+                                        <lookupPickerField id="currencyField"
+                                                           datasource="transportDs"
+                                                           optionsDatasource="currencyDS"
+                                                           property="currency"
+                                                           required="true"
+                                                           requiredMessage="msg://validate.currencyEmpty"
+                                                           width="100%"/>
+                                    </row>
+                                </rows>
+                            </grid>
+                            <groupBox id="minHour_gbox"
+                                      orientation="horizontal"
+                                      responsive="true"
+                                      spacing="true"
+                                      width="100%">
+                                <fieldGroup id="minHourFieldGroup"
+                                            datasource="transportDs"
+                                            responsive="true"
+                                            width="100%">
+                                    <column flex="1"
+                                            width="100%">
+                                        <field  property="minHourNumber"/>
+                                    </column>
+                                </fieldGroup>
+                            </groupBox>
+                            <groupBox id="attracting_gbox"
+                                      orientation="horizontal"
+                                      responsive="true"
+                                      spacing="true"
+                                      width="100%">
+                                <fieldGroup id="attractingFieldGroup"
+                                            datasource="transportDs"
+                                            responsive="true"
+                                            width="100%">
+                                    <column flex="1"
+                                            width="100%">
+                                        <field generator="generateAttractionCurrencyField"
+                                               property="baseCostAttraction"/>
+                                        <field generator="generateAttractionCurrencyField"
+                                               property="extraCostAttraction"/>
+                                    </column>
+                                </fieldGroup>
+                            </groupBox>
+                        </vbox>
+                        <groupBox id="price_gbox"
+                                  responsive="true"
+                                  spacing="true"
+                                  width="100%">
+                            <grid id="price_grid"
+                                  spacing="true"
+                                  width="100%">
+                                <columns>
+                                    <column flex="0.0"/>
+                                    <column flex="2.0"/>
+                                </columns>
+                                <rows>
+                                    <row>
+                                        <label align="MIDDLE_LEFT"
+                                               value="msg://costSupply"/>
+                                        <currencyField id="costSupplyField"
+                                                       datasource="transportDs"
+                                                       property="costSupply"
+                                                       width="100%"/>
+                                    </row>
+                                    <row>
+                                        <label align="MIDDLE_LEFT"
+                                               value="msg://costKilometer"/>
+                                        <currencyField id="costKilometerField"
+                                                       datasource="transportDs"
+                                                       property="costKilometer"
+                                                       width="100%"/>
+                                    </row>
+                                    <row>
+                                        <label align="MIDDLE_LEFT"
+                                               value="msg://costTonKilometer"/>
+                                        <currencyField id="costTonKilometerField"
+                                                       datasource="transportDs"
+                                                       property="costTonKilometer"
+                                                       width="100%"/>
+                                    </row>
+                                    <row>
+                                        <label align="MIDDLE_LEFT"
+                                               value="msg://costHour"/>
+                                        <currencyField id="costHourField"
+                                                       datasource="transportDs"
+                                                       property="costHour"
+                                                       width="100%"/>
+                                    </row>
+                                </rows>
+                            </grid>
+                        </groupBox>
+                    </hbox>
+                        <table id="areasTable"
+                               height="100%"
+                               width="100%"
+                               caption="msg://areas">
+                            <actions>
+                                <action id="remove"/>
+                            </actions>
+                            <columns>
+                                <column id="polygon"/>
+                                <column id="costHour"/>
+                                <column id="costKilometer"/>
+                                <column id="costSupply"/>
+                                <column id="costEntrancePenalty"/>
+                                <column id="costExitPenalty"/>
+                            </columns>
+                            <rows datasource="categoryAreasDs"/>
+                            <buttonsPanel id="buttonsPanel">
+                                <button id="removeAreaBtn"
+                                        action="areasTable.remove"/>
+                                <button id="addAreaBtn"
+                                        caption="msg://add"
+                                        enable="false"
+                                        invoke="onAddArea"/>
+                                <button id="saveAreaBtn"
+                                        caption="msg://save"
+                                        enable="false"
+                                        invoke="onSaveArea"
+                                        visible="false"/>
+                                    <hbox spacing="true">
+                                        <label value="msg://area" align="MIDDLE_CENTER"/>
+                                        <pickerField id="areaPickerField" width="180" metaClass="erp$PolygonMap"/>
+                                    </hbox>
+                                    <label value="msg://cost" align="MIDDLE_CENTER"/>
+                                    <hbox spacing="true">
+                                        <label value="msg://hour" align="MIDDLE_CENTER"/>
+                                        <textField id="areaHourTextField"  width="70"
+                                                   datatype="double"/>
+                                    </hbox>
+                                    <hbox spacing="true">
+                                        <label value="msg://costKm" align="MIDDLE_CENTER"/>
+                                        <textField id="areaKilometerTextField" width="70"
+                                                   datatype="double"/>
+                                    </hbox>
+                                    <hbox spacing="true">
+                                        <label value="msg://supply" align="MIDDLE_CENTER"/>
+                                        <textField id="areaSupplyTextField" width="70"
+                                                   datatype="double"/>
+                                    </hbox>
+                                    <hbox spacing="true">
+                                        <label value="msg://costEntrance" align="MIDDLE_CENTER"/>
+                                        <textField id="areaEntranceTextField" width="70"
+                                                   datatype="double"/>
+                                    </hbox>
+                                    <hbox spacing="true">
+                                        <label value="msg://costExit" align="MIDDLE_CENTER"/>
+                                        <textField id="areaExitTextField" width="70"
+                                                   datatype="double"/>
+                                    </hbox>
+                            </buttonsPanel>
+                        </table>
+                </tab>
+                <tab id="PhotoTab"
+                     caption="msg://photo"
+                     margin="true,false,false,false"
+                     spacing="true">
+                    <vbox height="100%">
+                        <upload id="uploadField"
+                                accept="*.jpg,*.png"
+                                datasource="transportDs"
+                                fileSizeLimit="6144000"
+                                fileStoragePutMode="IMMEDIATE"
+                                permittedExtensions=".jpg,.png"
+                                property="photo"
+                                showClearButton="true"/>
+                        <image id="image"
+                               datasource="transportDs"
+                               height="250px"
+                               property="photo"
+                               scaleMode="CONTAIN"
+                               width="auto"/>
+                    </vbox>
+                </tab>
+            </tabSheet>
+        </scrollBox>
+        <buttonsPanel id="shareButtonsPanel"
+                      stylename="extendedEditWindowActions"
+                      width="100%">
+            <buttonsPanel align="TOP_LEFT">
+                <button id="shareToAll"
+                        caption="msg://shareToAll"
+                        invoke="onShareToAll"/>
+                <button id="shareToCompanies"
+                        caption="msg://shareToCompanies"
+                        invoke="openMachinesAccessEditWindow"/>
+            </buttonsPanel>
+            <frame id="windowActions"
+                   align="TOP_RIGHT"
+                   screen="extendedEditWindowActions"
+                   width="AUTO"/>
+        </buttonsPanel>
+        <button id="cancelButton"
+                caption="msg://Cancel"
+                invoke="onCancel"
+                visible="false"/>
+    </layout>
+</window>

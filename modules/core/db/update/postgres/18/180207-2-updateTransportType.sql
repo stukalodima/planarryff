@@ -1,0 +1,2 @@
+alter table ERP_TRANSPORT_TYPE add constraint FK_ERP_TRANSPORT_TYPE_PARENT_TYPE foreign key (PID) references ERP_TRANSPORT_TYPE(ID);
+create index IDX_ERP_TRANSPORT_TYPE_PID on ERP_TRANSPORT_TYPE (PID);

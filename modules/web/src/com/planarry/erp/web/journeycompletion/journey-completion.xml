@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://caption"
+        class="com.planarry.erp.web.journeycompletion.JourneyCompletion"
+        messagesPack="com.planarry.erp.web.journeycompletion">
+    <dsContext>
+        <datasource id="journeyDS"
+                    class="com.planarry.erp.entity.Journey"
+                    view="_minimal">
+            <collectionDatasource id="journeyCargoes"
+                                  property="journeyCargoes"/>
+        </datasource>
+        <collectionDatasource id="deliveriesCompositionDs"
+                              class="com.planarry.erp.entity.DeliveryComposition"
+                              refreshMode="NEVER"/>
+    </dsContext>
+    <dialogMode closeable="true"
+                forceDialog="true"
+                maximized="true"
+                modal="true"
+                resizable="true"/>
+    <layout expand="scroll"
+            spacing="true">
+        <scrollBox id="scroll"
+                   spacing="true">
+            <fieldGroup id="fieldGroup"
+                        datasource="journeyDS"
+                        editable="false"
+                        width="100%">
+                <column width="100%">
+                    <field property="transport"/>
+                    <field property="startDate"/>
+                    <field property="startAddress"/>
+                </column>
+                <column width="100%">
+                    <field property="transport.company"/>
+                    <field property="endDate"/>
+                    <field property="endAddress"/>
+                </column>
+            </fieldGroup>
+            <table id="cargoesTable"
+                   caption="msg://cargoes"
+                   height="100%"
+                   width="100%">
+                <columns>
+                    <column id="cargo.clientCaption"/>
+                    <column id="cargo.sentDate"/>
+                    <column id="cargo.sendPoint.address" caption="msg://sentAddress"/>
+                    <column id="cargo.weight"/>
+                    <column id="cargo.volume"/>
+                </columns>
+                <rows datasource="journeyCargoes"/>
+            </table>
+            <table id="compositionsTable"
+                   caption="msg://deliveryCompositions"
+                   height="100%"
+                   width="100%">
+                <columns>
+                    <column id="deliveryDate"/>
+                    <column id="point.address"/>
+                    <column id="status"/>
+                </columns>
+                <rows datasource="deliveriesCompositionDs"/>
+                <buttonsPanel>
+                    <button id="completePointBtn" enable="false" invoke="onCompletePoint" caption="msg://completePoint"/>
+                    <button id="clearCompletedPointBtn" enable="false" invoke="onClearCompletedPoint" caption="msg://clearCompletedPoint"/>
+                </buttonsPanel>
+            </table>
+        </scrollBox>
+        <hbox width="100%">
+            <buttonsPanel>
+                <button id="completeBtn"
+                        caption="msg://complete"
+                        invoke="completeJourney"
+                        stylename="large bold friendly"/>
+                <button id="cancelBtn"
+                        caption="msg://cancel"
+                        invoke="cancelJourney"
+                        stylename="large bold danger"/>
+            </buttonsPanel>
+            <button id="closeBtn"
+                    align="MIDDLE_RIGHT"
+                    caption="msg://close"
+                    invoke="close"/>
+        </hbox>
+    </layout>
+</window>

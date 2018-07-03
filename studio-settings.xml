@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<studio>
+    <settings>
+        <defaultAccessModifier>private</defaultAccessModifier>
+    </settings>
+    <screenDesigner>
+        <screen module="web"
+                previewMode="true"
+                reference="com/planarry/erp/web/transport/transport-edit.xml"/>
+    </screenDesigner>
+    <functionalitySettings>
+        <functionality id="oneToOneIndex"
+                       state="ENABLE"/>
+        <functionality id="joinedInheritanceDeleteCascade"
+                       state="ENABLE"/>
+        <functionality id="newFkConstraintNaming"
+                       state="ENABLE"/>
+    </functionalitySettings>
+</studio>

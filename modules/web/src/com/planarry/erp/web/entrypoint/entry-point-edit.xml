@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://editorCaption"
+        class="com.planarry.erp.web.entrypoint.EntryPointEdit"
+        datasource="entryPointDs"
+        focusComponent="map"
+        messagesPack="com.planarry.erp.web.entrypoint"
+        xmlns:chart="http://schemas.haulmont.com/charts/charts.xsd">
+    <dsContext>
+        <datasource id="entryPointDs"
+                    class="com.planarry.erp.entity.EntryPoint"
+                    view="entryPoint-view"/>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="map"
+            spacing="true">
+        <chart:mapViewer id="map"
+                         width="100%"/>
+        <hbox width="100%">
+        <buttonsPanel>
+            <button align="BOTTOM_LEFT"
+                    caption="Ok"
+                    icon="icons/ok.png"
+                    invoke="onSave"/>
+            <button align="BOTTOM_LEFT"
+                    caption="Cancel"
+                    invoke="onClose"/>
+        </buttonsPanel>
+            <vbox margin="false,true,false,false">
+        <label id="mapClick" value="msg://click" align="TOP_RIGHT"/>
+        <label id="markerClick" value="msg://markerClick" align="TOP_RIGHT"/>
+        <label id="doubleClick" value="msg://doubleClick" align="TOP_RIGHT"/>
+            </vbox>
+        </hbox>
+    </layout>
+</window>

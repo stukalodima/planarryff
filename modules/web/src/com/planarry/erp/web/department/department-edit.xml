@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://editorCaption"
+        class="com.planarry.erp.web.department.DepartmentEdit"
+        datasource="departmentDs"
+        focusComponent="fieldGroup"
+        messagesPack="com.planarry.erp.web.department">
+    <dsContext>
+        <datasource id="departmentDs"
+                    class="com.planarry.erp.entity.Department"
+                    view="department-view-browse">
+            <collectionDatasource id="employeeDepartmentDs"
+                                  property="employeeDepartment"/>
+        </datasource>
+        <collectionDatasource id="companiesDs"
+                              class="com.planarry.erp.entity.Company"
+                              view="_minimal">
+            <query>
+                <![CDATA[select e from erp$Company e]]>
+            </query>
+        </collectionDatasource>
+        <collectionDatasource id="pidsDs"
+                              class="com.planarry.erp.entity.Department"
+                              view="department-view-browse">
+            <query>
+                <![CDATA[select e from erp$Department e]]>
+            </query>
+        </collectionDatasource>
+    </dsContext>
+    <dialogMode closeable="true"
+                forceDialog="true"
+                maximized="true"
+                resizable="true"/>
+    <layout expand="windowActions"
+            margin="true"
+            spacing="true">
+        <groupBox id="basic_gbox"
+                  orientation="horizontal"
+                  responsive="true"
+                  spacing="true">
+        <fieldGroup id="fieldGroup"
+                    datasource="departmentDs"
+        width="100%">
+            <column flex="1"
+                    width="100%">
+                <field property="name"/>
+                <field property="chief"/>
+            </column>
+        </fieldGroup>
+        <fieldGroup id="fieldGroup_1"
+        datasource="departmentDs"
+        width="100%">
+            <column flex="1"
+                    width="100%">
+                <field optionsDatasource="companiesDs"
+                       property="company"/>
+                <field optionsDatasource="pidsDs"
+                       property="pid"/>
+            </column>
+        </fieldGroup>
+        </groupBox>
+        <groupBox id="employeeDepartmentBox"
+                  caption="msg://com.planarry.erp.entity/Department.employeeDepartment">
+            <table id="employeeDepartmentTable"
+                   height="200px"
+                   width="100%">
+                <actions>
+                    <action id="create"/>
+                    <action id="edit"/>
+                    <action id="remove"/>
+                </actions>
+                <columns>
+                    <column id="employee"/>
+                    <column id="department"/>
+                </columns>
+                <rows datasource="employeeDepartmentDs"/>
+                <buttonsPanel>
+                    <button action="employeeDepartmentTable.create"/>
+                    <button action="employeeDepartmentTable.edit"/>
+                    <button action="employeeDepartmentTable.remove"/>
+                </buttonsPanel>
+            </table>
+        </groupBox>
+        <frame id="windowActions"
+               screen="extendedEditWindowActions"/>
+    </layout>
+</window>

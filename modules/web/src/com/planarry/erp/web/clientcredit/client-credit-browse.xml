@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://browseCaption"
+        class="com.planarry.erp.web.clientcredit.ClientCreditBrowse"
+        focusComponent="clientCreditsTable"
+        lookupComponent="clientCreditsTable"
+        messagesPack="com.planarry.erp.web.clientcredit">
+    <dsContext>
+        <groupDatasource id="clientCreditsDs"
+                         class="com.planarry.erp.entity.ClientCredit"
+                         view="_local">
+            <query>
+                <![CDATA[select e from erp$ClientCredit e]]>
+            </query>
+        </groupDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="clientCreditsTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="clientCreditsTable"
+                collapsed="true"
+                datasource="clientCreditsDs">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="clientCreditsTable"
+                    width="100%">
+            <actions>
+                <action id="create"/>
+                <action id="edit"/>
+                <action id="remove"/>
+            </actions>
+            <columns>
+                <column id="payDate"/>
+                <column id="value"/>
+            </columns>
+            <rows datasource="clientCreditsDs"/>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn"
+                        action="clientCreditsTable.create"/>
+                <button id="editBtn"
+                        action="clientCreditsTable.edit"/>
+                <button id="removeBtn"
+                        action="clientCreditsTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+    </layout>
+</window>

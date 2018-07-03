@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://journeyCreation"
+        datasource="journeyDs"
+        class="com.planarry.erp.web.journey.JourneyCreate"
+        focusComponent="buttonCargo"
+        messagesPack="com.planarry.erp.web.journey">
+    <dsContext>
+        <datasource id="journeyDs"
+                    class="com.planarry.erp.entity.Journey"
+                    view="journey-creation-view">
+            <collectionDatasource id="journeyCargoDs" property="journeyCargoes"/>
+        </datasource>
+        <collectionDatasource id="journeyTransportDs"
+                              class="com.planarry.erp.entity.JourneyTransport"
+                              refreshMode="NEVER"/>
+        <collectionDatasource id="currenciesDs"
+                              class="com.planarry.erp.entity.Currency"
+                              view="_local">
+            <query>
+                <![CDATA[select e from erp$Currency e]]>
+            </query>
+        </collectionDatasource>
+    </dsContext>
+    <layout expand="transportsTable"
+            spacing="true">
+        <hbox spacing="true">
+            <label align="MIDDLE_LEFT"
+                   value="msg://cargo"
+                   visible="false"/>
+            <pickerField id="cargoField"
+                         metaClass="erp$Cargo"
+                         required="true"
+                         requiredMessage="msg://validate.emptyCargo"
+                         visible="false"/>
+            <button id="buttonCargo"
+                    align="MIDDLE_LEFT"
+                    caption="msg://selectCargo"
+                    invoke="onButtonCargoClick"
+                    stylename="large bold friendly"
+                    width="300px"/>
+
+        </hbox>
+        <groupBox id="info_groupBox"
+                  orientation="vertical"
+                  responsive="true"
+                  spacing="true"
+                  visible="false">
+            <hbox spacing="true"
+                  width="100%">
+                <grid spacing="true"
+                      width="100%">
+                    <columns>
+                        <column flex="0.0"/>
+                        <column flex="2.0"/>
+                    </columns>
+                    <rows>
+                        <row>
+                            <label align="MIDDLE_LEFT"
+                                   value="msg://client"/>
+                            <textField id="clientTxtFld"
+                                       editable="false"
+                                       width="100%"/>
+                        </row>
+                        <row>
+                            <label align="MIDDLE_LEFT"
+                                   value="msg://creationDate"/>
+                            <textField id="createTsTxtFld"
+                                       editable="false"
+                                       width="100%"/>
+                        </row>
+                        <row>
+                            <label align="MIDDLE_LEFT"
+                                   value="msg://startAddress"/>
+                            <cssLayout stylename="v-component-group"
+                                       width="100%">
+                                <hbox expand="startAddressTxtFld"
+                                      width="100%">
+                                    <textField id="startAddressTxtFld"
+                                               editable="false"/>
+                                    <button id="showStartAddressBtn"
+                                            icon="font-icon:MAP_MARKER"
+                                            invoke="onShowStartAddress"
+                                            stylename="friendly"/>
+                                </hbox>
+                            </cssLayout>
+                        </row>
+                        <row>
+                            <label align="MIDDLE_LEFT"
+                                   value="msg://startDate"/>
+                            <cssLayout stylename="v-component-group"
+                                       width="100%">
+                                <dateField id="startDateField"
+                                           editable="false"
+                                           width="100%"/>
+                            </cssLayout>
+                        </row>
+                    </rows>
+                </grid>
+                <grid spacing="true"
+                      width="100%">
+                    <columns>
+                        <column flex="0.0"/>
+                        <column flex="2.0"/>
+                    </columns>
+                    <rows>
+                        <row>
+                            <label align="MIDDLE_LEFT"
+                                   value="msg://author"/>
+                            <textField id="createdByTxtFld"
+                                       editable="false"
+                                       width="100%"/>
+                        </row>
+                        <row>
+                            <label id="labelDesiredPrice"
+                                   align="MIDDLE_CENTER"
+                                   value="msg://desiredPrice"/>
+                            <currencyField id="desiredPriceCurrencyField"
+                                           required="true"
+                                           editable="false"
+                                           width="100%"/>
+                        </row>
+                        <row>
+                            <label align="MIDDLE_LEFT"
+                                   value="msg://endAddress"/>
+                            <cssLayout stylename="v-component-group"
+                                       width="100%">
+                                <hbox expand="endAddressTxtFld"
+                                      width="100%">
+                                    <textField id="endAddressTxtFld"
+                                               editable="false"/>
+                                    <button id="showEndAddressBtn"
+                                            icon="font-icon:MAP_MARKER"
+                                            invoke="onShowEndAddress"
+                                            stylename="friendly"/>
+                                </hbox>
+                            </cssLayout>
+                        </row>
+                        <row>
+                            <label align="MIDDLE_LEFT"
+                                   value="msg://endDate"/>
+                            <cssLayout stylename="v-component-group"
+                                       width="100%">
+                                <dateField id="endDateField"
+                                           editable="false"
+                                           width="100%"/>
+                            </cssLayout>
+                        </row>
+                    </rows>
+                </grid>
+            </hbox>
+        </groupBox>
+        <hbox width="100%">
+            <hbox align="MIDDLE_LEFT"
+                  spacing="true">
+                <button id="searchBtn"
+                        caption="msg://transportSearch"
+                        enable="false"
+                        icon="font-icon:SEARCH"
+                        invoke="onSearchTransports"/>
+                <button id="showTrackBtn"
+                        caption="msg://track"
+                        enable="false"
+                        icon="font-icon:MAP_O"
+                        invoke="onShowTransportationTrack"/>
+            </hbox>
+            <hbox align="MIDDLE_RIGHT"
+                  spacing="true">
+                <label align="MIDDLE_LEFT"
+                       value="msg://currency"/>
+                <lookupPickerField id="currencyField"
+                                   datasource="journeyDs"
+                                   property="currency"
+                                   optionsDatasource="currenciesDs"
+                                   required="true"
+                                   requiredMessage="msg://validate.emptyCurrency"/>
+            </hbox>
+        </hbox>
+        <table id="transportsTable"
+               height="100%"
+               width="100%">
+            <columns>
+                <column id="transport"
+                        link="true"
+                        linkInvoke="onOpenTransportForm"/>
+                <column id="distance"
+                        link="true"
+                        linkInvoke="onShowSupplyTrack"/>
+                <column id="attractingPrice"/>
+                <column id="transportationPrice"
+                        link="true"
+                        linkInvoke="onShowJourneyData"/>
+            </columns>
+            <rows datasource="journeyTransportDs"/>
+        </table>
+        <buttonsPanel align="TOP_LEFT">
+            <button id="previousTransportBtn"
+                    caption="msg://previous"
+                    enable="false"
+                    invoke="onShowPreviousTransport"/>
+            <button id="nextTransportBtn"
+                    caption="msg://next"
+                    enable="false"
+                    invoke="onShowNextTransport"/>
+        </buttonsPanel>
+        <buttonsPanel id="actionPanel"
+                      align="TOP_RIGHT"
+                      responsive="true">
+            <button id="createAndCloseBtn"
+                    caption="msg://SaveAndClose"
+                    invoke="onSaveAndClose"/>
+            <button id="cancelBtn"
+                    caption="msg://cancel"
+                    invoke="onCancel"/>
+        </buttonsPanel>
+    </layout>
+</window>

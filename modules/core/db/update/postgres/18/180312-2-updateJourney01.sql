@@ -1,0 +1,2 @@
+alter table ERP_JOURNEY add constraint FK_ERP_JOURNEY_TRANSPORT foreign key (TRANSPORT_ID) references ERP_TRANSPORT(ID);
+create index IDX_ERP_JOURNEY_TRANSPORT on ERP_JOURNEY (TRANSPORT_ID);

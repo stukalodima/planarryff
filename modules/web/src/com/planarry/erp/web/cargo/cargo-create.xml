@@ -1,0 +1,521 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://creatorCaption"
+        class="com.planarry.erp.web.cargo.CargoCreate"
+        datasource="cargoDs"
+        focusComponent="groupBox_client"
+        messagesPack="com.planarry.erp.web.cargo">
+    <dsContext>
+        <datasource id="cargoDs"
+                    class="com.planarry.erp.entity.Cargo"
+                    view="cargo-view">
+            <collectionDatasource id="accessesDs"
+                                  property="accesses"/>
+            <collectionDatasource id="deliveryPointsDs"
+                                  property="deliveryPoints"/>
+        </datasource>
+        <collectionDatasource id="companyDS"
+                              class="com.planarry.erp.entity.Company"
+                              view="company-view">
+            <query>
+                <![CDATA[select e from erp$Company e]]>
+            </query>
+        </collectionDatasource>
+        <collectionDatasource id="clientDS"
+                              class="com.planarry.erp.entity.Company"
+                              view="_local">
+            <query>
+                <![CDATA[select e from erp$Company e]]>
+            </query>
+        </collectionDatasource>
+        <collectionDatasource id="currencyDS"
+                              class="com.planarry.erp.entity.Currency"
+                              view="_local">
+            <query>
+                <![CDATA[select e from erp$Currency e]]>
+            </query>
+        </collectionDatasource>
+        <hierarchicalDatasource id="transportTypesDs"
+                                class="com.planarry.erp.entity.TransportType"
+                                hierarchyProperty="category"
+                                view="transport-type-view">
+            <query>
+                <![CDATA[select e from erp$TransportType e order by e.name]]>
+            </query>
+        </hierarchicalDatasource>
+    </dsContext>
+    <dialogMode closeable="true"
+                forceDialog="true"
+                maximized="true"
+                resizable="true"/>
+    <layout expand="scrollBox">
+        <scrollBox id="scrollBox"
+                   spacing="true">
+            <hbox responsive="true"
+                  spacing="true"
+                  width="100%">
+                <vbox>
+                    <groupBox id="groupBox_company"
+                              outerMargin="false,true,true,false"
+                              responsive="true"
+                              spacing="true">
+                        <fieldGroup id="fieldGroup_company"
+                                    datasource="cargoDs"
+                                    fieldCaptionWidth="165px"
+                                    height="100%"
+                                    responsive="true"
+                                    width="100%">
+                            <column width="100%">
+                                <field optionsDatasource="companyDS"
+                                       property="company"/>
+                                <field property="manager"/>
+                            </column>
+                        </fieldGroup>
+                    </groupBox>
+                    <groupBox id="groupBox_client"
+                              outerMargin="false,true,true,false"
+                              responsive="true"
+                              spacing="true">
+                        <fieldGroup id="fieldGroup_client"
+                                    datasource="cargoDs"
+                                    fieldCaptionWidth="165px"
+                                    height="100%"
+                                    responsive="true"
+                                    width="100%">
+                            <column width="100%">
+                                <field optionsDatasource="clientDS"
+                                       property="client"
+                                       required="false"/>
+                                <field property="clientCaption"/>
+                                <field description="msg://phoneDescription"
+                                       mask="(###)-(##)-###-##-##"
+                                       property="phone"/>
+                            </column>
+                        </fieldGroup>
+                    </groupBox>
+                    <groupBox id="groupBox_start_fields"
+                              outerMargin="false,true,true,false"
+                              responsive="true"
+                              spacing="true">
+                        <grid id="startPoint_grid_1"
+                              spacing="true"
+                              width="100%">
+                            <columns>
+                                <column flex="0.0"/>
+                                <column flex="3.0"/>
+                                <column flex="1.2"/>
+                            </columns>
+                            <rows>
+                                <row>
+                                    <label align="MIDDLE_LEFT"
+                                           value="msg://startDate"
+                                           width="155px"/>
+                                    <dateField id="sentDateField"
+                                               align="MIDDLE_CENTER"
+                                               datasource="cargoDs"
+                                               property="sentDate"
+                                               required="true"
+                                               width="100%"/>
+                                    <hbox align="MIDDLE_RIGHT"
+                                          spacing="true"
+                                          width="100%">
+                                        <label align="MIDDLE_RIGHT"
+                                               value="msg://dateDelta"/>
+                                        <hbox align="MIDDLE_RIGHT"
+                                              stylename="v-component-group">
+                                            <textField id="sentDateDeltaTxtField"
+                                                       align="MIDDLE_RIGHT"
+                                                       datasource="cargoDs"
+                                                       property="sentDateDelta"
+                                                       width="33px"/>
+                                            <vbox align="MIDDLE_RIGHT"
+                                                  height="36px">
+                                                <button id="plusSentDeltaBtn"
+                                                        height="15px"
+                                                        icon="font-icon:CARET_UP"
+                                                        invoke="onPlusSentDateDelta"
+                                                        stylename="borderless icon-only"
+                                                        width="15px"/>
+                                                <button id="minusSentDeltaBtn"
+                                                        height="15px"
+                                                        icon="font-icon:CARET_DOWN"
+                                                        invoke="onMinusSentDateDelta"
+                                                        stylename="borderless icon-only"
+                                                        width="15px"/>
+                                            </vbox>
+                                        </hbox>
+                                    </hbox>
+                                </row>
+                            </rows>
+                        </grid>
+                        <grid id="startPoint_grid_2"
+                              spacing="true"
+                              width="100%">
+                            <columns>
+                                <column flex="0.0"/>
+                                <column flex="2.0"/>
+                            </columns>
+                            <rows>
+                                <row>
+                                    <label align="MIDDLE_LEFT"
+                                           value="msg://sentAddress"
+                                           width="155px"/>
+                                    <cssLayout stylename="v-component-group"
+                                               width="100%">
+                                        <hbox expand="startAddressSuggestionField"
+                                              width="100%">
+                                            <suggestionField id="startAddressSuggestionField"
+                                                             align="MIDDLE_RIGHT"
+                                                             required="true"
+                                                             requiredMessage="msg://validate.emptyStartAddress"
+                                                             responsive="true"/>
+                                            <button id="startAddressPickerBtn"
+                                                    align="MIDDLE_RIGHT"
+                                                    height="31px"
+                                                    icon="font-icon:MAP_MARKER"
+                                                    invoke="pickStartAddress"
+                                                    stylename="friendly"/>
+                                        </hbox>
+                                    </cssLayout>
+                                </row>
+                                <row>
+                                    <label align="MIDDLE_LEFT"
+                                           value="msg://loadingTime"
+                                           width="155px"/>
+                                    <textField id="sendPointServiceTimeTextField"
+                                               datatype="int"
+                                               width="100%"/>
+                                </row>
+                            </rows>
+                        </grid>
+                    </groupBox>
+                </vbox>
+                <vbox>
+                    <groupBox id="groupBox_cargoInfo"
+                              outerMargin="false,true,true,false"
+                              responsive="true"
+                              spacing="true">
+                        <fieldGroup id="fieldGroup_cargoType"
+                                    datasource="cargoDs"
+                                    fieldCaptionWidth="155px"
+                                    width="100%">
+                            <column width="100%">
+                                <field property="cargoType"/>
+                                <field property="palletsType"
+                                       visible="false"/>
+                                <field property="numberOfPallets"
+                                       visible="false"/>
+                                <field property="weight"/>
+                                <field property="volume"
+                                       visible="false"/>
+                                <field property="temperatureCargo"/>
+                            </column>
+                        </fieldGroup>
+                    </groupBox>
+                    <groupBox id="groupBox_transportType"
+                              outerMargin="false,true,true,false"
+                              responsive="true"
+                              spacing="true">
+                        <hbox id="hbox_tr_type"
+                              expand="cssLayout"
+                              width="100%">
+                            <label align="MIDDLE_LEFT"
+                                   value="msg://transportType"
+                                   width="160px"/>
+                            <cssLayout id="cssLayout"
+                                       stylename="v-component-group">
+                                <hbox expand="transportTypeField"
+                                      width="100%">
+                                    <pickerField id="transportTypeField"
+                                                 datasource="cargoDs"
+                                                 property="transportType"/>
+                                    <popupButton id="popupButton"
+                                                 align="MIDDLE_LEFT"
+                                                 popupOpenDirection="BOTTOM_LEFT"
+                                                 showActionIcons="false"
+                                                 stylename="icon-only">
+                                        <popup>
+                                            <treeTable id="tree"
+                                                       height="350px"
+                                                       width="500px">
+                                                <columns>
+                                                    <column id="name"/>
+                                                </columns>
+                                                <rows datasource="transportTypesDs"/>
+                                            </treeTable>
+                                        </popup>
+                                    </popupButton>
+                                    <button id="editTrTypeBtn"
+                                            icon="components/pickerfield/images/lookup-btn.png"
+                                            invoke="onEditTransportType"
+                                            stylename="icon-only"/>
+                                    <button id="removeTrTypeBtn"
+                                            icon="font-icon:REMOVE"
+                                            invoke="onRemoveTransportType"
+                                            stylename="icon-only"/>
+                                </hbox>
+                            </cssLayout>
+                        </hbox>
+                        <fieldGroup id="fieldGroup_transportType"
+                                    datasource="cargoDs"
+                                    fieldCaptionWidth="155px"
+                                    width="100%">
+                            <column width="100%">
+                                <field optionsDatasource="currencyDS"
+                                       property="currency"
+                                       requiredMessage="msg://validate.emptyCurrency"/>
+                            </column>
+                        </fieldGroup>
+                        <hbox id="price_hbox"
+                              expand="cssLayout_2"
+                              margin="false,false,true,false"
+                              width="100%">
+                            <label align="MIDDLE_LEFT"
+                                   value="msg://desiredPrice"
+                                   width="159px"/>
+                            <cssLayout id="cssLayout_2"
+                                       stylename="v-component-group">
+                                <hbox expand="desiredPriceField"
+                                      width="100%">
+                                    <currencyField id="desiredPriceField"
+                                                   align="MIDDLE_LEFT"
+                                                   editable="false"
+                                                   datasource="cargoDs"
+                                                   property="desiredPrice"
+                                                   responsive="true"/>
+                                    <button id="calculateBtn"
+                                            align="MIDDLE_RIGHT"
+                                            caption="msg://calculateBtn"
+                                            invoke="onCalculatePrice"
+                                            stylename="friendly"/>
+                                </hbox>
+                            </cssLayout>
+                        </hbox>
+                    </groupBox>
+                    <groupBox id="groupBox_dangerousCargo"
+                              outerMargin="false,true,true,false"
+                              responsive="true"
+                              spacing="true">
+                        <fieldGroup id="fieldGroup_dangerousCargo"
+                                    datasource="cargoDs"
+                                    fieldCaptionWidth="155px"
+                                    width="100%">
+                            <column width="100%">
+                                <field property="dangerousCargo"/>
+                                <field property="classADR"
+                                       visible="false"/>
+                            </column>
+                        </fieldGroup>
+                    </groupBox>
+                </vbox>
+            </hbox>
+            <buttonsPanel>
+                <button id="removeBtn"
+                        action="deliveryPointsTable.remove"/>
+                <button id="upBtn"
+                        icon="font-icon:ARROW_UP" action="deliveryPointsTable.up"/>
+                <button id="downBtn"
+                        icon="font-icon:ARROW_DOWN" action="deliveryPointsTable.down"/>
+            </buttonsPanel>
+            <hbox id="tablesHBox"
+                  spacing="true"
+                  width="100%">
+                <table id="deliveryPointsTable"
+                       caption="msg://addresses"
+                       height="100%"
+                       width="100%">
+                    <actions>
+                        <action id="remove"/>
+                        <action id="up" invoke="onUp" trackSelection="true"/>
+                        <action id="down" invoke="onDown" trackSelection="true"/>
+                    </actions>
+                    <columns>
+                        <column id="order"/>
+                        <column id="deliveryDate"/>
+                        <column id="deliveryDateDelta"/>
+                        <column id="point.address"/>
+                        <column id="weight"/>
+                        <column id="volume"/>
+                        <column id="numberOfPallets"/>
+                        <column id="point.serviceTime"/>
+                    </columns>
+                    <rows datasource="deliveryPointsDs"/>
+                </table>
+                <groupBox id="groupBox_end_fields"
+                          outerMargin="true,true,false,false"
+                          responsive="true"
+                          spacing="true">
+                    <grid id="grid_1"
+                          spacing="true"
+                          width="100%">
+                        <columns>
+                            <column flex="0.0"/>
+                            <column flex="3.0"/>
+                            <column flex="1.2"/>
+                        </columns>
+                        <rows>
+                            <row>
+                                <label align="MIDDLE_LEFT"
+                                       value="msg://endDate"
+                                       width="155px"/>
+                                <dateField id="deliveryDateField"
+                                           align="MIDDLE_CENTER"
+                                           width="100%"/>
+                                <hbox align="MIDDLE_RIGHT"
+                                      spacing="true"
+                                      width="100%">
+                                    <label align="MIDDLE_RIGHT"
+                                           value="msg://dateDelta"/>
+                                    <hbox align="MIDDLE_RIGHT"
+                                          stylename="v-component-group">
+                                        <textField id="deliveryDateDeltaTxtField"
+                                                   align="MIDDLE_RIGHT"
+                                                   datatype="int"
+                                                   width="33px"/>
+                                        <vbox height="36px">
+                                            <button id="plusDeliveryDeltaBtn"
+                                                    height="15px"
+                                                    icon="font-icon:CARET_UP"
+                                                    invoke="onPlusDeliveryDateDelta"
+                                                    stylename="borderless icon-only"
+                                                    width="15px"/>
+                                            <button id="minusDeliveryDeltaBtn"
+                                                    height="15px"
+                                                    icon="font-icon:CARET_DOWN"
+                                                    invoke="onMinusDeliveryDateDelta"
+                                                    stylename="borderless icon-only"
+                                                    width="15px"/>
+                                        </vbox>
+                                    </hbox>
+                                </hbox>
+                            </row>
+                        </rows>
+                    </grid>
+                    <grid id="grid_2"
+                          spacing="true"
+                          width="100%">
+                        <columns>
+                            <column flex="0.0"/>
+                            <column flex="2.0"/>
+                        </columns>
+                        <rows>
+                            <row>
+                                <label align="MIDDLE_LEFT"
+                                       value="msg://endAddress"
+                                       width="155px"/>
+                                <cssLayout stylename="v-component-group"
+                                           width="100%">
+                                    <hbox expand="endAddressSuggestionField"
+                                          width="100%">
+                                        <suggestionField id="endAddressSuggestionField"
+                                                         align="MIDDLE_RIGHT"
+                                                         requiredMessage="msg://validate.emptyEndAddress"
+                                                         responsive="true"/>
+                                        <button id="endAddressPickerBtn"
+                                                height="31px"
+                                                icon="font-icon:MAP_MARKER"
+                                                invoke="pickEndAddress"
+                                                stylename="friendly"/>
+                                    </hbox>
+                                </cssLayout>
+                            </row>
+                        </rows>
+                    </grid>
+                    <grid id="grid_3"
+                          spacing="true"
+                          width="100%">
+                        <columns>
+                            <column flex="0.0"/>
+                            <column flex="2.0"/>
+                        </columns>
+                        <rows>
+                            <row>
+                                <label align="MIDDLE_LEFT"
+                                       value="msg://serviceTime"
+                                       width="155px"/>
+                                <textField id="pointServiceTimeField"
+                                           datatype="int"
+                                           width="100%"/>
+                            </row>
+                            <row>
+                                <label id="pointWeightLabel"
+                                       align="MIDDLE_LEFT"
+                                       value="msg://weight"
+                                       width="155px"/>
+                                <textField id="pointWeightField"
+                                           datatype="double"
+                                           width="100%"/>
+                            </row>
+                            <row>
+                                <label id="pointVolumeLabel"
+                                       align="MIDDLE_LEFT"
+                                       value="msg://volume"
+                                       visible="false"
+                                       width="155px"/>
+                                <textField id="pointVolumeField"
+                                           datatype="double"
+                                           visible="false"
+                                           width="100%"/>
+                            </row>
+                            <row>
+                                <label id="pointPalletsLabel"
+                                       align="MIDDLE_LEFT"
+                                       value="msg://pallets"
+                                       visible="false"
+                                       width="155px"/>
+                                <textField id="pointPalletsField"
+                                           datatype="int"
+                                           visible="false"
+                                           width="100%"/>
+                            </row>
+                        </rows>
+                    </grid>
+                    <button id="addPointBtn"
+                            caption="msg://add"
+                            enable="false"
+                            invoke="onAddDeliveryPoint"/>
+                    <button id="savePointBtn"
+                            caption="msg://save"
+                            invoke="onSaveDeliveryPoint"
+                            visible="false"/>
+                </groupBox>
+            </hbox>
+            <groupBox caption="msg://Comment"
+                      collapsable="true"
+                      collapsed="true"
+                      outerMargin="false,true,true,false">
+                <richTextArea id="rtaComment"
+                              datasource="cargoDs"
+                              height="100%"
+                              property="comment"
+                              responsive="true"
+                              width="100%"/>
+            </groupBox>
+        </scrollBox>
+        <buttonsPanel id="buttonsPanel"
+                      expand="hbox"
+                      width="100%">
+            <hbox id="hbox"
+                  spacing="true">
+                <button id="shareToAllBtn"
+                        caption="msg://shareToAll"
+                        invoke="onShareToAll"/>
+                <button id="shareToCompaniesBtn"
+                        caption="msg://shareToCompanies"
+                        invoke="onShareToCompanies"/>
+            </hbox>
+            <hbox align="TOP_RIGHT">
+                <frame id="windowActions"
+                       align="BOTTOM_RIGHT"
+                       screen="extendedEditWindowActions"
+                       width="AUTO"/>
+            </hbox>
+        </buttonsPanel>
+        <button id="closeBtn"
+                align="MIDDLE_RIGHT"
+                caption="msg://close"
+                icon="font-icon:CLOSE"
+                invoke="onClose"
+                visible="false"/>
+    </layout>
+</window>

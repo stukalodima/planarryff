@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://editorCaption"
+        class="com.planarry.erp.web.polygonmap.PolygonMapEdit"
+        datasource="polygonMapDs"
+        messagesPack="com.planarry.erp.web.polygonmap"
+        xmlns:chart="http://schemas.haulmont.com/charts/charts.xsd">
+    <dsContext>
+        <datasource id="polygonMapDs"
+                    class="com.planarry.erp.entity.PolygonMap"
+                    view="polygonMap-view">
+            <collectionDatasource id="entryPointDS" property="entryPoint"/>
+            <collectionDatasource id="pointsDs" property="polygonPoint"/>
+            <collectionDatasource id="segmentsDs" property="segments"/>
+        </datasource>
+    </dsContext>
+    <dialogMode forceDialog="true"
+                height="100%"
+                width="100%"
+                modal="true"/>
+    <layout expand="map" spacing="true">
+        <hbox width="100%">
+            <vbox spacing="true">
+        <fieldGroup width="100%" datasource="polygonMapDs">
+            <column>
+                <field property="name"/>
+            </column>
+        </fieldGroup>
+        <buttonsPanel>
+            <button id="startDrawBtn" invoke="onStartDrawing" caption="msg://draw"/>
+            <button id="editBtn" invoke="onEdit" caption="msg://edit" enable="false"/>
+            <button id="removeBtn" invoke="onRemove" caption="msg://remove" enable="false"/>
+            <button id="entryPoint" caption="msg://Put in entry points" invoke="createEntryPoint" enable="false"/>
+        </buttonsPanel>
+            </vbox>
+        <vbox margin="false,true,false,false" visible="false" id="legend">
+            <label id="mapClick" value="msg://click" align="TOP_RIGHT"/>
+            <label id="markerClick" value="msg://markerClick" align="TOP_RIGHT"/>
+            <label id="doubleClick" value="msg://doubleClick" align="TOP_RIGHT"/>
+        </vbox>
+        </hbox>
+        <chart:mapViewer id="map"
+                         width="100%"/>
+        <frame id="windowActions"
+               align="MIDDLE_RIGHT"
+               width="AUTO"
+               screen="extendedEditWindowActions"/>
+    </layout>
+</window>

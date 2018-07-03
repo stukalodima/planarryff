@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://browseCaption"
+        class="com.planarry.erp.web.constant.ConstantBrowse"
+        focusComponent="constantsTable"
+        lookupComponent="constantsTable"
+        messagesPack="com.planarry.erp.web.constant">
+    <dsContext>
+        <collectionDatasource id="constantsDs"
+                              class="com.planarry.erp.entity.Constant"
+                              view="_local">
+            <query>
+                <![CDATA[select e from erp$Constant e]]>
+            </query>
+        </collectionDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="constantsTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="constantsTable"
+                collapsed="true"
+                datasource="constantsDs">
+            <properties include=".*"/>
+        </filter>
+        <table id="constantsTable"
+               width="100%">
+            <actions>
+                <action id="create"/>
+                <action id="edit"/>
+                <action id="remove"/>
+                <action id="refresh"/>
+            </actions>
+            <columns>
+                <column id="name"/>
+                <column id="valueType"/>
+                <column id="value"/>
+                <column id="key"/>
+            </columns>
+            <rows datasource="constantsDs"/>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn"
+                        action="constantsTable.create"/>
+                <button id="editBtn"
+                        action="constantsTable.edit"/>
+                <button id="removeBtn"
+                        action="constantsTable.remove"/>
+                <button id="refreshBtn"
+                        action="constantsTable.refresh"/>
+            </buttonsPanel>
+        </table>
+    </layout>
+</window>

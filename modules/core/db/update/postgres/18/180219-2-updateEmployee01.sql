@@ -1,0 +1,10 @@
+update ERP_EMPLOYEE set NAME = '' where NAME is null ;
+alter table ERP_EMPLOYEE alter column NAME set not null ;
+-- update ERP_EMPLOYEE set ROLE_ID = <default_value> where ROLE_ID is null ;
+alter table ERP_EMPLOYEE alter column ROLE_ID set not null ;
+-- update ERP_EMPLOYEE set COMPANY_ID = <default_value> where COMPANY_ID is null ;
+alter table ERP_EMPLOYEE alter column COMPANY_ID set not null ;
+-- update ERP_EMPLOYEE set USER_ID = <default_value> where USER_ID is null ;
+alter table ERP_EMPLOYEE alter column USER_ID set not null ;
+update ERP_EMPLOYEE set IS_FREE = true where IS_FREE is null ;
+alter table ERP_EMPLOYEE alter column IS_FREE set not null ;

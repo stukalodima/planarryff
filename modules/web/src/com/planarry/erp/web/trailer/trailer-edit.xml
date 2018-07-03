@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://editorCaption"
+        class="com.planarry.erp.web.trailer.TrailerEdit"
+        datasource="trailerDs"
+        focusComponent="basicFieldGroup"
+        messagesPack="com.planarry.erp.web.trailer">
+    <dsContext>
+        <datasource id="trailerDs"
+                    class="com.planarry.erp.entity.Trailer"
+                    view="trailer-view">
+            <collectionDatasource id="accessesDs" property="accesses"/>
+        </datasource>
+        <collectionDatasource id="companyDS"
+                              class="com.planarry.erp.entity.Company"
+                              view="_minimal">
+            <query>
+                <![CDATA[select e from erp$Company e]]>
+            </query>
+        </collectionDatasource>
+        <collectionDatasource id="currencyDS"
+                              class="com.planarry.erp.entity.Currency"
+                              view="currency-ratio-view">
+            <query>
+                <![CDATA[select e from erp$Currency e]]>
+            </query>
+        </collectionDatasource>
+    </dsContext>
+    <dialogMode closeable="true"
+                resizable="true"
+                forceDialog="true"
+                modal="true"
+                maximized="true"/>
+    <layout expand="scrollBox"
+            margin="true"
+            spacing="true">
+        <scrollBox id="scrollBox"
+                   responsive="true"
+                   spacing="true">
+            <groupBox id="basic_gbox"
+                      responsive="true"
+                      spacing="true">
+                <fieldGroup id="basicFieldGroup"
+                            datasource="trailerDs"
+                            width="100%">
+                    <column flex="1"
+                            width="100%">
+                        <field property="name"/>
+                        <field property="type"/>
+                        <field property="downloadType"/>
+                    </column>
+                    <column flex="1"
+                            width="100%">
+                        <field optionsDatasource="companyDS"
+                               property="company"/>
+                        <field property="employee"/>
+                        <field property="identNumber"/>
+                    </column>
+                </fieldGroup>
+            </groupBox>
+            <tabSheet id="tabSheet"
+                      responsive="true">
+                <tab id="technicalSettingsTab"
+                     margin="true,false,false,false"
+                     caption="msg://technicalSettings"
+                     spacing="true">
+                    <groupBox id="technicalParams_gbox"
+                              responsive="true"
+                              spacing="true">
+                        <fieldGroup id="technicalParamsFieldGroup"
+                                    datasource="trailerDs"
+                                    width="100%">
+                            <column flex="1"
+                                    width="100%">
+                                <field property="maxWeight"/>
+                                <field property="minWeight"/>
+                                <field property="minVolume"/>
+                                <field property="height"/>
+                                <field property="length"/>
+                                <field property="servicePointWithoutRamp"/>
+                            </column>
+                            <column flex="1"
+                                    width="100%">
+                                <field property="guid" visible="false"/>
+                                <field property="limitWeight"/>
+                                <field property="maxVolume"/>
+                                <field property="width"/>
+                                <field property="emptyTrailerWeight"/>
+                                <field property="servicePointWithRamp"/>
+                            </column>
+                        </fieldGroup>
+                    </groupBox>
+                    <groupBox id="technicalParams_gbox_4"
+                              responsive="true"
+                              spacing="true">
+                        <fieldGroup id="technicalParamsFieldGroup_4"
+                                    datasource="trailerDs"
+                                    width="100%">
+                            <column flex="1"
+                                    width="100%">
+                                <field property="temperatureConditions"/>
+                            </column>
+                        </fieldGroup>
+                        <hbox id="temp_hbox"
+                              spacing="true"
+                              width="100%">
+                            <fieldGroup id="technicalParamsFieldGroup_5"
+                                        datasource="trailerDs"
+                                        width="100%">
+                                <column flex="1"
+                                        width="100%">
+                                    <field property="temperatureRetentionTime"/>
+                                </column>
+                            </fieldGroup>
+                            <grid id="temperatureContainer"
+                                  spacing="true"
+                                  width="100%">
+                                <columns>
+                                    <column flex="0.0"/>
+                                    <column flex="2.0"/>
+                                    <column flex="0.0"/>
+                                    <column flex="2.0"/>
+                                </columns>
+                                <rows>
+                                    <row>
+                                        <label align="MIDDLE_LEFT"
+                                               value="msg://temperatureRangeFrom"
+                                               width="212px"/>
+                                        <textField id="lowTempField"
+                                                   datasource="trailerDs"
+                                                   property="lowTemperature"
+                                                   width="100%"/>
+                                        <label align="MIDDLE_CENTER"
+                                               value="msg://temperatureRangeTo"/>
+                                        <textField id="highTempField"
+                                                   datasource="trailerDs"
+                                                   property="highTemperature"
+                                                   width="98%"/>
+                                    </row>
+                                </rows>
+                            </grid>
+                        </hbox>
+                    </groupBox>
+                </tab>
+                <tab id="PriceTab"
+                     caption="msg://price"
+                     margin="true,false,false,false"
+                     spacing="true">
+                    <grid id="currency_grid"
+                          spacing="true"
+                          width="50%">
+                        <columns>
+                            <column flex="0.0"/>
+                            <column flex="2.0"/>
+                        </columns>
+                        <rows>
+                            <row>
+                                <label align="MIDDLE_LEFT"
+                                       width="162px"
+                                       value="msg://currency"/>
+                                <lookupPickerField id="currencyField"
+                                                   required="true"
+                                                   requiredMessage="msg://validate.currencyEmpty"
+                                                   datasource="trailerDs"
+                                                   optionsDatasource="currencyDS"
+                                                   property="currency"
+                                                   width="100%"/>
+                            </row>
+                        </rows>
+                    </grid>
+                    <groupBox id="price_gbox"
+                              responsive="true"
+                              width="50%"
+                              spacing="true">
+                        <grid id="price_grid"
+                              spacing="true"
+                              width="100%">
+                            <columns>
+                                <column flex="0.0"/>
+                                <column flex="2.0"/>
+                            </columns>
+                            <rows>
+                                <row>
+                                    <label align="MIDDLE_LEFT"
+                                           value="msg://costSupply"/>
+                                    <currencyField id="costSupplyField"
+                                                   datasource="trailerDs"
+                                                   property="costSupply"
+                                                   width="100%"/>
+                                </row>
+                                <row>
+                                    <label align="MIDDLE_LEFT"
+                                           value="msg://costKilometer"/>
+                                    <currencyField id="costKilometerField"
+                                                   datasource="trailerDs"
+                                                   property="costKilometer"
+                                                   width="100%"/>
+                                </row>
+                                <row>
+                                    <label align="MIDDLE_LEFT"
+                                           value="msg://costTonKilometer"/>
+                                    <currencyField id="costTonKilometerField"
+                                                   datasource="trailerDs"
+                                                   property="costTonKilometer"
+                                                   width="100%"/>
+                                </row>
+                                <row>
+                                    <label align="MIDDLE_LEFT"
+                                           value="msg://costHour"/>
+                                    <currencyField id="costHourField"
+                                                   datasource="trailerDs"
+                                                   property="costHour"
+                                                   width="100%"/>
+                                </row>
+                            </rows>
+                        </grid>
+                    </groupBox>
+                    <groupBox id="attracting_gbox"
+                              orientation="horizontal"
+                              responsive="true"
+                              width="50%"
+                              spacing="true">
+                        <fieldGroup id="attractingFieldGroup"
+                                    datasource="trailerDs"
+                                    responsive="true"
+                                    width="100%">
+                            <column width="100%" flex="1">
+                                <field property="baseCostAttraction" generator="generateAttractionCurrencyField" />
+                                <field property="extraCostAttraction" generator="generateAttractionCurrencyField" />
+                            </column>
+                        </fieldGroup>
+                    </groupBox>
+                </tab>
+            </tabSheet>
+        </scrollBox>
+        <buttonsPanel>
+            <button id="shareToAllBtn" invoke="onShareToAll" caption="msg://shareToAll"/>
+            <button id="shareToCompaniesBtn" invoke="onShareToCompanies" caption="msg://shareToCompanies"/>
+        </buttonsPanel>
+        <frame id="windowActions"
+               align="TOP_RIGHT"
+               screen="extendedEditWindowActions"
+               width="AUTO"/>
+        <button id="closeBtn"
+                visible="false"
+                invoke="onClose"
+                caption="msg://close"
+                icon="font-icon:CLOSE"
+                align="MIDDLE_RIGHT"/>
+    </layout>
+</window>

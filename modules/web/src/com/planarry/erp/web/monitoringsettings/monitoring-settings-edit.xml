@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://editorCaption"
+        class="com.planarry.erp.web.monitoringsettings.MonitoringSettingsEdit"
+        datasource="settingsDs"
+        focusComponent="fieldGroup"
+        messagesPack="com.planarry.erp.web.monitoringsettings">
+    <dsContext>
+        <datasource id="settingsDs"
+                    class="com.planarry.erp.entity.MonitoringSettings"
+                    view="_local">
+        </datasource>
+    </dsContext>
+    <dialogMode closeable="true"
+                forceDialog="true"
+                height="Auto"
+                modal="true"
+                resizable="true"
+                width="800"/>
+    <layout expand=""
+            margin="true"
+            spacing="true">
+        <fieldGroup id="fieldGroup"
+                    datasource="settingsDs"
+                    responsive="true"
+                    width="100%">
+            <column flex="1"
+                    width="100%">
+                <field property="updatePeriod"/>
+            </column>
+        </fieldGroup>
+        <frame id="windowActions"
+               responsive="true"
+               screen="editWindowActions"/>
+    </layout>
+</window>

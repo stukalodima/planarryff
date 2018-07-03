@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://browseCaption"
+        class="com.planarry.erp.web.category.CategoryBrowse"
+        focusComponent="categoriesTable"
+        lookupComponent="categoriesTable"
+        messagesPack="com.planarry.erp.web.category">
+    <dsContext>
+        <groupDatasource id="categoriesDs"
+                         class="com.planarry.erp.entity.Category"
+                         view="category-browse-view">
+            <query>
+                <![CDATA[select e from erp$Category e]]>
+                <filter>
+                    <c>e.company.id = :param$company</c>
+                </filter>
+            </query>
+        </groupDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="categoriesTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="categoriesTable"
+                datasource="categoriesDs">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="categoriesTable"
+                    width="100%">
+            <actions>
+                <action id="create"
+                        openType="NEW_TAB"/>
+                <action id="edit"
+                        openType="NEW_TAB"/>
+                <action id="remove"/>
+                <action id="refresh"/>
+                <action id="copy"
+                        invoke="onCopy"
+                        visible="false"
+                        trackSelection="true"/>
+            </actions>
+            <columns>
+                <column id="name"/>
+                <column id="company"/>
+                <column id="minHourNumber"/>
+                <column id="weight"/>
+                <column id="volume"/>
+                <column id="numberOfPallets"/>
+                <column id="costKilometer"/>
+                <column id="costHour"/>
+                <column id="costSupply"/>
+            </columns>
+            <rows datasource="categoriesDs"/>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn"
+                        action="categoriesTable.create"/>
+                <button id="editBtn"
+                        action="categoriesTable.edit"/>
+                <button id="removeBtn"
+                        action="categoriesTable.remove"/>
+                <button id="refreshBtn"
+                        action="categoriesTable.refresh"/>
+                <button id="copyBtn"
+                        action="categoriesTable.copy"
+                        caption="msg://copy"
+                        icon="font-icon:COPY"/>
+            </buttonsPanel>
+        </groupTable>
+    </layout>
+</window>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://browseCaption"
+        class="com.planarry.erp.web.transporttype.TransportTypeBrowse"
+        focusComponent="tree"
+        lookupComponent="tree"
+        messagesPack="com.planarry.erp.web.transporttype">
+    <dsContext>
+        <hierarchicalDatasource id="transportTypesDs"
+                                class="com.planarry.erp.entity.TransportType"
+                                view="transport-type-view"
+                                hierarchyProperty="category">
+            <query>
+                <![CDATA[select e from erp$TransportType e order by e.name]]>
+            </query>
+
+        </hierarchicalDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="tree"
+            spacing="true">
+        <buttonsPanel id="buttonsPanel"
+                      alwaysVisible="true">
+            <button id="createBtn"
+                    action="tree.create"/>
+            <button id="editBtn"
+                    action="tree.edit"/>
+            <button id="removeBtn"
+                    action="tree.remove"/>
+            <button id="refreshBtn"
+                    action="tree.refresh"
+                    align="MIDDLE_RIGHT"/>
+        </buttonsPanel>
+        <tree id="tree" width="100%">
+            <actions>
+                <action id="create"
+                        openType="THIS_TAB"/>
+                <action id="edit"
+                        openType="THIS_TAB"/>
+                <action id="remove"/>
+                <action id="refresh"/>
+            </actions>
+            <treechildren datasource="transportTypesDs" captionProperty="name"/>
+        </tree>
+    </layout>
+</window>

@@ -1,0 +1,1259 @@
+[
+  {
+    "_entityName": "sec$Role",
+    "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583",
+    "type": "STANDARD",
+    "version": 1,
+    "permissions": [
+      {
+        "_entityName": "sec$Permission",
+        "id": "a1a06d90-8ae6-3a6a-c60f-8844e2b12447",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "erp$TransportArea:delete"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "9db56192-285b-8356-e7c5-4a7ed80f5399",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "sec$SessionLogEntry:create"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "cee86cdd-e8b3-199b-afd9-b9bc0c536822",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "erp$Department:create"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "f36472b3-9343-dc38-c82f-de6ce8d0b834",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "erp$ClientCredit:delete"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "f94ebfbd-cc3a-00d6-3336-ad0daebe7c88",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "erp$Employee:delete"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "b577fcb4-c23a-5327-0bb1-fca5d8222efa",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "erp$Constant:update"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "0c28ae38-dbeb-7e7e-e4d7-221362130b4a",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "erp$DepartmentEmployee:create"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "8d6fda61-099c-6643-003a-4c05e1835c75",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "erp$DepartmentEmployee:delete"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "f1b86163-d613-d60c-7b00-162c0f847876",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "erp$TransportArea:read"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "932299cc-ed56-c06e-3e59-60281e0d1ab0",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "erp$Trailer:update"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "2841ebb0-91ff-8dd5-11bd-28bb2ad05711",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "bpm$ProcInstance:delete"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "f980438d-f4d2-57d4-4710-0cc59ee27b22",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "erp$Journey:update"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "f92f36f1-157d-ffd8-4f84-04304533a6e3",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "erp$MutualSettlements:delete"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "234e638b-7d41-612e-e7d8-a6938e432a80",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "sec$Role:create"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "29ae1bbb-6b64-cb1f-d0f6-cf5b65b20453",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "erp$ClientCredit:create"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "ebbed91f-572c-4620-4f7a-499544b21fd3",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "sec$User:delete"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "7b3785e0-a254-ffc9-81d2-409f338df7af",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "report$Report:create"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "bb2a67f6-9245-25a0-3536-9456459dc2ed",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "bpm$ProcInstance:read"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "b506c53e-dae4-f1c4-8c0a-ff590defdd9d",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "erp$Journey:create"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "62aeb5ad-95eb-d645-fdab-863baf88018e",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "sec$Group:create"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "bdfe0679-1f13-8ff9-6154-3020abf9cadb",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "erp$EmployeeRole:update"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "21343a42-c047-ed53-ae06-f0cf7698920f",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "erp$Company:create"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "4c38ea8b-f93e-e81c-4234-d42d107a47b2",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "bpm$ProcTask:delete"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "b2f39d74-d5f3-56bb-9a6b-ab9f45fe8f87",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "bpm$ProcDefinition:delete"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "586b27cc-a2a4-1de6-faec-e2b5068b9274",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "erp$DepartmentEmployee:read"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "20e6e92a-2ab2-f217-087f-83d0c0029687",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "erp$Employee:create"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "75e9c55f-b37f-d1a6-5189-846e39896845",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "bpm$ProcDefinition:create"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "2ad3789f-2200-3e55-166a-cdc04312f7f1",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "sec$Role:update"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "8d263e28-e009-d767-227c-07a44b8d5065",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "erp$Department:read"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "a7bb6baa-f7cc-5fd0-d870-1a230a0e7d02",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "erp$Constant:create"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "295b4b3a-6a18-cc64-18d9-2296e91f851f",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "erp$Department:delete"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "1bb2c59c-392b-8f8e-7a7f-54a7faccf0cc",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "erp$Company:delete"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "9910cfee-71c8-0bc7-780e-e9fb47d46888",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "SCREEN",
+        "version": 1,
+        "value": 0,
+        "target": "Users"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "c4b6538d-3114-4381-c7b1-3b0d66b7e5fc",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "erp$Company:update"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "f628b071-9a7b-4060-5578-c6bf4f65ecba",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "bpm$ProcRole:create"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "82a3ecc7-e7d3-1791-2f3b-35dfc3962d0f",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "bpm$ProcModel:read"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "52742f66-2b77-fef7-b736-2a84c77b3706",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "SCREEN",
+        "version": 1,
+        "value": 0,
+        "target": "Administration"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "8151c7ba-5199-9b73-e035-02e887ca7b71",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "erp$Department:update"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "82e0a199-d038-f876-3de2-ea111d7f67d3",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "erp$CurrencyRate:create"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "2fed5e75-7987-9d5c-0a1a-4461e5c8bd9c",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "erp$Employee:update"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "87c0683e-723e-0b97-bdb6-f0e4fc750c00",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "bpm$ServiceTaskStencil:update"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "ba99dcea-356d-a816-d877-9681ace60e68",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "sec$Group:delete"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "36b8099c-3a97-5961-a5a8-b4970086761a",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "bpm$ProcActor:read"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "b0fbf709-a41b-0e5b-bac8-d063bf5a3130",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "erp$TransportArea:update"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "c439c9b5-ced0-2d9e-d8bd-42e6ea647589",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "bpm$ProcRole:read"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "2381f9ca-1d19-a61e-24d9-6e43a84cd4ef",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "SCREEN",
+        "version": 1,
+        "value": 0,
+        "target": "PrintDomain"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "45dfdffe-7343-427a-a09f-2c712ab46638",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "bpm$ProcTask:update"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "77a30ff1-f226-0ab6-83b3-46633916e078",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "bpm$ProcActor:create"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "d8a44a2e-e99b-eef6-35d8-866cbda13f8c",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "erp$EmployeeRole:delete"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "297205d9-ec03-e33a-a41d-ba6e72c735a7",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "bpm$ProcModel:delete"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "23b20eef-4f69-e6e3-9782-b23f7a5b9fb3",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "erp$CurrencyRate:update"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "eb6efffd-ded3-461c-bdd3-6bed120622e7",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "report$Report:update"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "274c8904-4719-f38e-b338-c52306f064bd",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "erp$Currency:delete"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "c3de70bb-6675-b610-728b-472c5eb4e39f",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "erp$Trailer:delete"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "7ba3f3bd-6d20-d09c-403b-5564e78d32e3",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "erp$CurrencyRate:delete"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "603a8381-7049-a72e-45ad-3247c66742c5",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "erp$MutualSettlements:read"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "ff2734f4-7caa-e584-1589-139d99573c2b",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "erp$Transport:update"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "a238207e-bc7f-0b88-6714-cf6336d81a89",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "erp$TransportArea:create"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "41e8c3d1-437b-e9d9-7a5c-7f7e85f086d3",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "sec$SessionLogEntry:read"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "b05fecc1-110b-b872-22a6-718acc395269",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "erp$Transport:read"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "6efd6c1e-a257-5669-a214-22e08281b934",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "bpm$ProcInstance:create"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "8b994994-ed7a-bea7-bc54-5ff9ac33b7d3",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "erp$AccessToTrailer:delete"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "068e83bd-f287-4625-91af-4c99695bf163",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "erp$Currency:create"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "e35e1ec2-d1ca-371f-b261-ca40627616be",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "bpm$ProcActor:update"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "2853843f-d119-6628-c17e-18293fa94203",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "erp$Transport:delete"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "b1fb6066-a836-ebc1-c6c6-98492ade8999",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "report$Report:delete"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "5b350f23-6b6d-6864-ca3b-8349c3ec6324",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "bpm$ProcRole:delete"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "d52e5c94-0190-c4d0-992b-e2475adbd2e0",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "erp$EmployeeRole:create"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "3519ab61-8a3d-c16a-f150-d11baa2a47e3",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "sec$User:update"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "3f1bb315-7926-c410-06a3-2c5356363951",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "bpm$ProcDefinition:read"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "2ebf66eb-473d-3b51-c424-8afefcabd4f8",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "erp$AccessToTrailer:create"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "df7c633e-cc34-3f17-1f03-2b91dc58651d",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "bpm$ProcTask:create"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "e6f87635-85ec-2706-dca1-4a204c727562",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "erp$DepartmentEmployee:update"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "5030d403-16e8-48e6-07d5-33438e9b178a",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "bpm$ProcRole:update"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "23beafc3-aa61-9c04-1c5c-97925f62ad0e",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "sec$User:create"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "9955d731-88e2-1182-6e30-3bc8a726cb1a",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "SCREEN",
+        "version": 1,
+        "value": 0,
+        "target": "BpmTask"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "b51bb81a-6435-bd42-3ff2-501388733424",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "erp$Constant:read"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "a177f584-f605-70d3-5952-84f27780c5c4",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "erp$Constant:delete"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "a8151946-58ba-73f2-c074-6f11f340e2fb",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "sec$SessionLogEntry:update"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "2b7a2efb-a6e9-cf6e-9a7b-72cc3d2d8a5b",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "erp$Trailer:read"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "a369d8fd-307f-c365-1a17-582f3591f1ef",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "erp$AccessToTrailer:read"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "1e488a87-6ec7-950e-5a83-4dbfb011d5e7",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "sec$SessionLogEntry:delete"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "e9477c19-187a-ea5d-5fdc-127cd3a83fa2",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "bpm$ServiceTaskStencil:create"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "186885ca-252b-668f-4b0d-5166e8989f26",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "erp$AccessToTrailer:update"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "e488eb20-201c-83eb-bde1-e48bf0957974",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "bpm$ProcTask:read"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "0b1594ac-8d39-50cf-cb22-93cba423e051",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "bpm$ProcModel:update"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "3bac976b-8a14-0dc8-6757-b8c91959c609",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "erp$MutualSettlements:create"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "3c5fb80d-6a9b-30db-4f3a-17f22f6af066",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "bpm$ProcActor:delete"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "691c49fe-7fb0-36be-8e17-68a54e48c2cc",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "bpm$ProcDefinition:update"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "91206d25-8581-4e35-86aa-51e401373212",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "bpm$ServiceTaskStencil:read"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "48feb8c5-db8c-9406-ccea-9657dd21c9f6",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "erp$MutualSettlements:update"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "6d258fc7-c895-be1b-99b8-d99ca06aeafe",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "erp$ClientCredit:read"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "a6697277-bde4-f6da-33c9-d7518a068b5e",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "erp$Currency:update"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "1cfbf3a5-1417-c4ed-45b0-f62920ecaa32",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "sec$Group:update"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "9eeeeda1-339f-efd9-a5aa-24749dbd488e",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "sec$Role:delete"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "e9a18e1c-146f-24a4-c1cc-7ec7afa29f3b",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "erp$Journey:delete"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "0d776d1f-50d9-8fa5-4f43-bc8470b77d82",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "erp$Transport:create"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "53ebfac3-b8c5-de7a-e9b7-741e123ac8e2",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "erp$Journey:read"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "e27b584c-3f2f-6c80-d311-48fd34d0724c",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "bpm$ProcInstance:update"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "eff49fd9-f3c7-7542-6dab-c8341ef1252e",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "erp$ClientCredit:update"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "c81b250c-611a-769d-4c9c-3475c7d3ac5a",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "report$Report:read"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "a60d9a5c-6c8f-0a43-c681-c0c73dfcaed5",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "erp$Trailer:create"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "d9a35862-b02e-a964-f166-5f79a7e3ba85",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "bpm$ProcModel:create"
+      },
+      {
+        "_entityName": "sec$Permission",
+        "id": "0400d9ad-0587-b9e3-aaf4-0de2b3ea1dce",
+        "role": {
+          "_entityName": "sec$Role",
+          "id": "8ee6a0d1-e403-4242-8dca-0bfe180ab583"
+        },
+        "type": "ENTITY_OP",
+        "version": 1,
+        "value": 0,
+        "target": "bpm$ServiceTaskStencil:delete"
+      }
+    ],
+    "name": "tariff calculator"
+  }
+]

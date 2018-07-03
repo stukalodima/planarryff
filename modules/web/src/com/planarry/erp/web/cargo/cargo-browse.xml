@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://browseCaption"
+        class="com.planarry.erp.web.cargo.CargoBrowse"
+        focusComponent="cargoesTable"
+        lookupComponent="cargoesTable"
+        messagesPack="com.planarry.erp.web.cargo">
+    <dsContext>
+        <groupDatasource id="cargoesDs"
+                         class="com.planarry.erp.entity.Cargo"
+                         view="cargo-browse-view">
+            <query>
+                <![CDATA[select distinct e from erp$Cargo e ]]>
+                <filter>
+                    <and>
+                        <c>e.status = :param$status</c>
+                        <or>
+                            <c>e.accessibleToAll = :param$accessibleToAll</c>
+                            <c>e.company.id = :param$company</c>
+                            <c join="LEFT OUTER JOIN e.accesses ac ">ac.company.id = :param$company</c>
+                        </or>
+                    </and>
+                </filter>
+            </query>
+        </groupDatasource>
+    </dsContext>
+    <dialogMode closeable="true"
+                height="600"
+                width="800"/>
+    <layout expand="cargoesTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="cargoesTable"
+                collapsed="true"
+                datasource="cargoesDs">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="cargoesTable"
+                    width="100%">
+            <actions>
+                <action id="create"
+                        openType="DIALOG"/>
+                <action id="edit"
+                        openType="DIALOG"/>
+                <action id="refresh"/>
+                <action id="remove"/>
+                <action id="excel"/>
+                <action id="shareCompanies"
+                        invoke="onShareToCompanies"
+                        trackSelection="true"/>
+                <action id="shareAll"
+                        invoke="onShareToAll"
+                        trackSelection="true"/>
+            </actions>
+            <columns>
+                <column id="status"/>
+                <column id="clientCaption"/>
+                <column id="company"/>
+                <column id="sentDate"/>
+                <column id="sendPoint.address" caption="msg://sentAddress"/>
+                <column id="deliveryDate" caption="msg://deliveryDate" generator="generateDeliveryDateColumn"/>
+                <column id="deliveryAddress" caption="msg://deliveryAddress" generator="generateDeliveryAddressColumn"/>
+                <column id="access" caption="msg://access" generator="generateAccessColumn"/>
+                <column id="cargoType"/>
+                <column id="palletsType"/>
+                <column id="weight"/>
+                <column id="volume"/>
+                <column id="numberOfPallets"/>
+                <column id="phone"/>
+                <column id="transportType"/>
+                <column id="temperatureCargo"/>
+                <column id="comment"/>
+            </columns>
+            <rows datasource="cargoesDs"/>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn"
+                        action="cargoesTable.create"/>
+                <button id="editBtn"
+                        action="cargoesTable.edit"/>
+                <button id="removeBtn"
+                        action="cargoesTable.remove"/>
+                <button id="refreshBtn"
+                        action="cargoesTable.refresh"/>
+                <button id="excelBtn"
+                        action="cargoesTable.excel"/>
+                <button id="shareToAllBtn"
+                        action="cargoesTable.shareAll"
+                        caption="msg://shareToAll"/>
+                <button id="shareToCompaniesBtn"
+                        action="cargoesTable.shareCompanies"
+                        caption="msg://shareToCompanies"/>
+            </buttonsPanel>
+        </groupTable>
+    </layout>
+</window>
